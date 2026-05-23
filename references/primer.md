@@ -105,12 +105,16 @@ All page IDs below resolve via `get_page.py <id>`. All paths are relative to the
 
 | Repo | PR pages | Ledger |
 |---|---|---|
-| NVIDIA/cutlass | 32 | `candidates/cutlass.yaml` |
-| sgl-project/sglang | 645 | `candidates/sglang.yaml` |
-| vllm-project/vllm | 833 | `candidates/vllm.yaml` |
-| flashinfer-ai/flashinfer | 583 | `candidates/flashinfer.yaml` |
+| NVIDIA/cutlass | 44 | `candidates/cutlass.yaml` |
+| sgl-project/sglang | 730 | `candidates/sglang.yaml` |
+| vllm-project/vllm | 921 | `candidates/vllm.yaml` |
+| flashinfer-ai/flashinfer | 623 | `candidates/flashinfer.yaml` |
 | pytorch/pytorch | 85 | `candidates/pytorch.yaml` |
-| deepseek-ai/DeepGEMM | 1 | `candidates/deepgemm.yaml` |
+| deepseek-ai/DeepGEMM | 10 | `candidates/deepgemm.yaml` |
+| NVIDIA/cccl | 66 | `candidates/cccl-cub.yaml` |
+| Dao-AILab/flash-attention | 45 | `candidates/flash-attention.yaml` |
+| NVIDIA/TensorRT-LLM | 139 | `candidates/tensorrt-llm.yaml` |
+| tile-ai/tilelang | 29 | `candidates/tilelang.yaml` |
 
 Query by repo: `python3 scripts/query.py --repo <name>`.
 

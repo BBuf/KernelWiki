@@ -2,22 +2,299 @@
 
 > Auto-generated. Do not edit manually.
 
-<a id="nvidiacutlass"></a>
-## NVIDIA/cutlass
-32 PRs
+<a id="dao-ailabflash-attention"></a>
+## Dao-AILab/flash-attention
+45 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#2515](../sources/prs/flash-attention/PR-2515.md) | Fix ZeroDivisionError in num_splits_heuristic for empty Q workloads | 2026-04-28 |  | gemm |
+| [#2497](../sources/prs/flash-attention/PR-2497.md) | [FA4][hd256] Backward TMA bulk-store epilogue + LSE/dpsum coalesce | 2026-04-27 | epilogue-fusion | 2sm-cooperative, epilogue-fusion, flash-attention |
+| [#2488](../sources/prs/flash-attention/PR-2488.md) | [hd256] Improve forward kernel with exp2 FMA emulation (3% to 9% performance gain) | 2026-04-23 |  | 2sm-cooperative, flash-attention |
+| [#2489](../sources/prs/flash-attention/PR-2489.md) | [hd256] Add TMA paged KV support to SM100 2CTA forward kernel | 2026-04-23 |  | 2sm-cooperative, flash-attention, tma |
+| [#2455](../sources/prs/flash-attention/PR-2455.md) | Add CLC scheduler heuristic | 2026-04-13 |  | clc |
+| [#2441](../sources/prs/flash-attention/PR-2441.md) | [Cute,Sm100,Fwd] add MLA 64/512 with topk sparsity for MQA 128 heads | 2026-04-06 | tile-scheduling | mla, tile-scheduling, tma |
+| [#2412](../sources/prs/flash-attention/PR-2412.md) | Feat([FA4][CUTE DSL]) Add head_dim=256 support (forward + backward) | 2026-03-30 | tile-scheduling | 2sm-cooperative, flash-attention, tile-scheduling |
+| [#2390](../sources/prs/flash-attention/PR-2390.md) | [Cute,Sm100,Bwd] refine bwd swizzle for deterministic | 2026-03-25 | swizzling, tile-scheduling | swizzling, tile-scheduling |
+| [#2360](../sources/prs/flash-attention/PR-2360.md) | [Fwd,Sm90] Add paged KV attention support (tma and cp.async) | 2026-03-17 |  | attention, tma |
+| [#2333](../sources/prs/flash-attention/PR-2333.md) | Add SM120 varlen attention support | 2026-03-12 |  | attention |
+| [#2330](../sources/prs/flash-attention/PR-2330.md) | [Bwd,Sm120] Add SM120 backward pass support | 2026-03-11 |  | gemm |
+| [#2236](../sources/prs/flash-attention/PR-2236.md) | [Cute,Flex,Fwd] Allow vectorized score_mod definitions | 2026-02-05 |  | gemm |
+| [#2218](../sources/prs/flash-attention/PR-2218.md) | [Ai-assisted] CLC work stealing | 2026-01-31 | tile-scheduling | clc, tile-scheduling |
+| [#2186](../sources/prs/flash-attention/PR-2186.md) | [Cute,Fwd,Sm100] support irregular qhead / kvhead ratios | 2026-01-16 |  | gemm |
+| [#2180](../sources/prs/flash-attention/PR-2180.md) | [Cute][Flex]Add pack-gqa divmod | 2026-01-15 |  | gemm |
+| [#2145](../sources/prs/flash-attention/PR-2145.md) | [CUTE][SM90]Enable pack-gqa with broadcasted maskmods | 2026-01-07 |  | gemm |
+| [#2108](../sources/prs/flash-attention/PR-2108.md) | [NVIDIA] Enable Jetson Thor FA4 | 2025-12-29 |  | gemm |
+| [#2109](../sources/prs/flash-attention/PR-2109.md) | [Cute,Fwd,Sm100] fp8 e4m3 and e5m2 support | 2025-12-29 |  | attention, flash-attention, fp8 |
+| [#2104](../sources/prs/flash-attention/PR-2104.md) | [Cute,Fwd,Sm100] distributed offset calculation for paged KV | 2025-12-28 |  | gemm |
+| [#2098](../sources/prs/flash-attention/PR-2098.md) | Add pack-gqa fwd support for sparse impl w/ broadcasted H dim | 2025-12-24 |  | gemm |
+| [#2091](../sources/prs/flash-attention/PR-2091.md) | Fix IMA in fwd on m boundary | 2025-12-19 |  | gemm |
+| [#2085](../sources/prs/flash-attention/PR-2085.md) | Add blocksparse support for bwd on blackwell | 2025-12-17 |  | gemm |
+| [#2070](../sources/prs/flash-attention/PR-2070.md) | Add score-mod bwd support  | 2025-12-15 |  | tma |
+| [#2043](../sources/prs/flash-attention/PR-2043.md) | [Cute,Fwd] Extend score_mod to variable sequence length | 2025-12-03 |  | tma |
+| [#2033](../sources/prs/flash-attention/PR-2033.md) | [Cute,Bwd,Sm100] enable deterministic mode for sm100 bwd and fix race conditions | 2025-11-24 | tile-scheduling | tile-scheduling |
+| [#2026](../sources/prs/flash-attention/PR-2026.md) | [Cute,Fwd,Sm100] don't pass mask_fn to softmax_step generically | 2025-11-22 |  | tma |
+| [#2014](../sources/prs/flash-attention/PR-2014.md) | [Cute,Sm100,Fwd] use correction warps for epi when not using TMA | 2025-11-15 |  | tma |
+| [#1999](../sources/prs/flash-attention/PR-1999.md) | [Cute,Fwd,Sm100] Support paged attention | 2025-11-11 |  | attention |
+| [#1993](../sources/prs/flash-attention/PR-1993.md) | [Cute,Fwd,Sm100] Support `q_stage=1` for inference | 2025-11-07 |  | gemm |
+| [#1985](../sources/prs/flash-attention/PR-1985.md) | [Cute] Block sparse support Sm100 | 2025-11-05 |  | gemm |
+| [#1945](../sources/prs/flash-attention/PR-1945.md) | Blackwell FlashAttention-BWD (v1.0) | 2025-10-19 |  | attention |
+| [#1940](../sources/prs/flash-attention/PR-1940.md) | [Cute,Fwd,Sm100] Implement SplitKV | 2025-10-15 | tile-scheduling | tile-scheduling |
+| [#1934](../sources/prs/flash-attention/PR-1934.md) | feat: Adding varlen support to cute-dsl sm80 bwd | 2025-10-13 |  | gemm |
+| [#1893](../sources/prs/flash-attention/PR-1893.md) | Improve causal backward determinism perf with SPT schedule | 2025-09-17 | epilogue-fusion, tile-scheduling | epilogue-fusion, tile-scheduling, tma |
+| [#1823](../sources/prs/flash-attention/PR-1823.md) | Add sorting and head swizzle to varlen scheduler | 2025-08-19 | swizzling, tile-scheduling | swizzling, tile-scheduling |
+| [#1604](../sources/prs/flash-attention/PR-1604.md) | Support hdimQK != hdimV backward | 2025-04-21 | epilogue-fusion | epilogue-fusion, tma |
+| [#1361](../sources/prs/flash-attention/PR-1361.md) | Fix FA3 Varlen Performance regression | 2024-11-29 |  | tma |
+| [#1331](../sources/prs/flash-attention/PR-1331.md) | FA3 paged attention: Readiness for Cutlass 3.6 / default value for block_table | 2024-11-12 |  | attention, tma |
+| [#1268](../sources/prs/flash-attention/PR-1268.md) | Paged Attention support for FA3 | 2024-10-10 |  | attention, tma |
+| [#1236](../sources/prs/flash-attention/PR-1236.md) | FA3 kvcache + split kv + gqa parallelization | 2024-09-18 | epilogue-fusion, tile-scheduling | attention, epilogue-fusion, flash-attention |
+| [#1233](../sources/prs/flash-attention/PR-1233.md) | Add local attention in Hopper FAv3 | 2024-09-16 | tile-scheduling | attention, tile-scheduling, tma |
+| [#1182](../sources/prs/flash-attention/PR-1182.md) | Add seqused_q in fwd / bwd and seqused_k in bwd in hopper FA. | 2024-08-28 | epilogue-fusion | attention, epilogue-fusion, sparse-attention |
+| [#1173](../sources/prs/flash-attention/PR-1173.md) | FA3 FP8 qkv descales + restore max offset for h128 causal + added sync for producer WG | 2024-08-23 |  | attention, flash-attention, fp8 |
+| [#1100](../sources/prs/flash-attention/PR-1100.md) | Fp8 kernel with "in-kernel" transpose of V in producer | 2024-07-26 | epilogue-fusion, tile-scheduling | attention, epilogue-fusion, flash-attention |
+| [#1072](../sources/prs/flash-attention/PR-1072.md) | Add var-seq-len to FA3 fp16 / bf16 fwd | 2024-07-19 | epilogue-fusion | epilogue-fusion, tma |
+
+<a id="nvidiatensorrt-llm"></a>
+## NVIDIA/TensorRT-LLM
+139 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#14344](../sources/prs/TensorRT-LLM/PR-14344.md) | [None][chore] Update Claude Code agents and skills | 2026-05-20 | kernel-fusion, pipeline-stages | kernel-fusion, moe, pipeline-stages |
+| [#14281](../sources/prs/TensorRT-LLM/PR-14281.md) | [None][fix] Update the OSS headers in derived FLA ops and AD modeling code | 2026-05-19 | kernel-fusion | gated-delta-net, gemm, kernel-fusion |
+| [#14282](../sources/prs/TensorRT-LLM/PR-14282.md) | [https://nvbugs/6095421][fix] Update resolve_moe_backend | 2026-05-19 |  | moe |
+| [#14291](../sources/prs/TensorRT-LLM/PR-14291.md) | [None][feat] Update the logic of FMHA JIT path | 2026-05-19 | persistent-kernel | flash-attention, persistent-kernel, tma |
+| [#14244](../sources/prs/TensorRT-LLM/PR-14244.md) | [None][refactor] clean up AttentionForwardArgs | 2026-05-18 |  | attention |
+| [#14276](../sources/prs/TensorRT-LLM/PR-14276.md) | [None][fix] Handle unset attention_dp_relax in ADP routers | 2026-05-18 |  | attention |
+| [#14213](../sources/prs/TensorRT-LLM/PR-14213.md) | [None][fix] Avoid dp_size x ep_size double-count in MegaMoEDeepGemm SymmBuffer | 2026-05-17 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#14219](../sources/prs/TensorRT-LLM/PR-14219.md) | [None][feat] DSv4: enable GVR Heuristic Top-K for compress_ratio=4 | 2026-05-17 |  | attention, decode |
+| [#14165](../sources/prs/TensorRT-LLM/PR-14165.md) | [TRTLLM-12462][fix] Fix FP8 block scaling GEMM autotuner cache growth | 2026-05-15 |  | fp8, gemm |
+| [#14172](../sources/prs/TensorRT-LLM/PR-14172.md) | [https://nvbugs/6025177][test] rcca tests using kimi k2.5 fp4 | 2026-05-15 |  | fp4 |
+| [#14179](../sources/prs/TensorRT-LLM/PR-14179.md) | [https://nvbugs/6163147][fix] swap layer.mlp in place for Mixtral modelopt export | 2026-05-15 |  | quantization |
+| [#14193](../sources/prs/TensorRT-LLM/PR-14193.md) | [None][fix] Add SPDX Apache-2.0 headers to auto_deploy test files | 2026-05-15 | kernel-fusion | attention, fp4, fp8 |
+| [#14120](../sources/prs/TensorRT-LLM/PR-14120.md) | [None][feat] Enable 2 DSv4 perf optimizations by default | 2026-05-14 |  | attention |
+| [#14134](../sources/prs/TensorRT-LLM/PR-14134.md) | [None][feat] Add chunked prefill support for Gemma4 (text + vision multimodal) | 2026-05-14 |  | attention, gemm, prefill |
+| [#14069](../sources/prs/TensorRT-LLM/PR-14069.md) | [https://nvbugs/6152892][fix] Fix Triton MOE memory free when no swizzling enabled | 2026-05-13 | kernel-fusion, swizzling | kernel-fusion, moe, swizzling |
+| [#13975](../sources/prs/TensorRT-LLM/PR-13975.md) | [None][perf] Add CUDA q_b norm for DeepSeek V4 | 2026-05-11 |  | attention |
+| [#13997](../sources/prs/TensorRT-LLM/PR-13997.md) | [None][feat] enable TRTLLM-Gen internal routing | 2026-05-11 | kernel-fusion | kernel-fusion, moe |
+| [#13929](../sources/prs/TensorRT-LLM/PR-13929.md) | [TRTLLM-35237][feat] Add cute dsl FP4 paged MQA logits decode kernel | 2026-05-09 |  | attention, decode, flash-attention |
+| [#13938](../sources/prs/TensorRT-LLM/PR-13938.md) | [None][feat] Keep DSv4 o_a_proj as FP8, and port vLLM's fused_inv_rope_fp8_quant | 2026-05-09 | kernel-fusion | attention, fp8, kernel-fusion |
+| [#13873](../sources/prs/TensorRT-LLM/PR-13873.md) | [TRTLLM-12503][feat] Parallel VAE independent scaling and fix arg passing | 2026-05-08 | pipeline-stages | attention, fp4, fp8 |
+| [#13892](../sources/prs/TensorRT-LLM/PR-13892.md) | [None][perf] mHC fused_hc kernel optimizations + DS-V4 entry-boundary RMSNorm fold-in | 2026-05-08 | kernel-fusion | gemm, kernel-fusion |
+| [#13833](../sources/prs/TensorRT-LLM/PR-13833.md) | [None][perf] FC2 DenseGEMM autotune: split-K, swap_ab, fine-grained tuning buckets | 2026-05-07 |  | gemm, moe |
+| [#13802](../sources/prs/TensorRT-LLM/PR-13802.md) | [None][fix] Use compressed lengths for DeepSeek-V4 indexer | 2026-05-06 |  | attention |
+| [#13808](../sources/prs/TensorRT-LLM/PR-13808.md) | [None][feat] Update FMHA cubins for head_dim 80 | 2026-05-06 |  | attention, flash-attention |
+| [#13811](../sources/prs/TensorRT-LLM/PR-13811.md) | [None][feat] Indexer topk opt | 2026-05-06 |  | gemm |
+| [#13761](../sources/prs/TensorRT-LLM/PR-13761.md) | [None][perf] Optimize DeepSeek-V4 compressor BF16 input | 2026-05-05 |  | attention |
+| [#13767](../sources/prs/TensorRT-LLM/PR-13767.md) | [None][fix] Plumb swiglu_limit through DeepGEMM and TRTLLMGen FP8 fused MoE | 2026-05-05 | kernel-fusion | fp8, gemm, kernel-fusion |
+| [#13771](../sources/prs/TensorRT-LLM/PR-13771.md) | [None][fix] Fix fused MHC for DeepSeek-V4-Pro hidden size | 2026-05-05 | kernel-fusion | kernel-fusion |
+| [#13740](../sources/prs/TensorRT-LLM/PR-13740.md) | [https://nvbugs/6108841][fix] add hidden_dim=6144 router GEMM instantiation for GLM-5 | 2026-05-04 |  | gemm |
+| [#13689](../sources/prs/TensorRT-LLM/PR-13689.md) | [None][feat] Add bf16 trtllm moe through flashinfer. | 2026-05-01 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#13628](../sources/prs/TensorRT-LLM/PR-13628.md) | [None][feat] Fuse FP8 1x128 quantize + UE8M0 scale pack on SM100 | 2026-04-30 |  | fp8, gemm, quantization |
+| [#13630](../sources/prs/TensorRT-LLM/PR-13630.md) | [#13580][fix] AutoDeploy: Support Gemma3n/4 E2B variants | 2026-04-30 |  | attention, gemm, mla |
+| [#13652](../sources/prs/TensorRT-LLM/PR-13652.md) | [None][feat] Add DeepSeekV4 attention kernels | 2026-04-30 | persistent-kernel | attention, flash-attention, mla |
+| [#13595](../sources/prs/TensorRT-LLM/PR-13595.md) | [None][feat] Enable EPLB for DeepSeek-V4 | 2026-04-29 | kernel-fusion | kernel-fusion, moe |
+| [#13570](../sources/prs/TensorRT-LLM/PR-13570.md) | [TRTLLM-12128][feat] enable SageAttention for Wan/FLUX (new commits) | 2026-04-28 | pipeline-stages | attention, pipeline-stages |
+| [#13575](../sources/prs/TensorRT-LLM/PR-13575.md) | [TRTLLM-12316][feat] Integrate FP4 indexer for DSv4 | 2026-04-28 |  | attention, fp4 |
+| [#13505](../sources/prs/TensorRT-LLM/PR-13505.md) | [None][perf] Drop cubin and Eliminate ~6s FMHA JIT recompile in eager generation by aligning kernel selection with CUDA graph warmup | 2026-04-27 | persistent-kernel | attention, decode, flash-attention |
+| [#13477](../sources/prs/TensorRT-LLM/PR-13477.md) | [None][perf] Scheme X L2-aware dispatcher and PDL launchers for sparse-attention GVR Top-K | 2026-04-26 |  | attention, decode, sparse-attention |
+| [#13401](../sources/prs/TensorRT-LLM/PR-13401.md) | [TRTLLM-11127][feat] add W4A8_MXFP4_FP8 MoE unit test support | 2026-04-24 |  | fp4, fp8, moe |
+| [#13433](../sources/prs/TensorRT-LLM/PR-13433.md) | [None][perf] Extend customMoeRouting kernel to support Qwen3.5 | 2026-04-24 | kernel-fusion | kernel-fusion, moe |
+| [#13452](../sources/prs/TensorRT-LLM/PR-13452.md) | [TRTLLM-11285][perf] Force enable TF32 tensor cores for DSA indexer fused GEMM | 2026-04-24 | kernel-fusion | attention, gemm, kernel-fusion |
+| [#13340](../sources/prs/TensorRT-LLM/PR-13340.md) | [None][feat] Integrate FP4 indexer for DSA on Blackwell | 2026-04-22 | kernel-fusion | attention, fp4, gemm |
+| [#13207](../sources/prs/TensorRT-LLM/PR-13207.md) | [None][fix] Propagate init_load_balancer to DeepGemmFusedMoE in create_moe_backend | 2026-04-20 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#13219](../sources/prs/TensorRT-LLM/PR-13219.md) | [TRTLLM-34871][feat] Add cute dsl FP8 paged MQA logits decode kernel | 2026-04-20 |  | attention, decode, fp8 |
+| [#13169](../sources/prs/TensorRT-LLM/PR-13169.md) | [https://nvbugs/5945047][fix] Fix cluster launch enablement for SM120 GPUs in allReduce fusion | 2026-04-17 | kernel-fusion | kernel-fusion |
+| [#13103](../sources/prs/TensorRT-LLM/PR-13103.md) | [None][feat] Optimize causal_conv1d prefill and decode kernels | 2026-04-16 |  | decode, prefill |
+| [#13117](../sources/prs/TensorRT-LLM/PR-13117.md) | [None][feat] Add FP4 residual quantization kernel without channel reo… | 2026-04-16 |  | fp4, quantization |
+| [#13033](../sources/prs/TensorRT-LLM/PR-13033.md) | [None][feat] Update rms_norm + fp4_qaunt kernel supporting more dim | 2026-04-14 | kernel-fusion | fp4, kernel-fusion |
+| [#13052](../sources/prs/TensorRT-LLM/PR-13052.md) | [#12716][feat] Fused cross-head QK Norm + RoPE kernel for WAN | 2026-04-14 | kernel-fusion | attention, kernel-fusion |
+| [#12946](../sources/prs/TensorRT-LLM/PR-12946.md) | [#12784][feat] AutoDeploy: Optimize DeepSeek-R1 model performance | 2026-04-11 | kernel-fusion | fp8, gemm, kernel-fusion |
+| [#12937](../sources/prs/TensorRT-LLM/PR-12937.md) | [TRTLLM-11485][feat] Feature rework: Add SageAttention refreshed kernels (attentionOp only) | 2026-04-10 | persistent-kernel | attention, flash-attention, persistent-kernel |
+| [#12884](../sources/prs/TensorRT-LLM/PR-12884.md) | [TRTLLM-11585][feat] Add CUTEDSL moe backend for nemotron-h | 2026-04-09 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#12799](../sources/prs/TensorRT-LLM/PR-12799.md) | [TRTLLM-11797][feat] Add cutedsl moe backend supporting for qwen3.5. | 2026-04-07 | kernel-fusion | kernel-fusion, moe |
+| [#12731](../sources/prs/TensorRT-LLM/PR-12731.md) | [None][feat] Optimize mamba SSD prefill and extend flashinfer dispatch | 2026-04-03 |  | attention, flash-attention, moe |
+| [#12738](../sources/prs/TensorRT-LLM/PR-12738.md) | [None][feat] Add bf16 trtllm-gen moe support through flashinfer. | 2026-04-03 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#12642](../sources/prs/TensorRT-LLM/PR-12642.md) | [None][feat] Add triton paged attention for AutoDeploy | 2026-04-01 |  | attention |
+| [#12612](../sources/prs/TensorRT-LLM/PR-12612.md) | [None][feat] Trtllm-gen FMHA JIT support | 2026-03-31 | persistent-kernel | flash-attention, persistent-kernel, tma |
+| [#12581](../sources/prs/TensorRT-LLM/PR-12581.md) | [https://nvbugs/5983390][perf] Multiple host perf optimizations for DSA part | 2026-03-30 |  | attention |
+| [#12519](../sources/prs/TensorRT-LLM/PR-12519.md) | [#12634][feat] AutoDeploy: Support rank 256 MLA in flashinfer_mla | 2026-03-25 |  | mla |
+| [#12530](../sources/prs/TensorRT-LLM/PR-12530.md) | [https://nvbugs/5879577][fix] Fix KeyError in DeepSeekV3Lite FP8 MTP weight loading | 2026-03-25 |  | fp8 |
+| [#12537](../sources/prs/TensorRT-LLM/PR-12537.md) | [None][feat] Add Mamba2 MTP SSM cache CUDA kernel for tree-based speculative decoding | 2026-03-25 |  | gemm |
+| [#12470](../sources/prs/TensorRT-LLM/PR-12470.md) | [None][feat] Support sparse mqa/gqa attention | 2026-03-24 | kernel-fusion, persistent-kernel | attention, decode, flash-attention |
+| [#12503](../sources/prs/TensorRT-LLM/PR-12503.md) | [https://nvbugs/5983390][perf] Split MLA DSA custom op for piecewise CUDA graph capture | 2026-03-24 |  | attention, mla |
+| [#12506](../sources/prs/TensorRT-LLM/PR-12506.md) | [None][feat] Add PDL support to CuTE DSL top-k kernels | 2026-03-24 |  | decode |
+| [#12445](../sources/prs/TensorRT-LLM/PR-12445.md) | [https://nvbugs/5983390][fix] Remove redundant D2H sync to optimize perf | 2026-03-23 |  | attention |
+| [#12456](../sources/prs/TensorRT-LLM/PR-12456.md) | [None][perf] add Dynamic SMEM block routing in MOE | 2026-03-23 |  | moe |
+| [#12385](../sources/prs/TensorRT-LLM/PR-12385.md) | [None][feat] Temporally-Correlated Heuristic-guided Indexer TopK for Sparse Attention | 2026-03-20 |  | attention, decode |
+| [#12354](../sources/prs/TensorRT-LLM/PR-12354.md) | [TRTLLM-10407][perf] Add cute dsl single pass multi cta cluster topk | 2026-03-19 |  | gemm |
+| [#12320](../sources/prs/TensorRT-LLM/PR-12320.md) | [None][feat] Support update weight for nvfp4 | 2026-03-18 | kernel-fusion | attention, fp4, gemm |
+| [#12322](../sources/prs/TensorRT-LLM/PR-12322.md) | [https://nvbugs/5983390][perf] Kernel fusions in _gather_k_cache_for_chunk of Indexer in DSA | 2026-03-18 | kernel-fusion | attention, kernel-fusion |
+| [#12236](../sources/prs/TensorRT-LLM/PR-12236.md) | [TRTLLM-10407][perf] Enable CuteDSL indexer_top_k in model | 2026-03-16 |  | attention |
+| [#12201](../sources/prs/TensorRT-LLM/PR-12201.md) | [None][feat] Add fused allreduce+RMSNorm op and optional residual in … | 2026-03-13 | kernel-fusion | kernel-fusion, moe |
+| [#12136](../sources/prs/TensorRT-LLM/PR-12136.md) | [None][feat] Add DWDP (Distributed Weight Data Parallelism) support for MoE inference | 2026-03-12 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#12163](../sources/prs/TensorRT-LLM/PR-12163.md) | [None][feat] Minimax RMS norm optimization | 2026-03-12 |  | gemm |
+| [#12062](../sources/prs/TensorRT-LLM/PR-12062.md) | [TRTLLM-11540][feat] Add EAGLE3 dynamic tree speculative decoding support | 2026-03-10 |  | attention, decode, flash-attention |
+| [#12074](../sources/prs/TensorRT-LLM/PR-12074.md) | [TRTLLM-11289][feat] Integrate CuteDSL's bf16 dense GEMMs | 2026-03-10 | persistent-kernel | attention, gemm, persistent-kernel |
+| [#12079](../sources/prs/TensorRT-LLM/PR-12079.md) | [None][feat] CuteDSL MOE: Add raster along M/N support for blockscaled contiguous backbone kernel | 2026-03-10 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#12046](../sources/prs/TensorRT-LLM/PR-12046.md) | [https://nvbugs/5955188][fix] Fix harmony parsers and WAR routing PDL for agentic coding use cases | 2026-03-09 |  | moe |
+| [#12055](../sources/prs/TensorRT-LLM/PR-12055.md) | [TRTLLM-11285][feat] Fuse indexer wk + weights_proj into single GEMM in TF32 for DS-V3.2 | 2026-03-09 |  | attention, gemm, mla |
+| [#11990](../sources/prs/TensorRT-LLM/PR-11990.md) | [None][feat] GLM 5 support and DSA MTP fixes | 2026-03-06 |  | attention, fp8, moe |
+| [#11993](../sources/prs/TensorRT-LLM/PR-11993.md) | [#11694][feat] AutoDeploy: Improve the piecewise CG memory usage | 2026-03-06 | kernel-fusion | attention, gated-delta-net, gemm |
+| [#11897](../sources/prs/TensorRT-LLM/PR-11897.md) | [TRTLLM-10990][feat] Fuse SwiGLU and quant into shared expert | 2026-03-04 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#11899](../sources/prs/TensorRT-LLM/PR-11899.md) | [TRTLLM-10421][perf] Add fused cat+fp8_quantize CUDA kernel for DSA indexer | 2026-03-04 | kernel-fusion | attention, fp8, kernel-fusion |
+| [#11900](../sources/prs/TensorRT-LLM/PR-11900.md) | [TRTLLM-10407][feat] Integrate CuTE DSL top-k kernel for Blackwell | 2026-03-04 |  | decode |
+| [#11869](../sources/prs/TensorRT-LLM/PR-11869.md) | [None][feat] Add fused DiT QK Norm + RoPE CUDA kernel for FLUX | 2026-03-03 | kernel-fusion | attention, kernel-fusion |
+| [#11769](../sources/prs/TensorRT-LLM/PR-11769.md) | [https://nvbugs/5885070][fix] fix deepeplowlatency with cutedsl moe backend | 2026-02-27 | kernel-fusion | kernel-fusion, moe |
+| [#11774](../sources/prs/TensorRT-LLM/PR-11774.md) | [None][fix] Fix SM120 issue for rms_norm with nvfp4_quant_fusion | 2026-02-27 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
+| [#11733](../sources/prs/TensorRT-LLM/PR-11733.md) | [https://nvbugs/5799917][fix] Recover from CUTLASS MoE doActivation perf regression for MXFP4/NVFP4 dtype | 2026-02-26 |  | fp4, gemm, moe |
+| [#11697](../sources/prs/TensorRT-LLM/PR-11697.md) | [TRTLLM-11092][feat] add support for visual gen FA4 attention backend | 2026-02-25 | pipeline-stages, tile-scheduling | attention, flash-attention, pipeline-stages |
+| [#11718](../sources/prs/TensorRT-LLM/PR-11718.md) | [TRTLLM-11119][feat] Blackwell SageAttention, Integrate into AttentionOp API | 2026-02-25 | kernel-fusion, persistent-kernel | attention, flash-attention, kernel-fusion |
+| [#11589](../sources/prs/TensorRT-LLM/PR-11589.md) | [TRTLLM-10004][feat] Enable GEMM -> AR with GEMM output in registered buffers | 2026-02-19 | kernel-fusion | fp4, fp8, gemm |
+| [#11561](../sources/prs/TensorRT-LLM/PR-11561.md) | [None][fix] Fix int4 awq for sm120/121 | 2026-02-18 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#11501](../sources/prs/TensorRT-LLM/PR-11501.md) | [None][feat] TRT-LLM Gen MoE finalize kernel optimization | 2026-02-13 |  | moe |
+| [#11510](../sources/prs/TensorRT-LLM/PR-11510.md) | [None][feat] Add support for expert_number<=2048 and K<=32 | 2026-02-13 |  | fp4, fp8, moe |
+| [#11473](../sources/prs/TensorRT-LLM/PR-11473.md) | [None][feat] Optimize by fuse nvfp4_quant to layernorm_gated for mamba2_mixer | 2026-02-12 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
+| [#11381](../sources/prs/TensorRT-LLM/PR-11381.md) | [None][feat] Remove non flash attetnion style fmha_v2 kernel for hopper | 2026-02-09 | kernel-fusion | attention, flash-attention, kernel-fusion |
+| [#11273](../sources/prs/TensorRT-LLM/PR-11273.md) | [None][feat] Optimize super-v3 nvfp4 for better perf | 2026-02-04 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
+| [#11181](../sources/prs/TensorRT-LLM/PR-11181.md) | [https://nvbugs/5854860][fix] Fix cutedsl argmax on sm120 | 2026-02-02 |  | gemm |
+| [#11165](../sources/prs/TensorRT-LLM/PR-11165.md) | [https://nvbugs/5799917][fix] Recover from CUTLASS MoE doActivation perf regression for MXFP4/NVFP4 dtype | 2026-01-31 |  | fp4, gemm, moe |
+| [#11143](../sources/prs/TensorRT-LLM/PR-11143.md) | [None][feat] fuse shared to sparse experts in TRT-LLM Gen MoE | 2026-01-30 | kernel-fusion | fp4, fp8, kernel-fusion |
+| [#10987](../sources/prs/TensorRT-LLM/PR-10987.md) | [TRTLLM-9831][perf] Use TMA.RED to improve effective memory bandwidth | 2026-01-26 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#10742](../sources/prs/TensorRT-LLM/PR-10742.md) | [https://nvbugs/5669671][fix] Support GuidedDecoder with sharded logits (pick #10698) | 2026-01-16 |  | decode, tma |
+| [#10532](../sources/prs/TensorRT-LLM/PR-10532.md) | [None][feat] MiniMax M2 support | 2026-01-08 | kernel-fusion | kernel-fusion, moe |
+| [#10476](../sources/prs/TensorRT-LLM/PR-10476.md) | [TRTLLM-10276][feat] Integrate cutedsl argmax kernel | 2026-01-07 |  | gemm |
+| [#10479](../sources/prs/TensorRT-LLM/PR-10479.md) | [None] [feat] Add densegemm backend for MoE | 2026-01-07 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#10429](../sources/prs/TensorRT-LLM/PR-10429.md) | [None] [feat] Add test script and raster M for gather fc1 kernel | 2026-01-06 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#10339](../sources/prs/TensorRT-LLM/PR-10339.md) | [TRTLLM-9661][chore] Further reduce tuning time for cuteDSL nvFP4 dense gemm. | 2025-12-30 |  | fp4, gemm, nvfp4 |
+| [#10327](../sources/prs/TensorRT-LLM/PR-10327.md) | [None][fix] impl fused triton kernel for e8m0 resmooth to reduce memory footprint | 2025-12-29 | kernel-fusion | fp8, kernel-fusion, quantization |
+| [#10264](../sources/prs/TensorRT-LLM/PR-10264.md) | [TRTLLM-10022][feat] Add hopper xqa decode support for skip softmax attention | 2025-12-24 |  | attention, decode, tma |
+| [#10279](../sources/prs/TensorRT-LLM/PR-10279.md) | [TRTLLM-10147][perf] Balanced random MoE workload generator for CuteDSL kernel UT, autotuner and layerwise benchmark | 2025-12-24 | kernel-fusion | kernel-fusion, moe |
+| [#10226](../sources/prs/TensorRT-LLM/PR-10226.md) | [TRTLLM-9798][feat] Change to use new DeepGEMM MQA sm100 kernel for MTP-3 | 2025-12-23 |  | attention, gemm |
+| [#10190](../sources/prs/TensorRT-LLM/PR-10190.md) | [None][feat] sm100 weight-only kernel | 2025-12-22 |  | gemm, gemv, quantization |
+| [#10201](../sources/prs/TensorRT-LLM/PR-10201.md) | [TRTLLM-9831][perf] Enable 2CTA with autotune for CuteDSL MoE and Grouped GEMM optimizations | 2025-12-22 | kernel-fusion | 2sm-cooperative, gemm, grouped-gemm |
+| [#10130](../sources/prs/TensorRT-LLM/PR-10130.md) | [TRTLLM-9457][feat] Add cute dsl fp8 gemm for Blackwell | 2025-12-18 |  | attention, block-scale, fp8 |
+| [#10088](../sources/prs/TensorRT-LLM/PR-10088.md) | [None][feat] CuteDSL MOE FC1 Enhancement | 2025-12-17 | kernel-fusion, pipeline-stages | gemm, grouped-gemm, kernel-fusion |
+| [#10042](../sources/prs/TensorRT-LLM/PR-10042.md) | [None][perf] Add more optimization options for MOE CuteDSL finalized kernel | 2025-12-16 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#10043](../sources/prs/TensorRT-LLM/PR-10043.md) | [TRTLLM-9992][perf] Enable PDL for CuteDSL kernels and overlap MoeOutputMemset | 2025-12-16 | kernel-fusion, persistent-kernel | gemm, grouped-gemm, kernel-fusion |
+| [#9905](../sources/prs/TensorRT-LLM/PR-9905.md) | [None][feat] Adding torch ext API for FusedAddRMSNormQuant kernel | 2025-12-11 | kernel-fusion | kernel-fusion |
+| [#9924](../sources/prs/TensorRT-LLM/PR-9924.md) | [TRTLLM-9493][feat] Add helixPostProcessNative kernel for cp_dim=2 | 2025-12-11 |  | gemm |
+| [#9838](../sources/prs/TensorRT-LLM/PR-9838.md) | [https://nvbugs/5726962][feat] Apply fusion for W4AFP8_AWQ MoE | 2025-12-09 | kernel-fusion | fp8, gemm, kernel-fusion |
+| [#9852](../sources/prs/TensorRT-LLM/PR-9852.md) | [None][feat] Fused kernels (qknormrope + moe routing) and two-model MTP support for glm4moe | 2025-12-09 | kernel-fusion | kernel-fusion, moe |
+| [#9854](../sources/prs/TensorRT-LLM/PR-9854.md) | [None][feat] Port fp4 quantization kernel optimization from FlashInfer | 2025-12-09 |  | fp4, quantization |
+| [#9729](../sources/prs/TensorRT-LLM/PR-9729.md) | [None][feat] add fp4 gemm + allreduce | 2025-12-05 | kernel-fusion | fp4, gemm, kernel-fusion |
+| [#9618](../sources/prs/TensorRT-LLM/PR-9618.md) | [TRTLLM-9685] [feat] Add gather fc1 kernel by cuteDSL | 2025-12-02 | kernel-fusion, pipeline-stages | gemm, grouped-gemm, kernel-fusion |
+| [#9486](../sources/prs/TensorRT-LLM/PR-9486.md) | [TRTLLM-8958][feat] and [TRTLLM-8960]: create ConfigurableMoE and support TRTLLMGenFusedMoE as backend | 2025-11-26 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#9175](../sources/prs/TensorRT-LLM/PR-9175.md) | [None][feat] TRT-LLM Gen MoE optimize DeepSeek Fp8 activation kernel | 2025-11-14 |  | fp8, moe |
+| [#9087](../sources/prs/TensorRT-LLM/PR-9087.md) | [None][fix] support topk autotuner input for expert slot per group larger than 32 | 2025-11-12 |  | moe |
+| [#9025](../sources/prs/TensorRT-LLM/PR-9025.md) | [None][feat] Update TRTLLM MoE cubins; reduce mxfp4 weight padding requirement; tighten TMA bound | 2025-11-09 |  | fp4, gemm, moe |
+| [#8886](../sources/prs/TensorRT-LLM/PR-8886.md) | [None][feat] Enable EPLB for trtllm-gen and cutlass backend | 2025-11-03 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#8675](../sources/prs/TensorRT-LLM/PR-8675.md) | [TRTLLM-8827] [feat] Enable low precision alltoall for Cutlass and TRTLLMGen backends | 2025-10-27 | kernel-fusion | kernel-fusion, moe |
+| [#8620](../sources/prs/TensorRT-LLM/PR-8620.md) | [None][feat] Enable nvfp4 cuda core for sm120 | 2025-10-23 |  | fp4, gemm, gemv |
+| [#8501](../sources/prs/TensorRT-LLM/PR-8501.md) | [None][fix] Fix the performance issue of FP8 blockwise grouped GEMM when using attention DP | 2025-10-20 | kernel-fusion | attention, fp8, gemm |
+| [#8405](../sources/prs/TensorRT-LLM/PR-8405.md) | [TRTLLM-8535][feat] Support DeepSeek V3.2 with FP8 + BF16 KV cache/NVFP4 + BF16 KV cache | 2025-10-16 |  | attention, fp4, fp8 |
+| [#7937](../sources/prs/TensorRT-LLM/PR-7937.md) | [None][feat] GPT-OSS Sm120/Sm121 Support | 2025-09-23 | kernel-fusion, warp-specialization | attention, flash-attention, gemm |
+| [#7755](../sources/prs/TensorRT-LLM/PR-7755.md) | [None][fix] Fix and add test for TRTLLM MoE backend | 2025-09-16 |  | moe |
+| [#7761](../sources/prs/TensorRT-LLM/PR-7761.md) | [TRTLLM-8637][feat] Optimize the routing kernel for DeepseekV3 (MoE CUTLASS backend); Add support for 384 experts (MoE TRTLLM backend) | 2025-09-16 |  | moe |
+| [#7524](../sources/prs/TensorRT-LLM/PR-7524.md) | [None][chore] Fix kernel launch param and add TRTLLM MoE backend test | 2025-09-04 |  | moe |
+| [#6809](../sources/prs/TensorRT-LLM/PR-6809.md) | [OMNIML-2336][feat] Add NVFP4 x FP8 | 2025-08-12 | epilogue-fusion | epilogue-fusion, fp4, fp8 |
+| [#4867](../sources/prs/TensorRT-LLM/PR-4867.md) | feat: Add w4a8_mxfp4_fp8 quantization recipe. | 2025-06-03 |  | fp4, fp8, gemm |
+
+<a id="nvidiacccl"></a>
+## NVIDIA/cccl
+66 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#9056](../sources/prs/cccl/PR-9056.md) | Vectorize contiguous iterators in `cub::BlockLoad`/`Store` | 2026-05-18 |  | gemm |
+| [#9044](../sources/prs/cccl/PR-9044.md) | [libcu++] Fix default make_shared_resource construction | 2026-05-16 |  | gemm |
+| [#9019](../sources/prs/cccl/PR-9019.md) | [libcu++] Always suppress C++ extensions warnings in prologue | 2026-05-15 | epilogue-fusion | epilogue-fusion |
+| [#9039](../sources/prs/cccl/PR-9039.md) | Fix segmented radix sort benchmark segment size type | 2026-05-15 |  | gemm |
+| [#8905](../sources/prs/cccl/PR-8905.md) | [STF] Add per-handle exec_place stream resources | 2026-05-12 |  | gemm |
+| [#8925](../sources/prs/cccl/PR-8925.md) | Use the new tuning API internally for `detail::select|three_way_partition::dispatch` and `DevicePartition` | 2026-05-12 |  | gemm |
+| [#8927](../sources/prs/cccl/PR-8927.md) | Use the new tuning API internally for `detail::segmented_radix_sort::dispatch` | 2026-05-12 |  | gemm |
+| [#8880](../sources/prs/cccl/PR-8880.md) | Use the new tuning API internally for `detail::select::dispatch` and `DeviceSelect` | 2026-05-08 |  | gemm |
+| [#8861](../sources/prs/cccl/PR-8861.md) | [cub] Simplify arch dispatch | 2026-05-07 |  | gemm |
+| [#8839](../sources/prs/cccl/PR-8839.md) | Fix Warpspeed scan shifted output store | 2026-05-06 |  | gemm |
+| [#8826](../sources/prs/cccl/PR-8826.md) | Use the new tuning API internally for `detail::reduce[_nd]::dispatch[_nd]` | 2026-05-05 |  | gemm |
+| [#8756](../sources/prs/cccl/PR-8756.md) | Use the new tuning API internally for `detail::reduce_by_key::dispatch` | 2026-04-30 |  | gemm |
+| [#8742](../sources/prs/cccl/PR-8742.md) | Use the new tuning API internally for `detail::topk::dispatch` | 2026-04-29 |  | gemm |
+| [#8695](../sources/prs/cccl/PR-8695.md) | Replace `detail::segmented_reduce::dispatch` by the public API | 2026-04-27 |  | gemm |
+| [#8565](../sources/prs/cccl/PR-8565.md) | Replace `detail::for_each::dispatch` by CUB's public API | 2026-04-21 |  | gemm |
+| [#8538](../sources/prs/cccl/PR-8538.md) | Implement the new tuning API for `detail::batched_topk::dispatch_batched_topk` | 2026-04-20 |  | gemm |
+| [#8495](../sources/prs/cccl/PR-8495.md) | Replace `detail::scan::dispatch` by CUB's public API | 2026-04-16 |  | gemm |
+| [#8427](../sources/prs/cccl/PR-8427.md) | [thrust] Single-pass `is_partitioned` via adjacent zip_iterator | 2026-04-15 |  | gemm |
+| [#8473](../sources/prs/cccl/PR-8473.md) | Replace `detail::merge_sort::dispatch` by CUB's public API | 2026-04-15 |  | gemm |
+| [#8423](../sources/prs/cccl/PR-8423.md) | Vectorize mbarrier initialization in warpspeed scan | 2026-04-14 |  | mbarrier |
+| [#8395](../sources/prs/cccl/PR-8395.md) | [CUB] Replace `Shuffle(Up|Down|Index)` with cuda::device::warp_shuffle - RadixSort only | 2026-04-13 |  | gemm |
+| [#8355](../sources/prs/cccl/PR-8355.md) | [cub]: implement utilities for policy selection | 2026-04-10 |  | gemm |
+| [#8381](../sources/prs/cccl/PR-8381.md) | Replace `detail::merge::dispatch` by CUB's public API | 2026-04-10 |  | gemm |
+| [#8352](../sources/prs/cccl/PR-8352.md) | Apply some random warpspeed tunings | 2026-04-09 |  | gemm |
+| [#8332](../sources/prs/cccl/PR-8332.md) | simplify dispatch segmented reduce to use latest dispatch and new tunings API | 2026-04-08 |  | gemm |
+| [#8311](../sources/prs/cccl/PR-8311.md) | Implement the new tuning API for `DispatchSelectIf` | 2026-04-07 |  | gemm |
+| [#8291](../sources/prs/cccl/PR-8291.md) | Port `thrust::min|max_element` to CUB | 2026-04-04 |  | gemm |
+| [#8284](../sources/prs/cccl/PR-8284.md) | Expose `max_segment_size` guarantee in cuda.compute | 2026-04-02 |  | gemm |
+| [#8184](../sources/prs/cccl/PR-8184.md) | Avoid passing uninitialized values to scan_op | 2026-03-26 |  | gemm |
+| [#8190](../sources/prs/cccl/PR-8190.md) | [STF] Move unstable_unique from STF to generic cudax utility | 2026-03-26 |  | gemm |
+| [#8125](../sources/prs/cccl/PR-8125.md) | Optimized Device-to-Device Tensor Copy (cudax) - Transpose Case | 2026-03-20 |  | gemm |
+| [#8040](../sources/prs/cccl/PR-8040.md) | Adds support for non-fundamental types via decomposer to `DeviceTopK`  | 2026-03-16 |  | gemm |
+| [#7928](../sources/prs/cccl/PR-7928.md) | Implement the new tuning API for `DispatchTopK` | 2026-03-09 |  | gemm |
+| [#7940](../sources/prs/cccl/PR-7940.md) | [cuda.compute]: Fix faulty pointer arithmetic calculation in CUB dispatch | 2026-03-09 |  | gemm |
+| [#7944](../sources/prs/cccl/PR-7944.md) | Reduce usage of `cub::DispatchReduce` | 2026-03-09 |  | gemm |
+| [#7949](../sources/prs/cccl/PR-7949.md) | Use the new tuning API for `detail::radix_sort::dispatch` | 2026-03-09 |  | gemm |
+| [#7874](../sources/prs/cccl/PR-7874.md) | Implement the new tuning API for `DispatchSegmentedSort` | 2026-03-03 |  | gemm |
+| [#7844](../sources/prs/cccl/PR-7844.md) | Implement the new tuning API for `DispatchSegmentedRadixSort` | 2026-03-02 |  | gemm |
+| [#7823](../sources/prs/cccl/PR-7823.md) | Optimized Device-to-Device Tensor Copy (`cudax`) | 2026-02-27 |  | gemm |
+| [#7805](../sources/prs/cccl/PR-7805.md) | Forward policy hub from `dispatch_streaming_arg_reduce_t` to `reduce::dispatch` | 2026-02-26 |  | gemm |
+| [#7807](../sources/prs/cccl/PR-7807.md) | Implement the new tuning API for `detail::reduce::dispatch_streaming_arg_reduce_t` | 2026-02-26 |  | gemm |
+| [#7810](../sources/prs/cccl/PR-7810.md) | Use the new tuning API internally for `detail::transform::dispatch` | 2026-02-26 |  | gemm |
+| [#7814](../sources/prs/cccl/PR-7814.md) | [Backport branch/3.3.x] Forward policy hub from `dispatch_streaming_arg_reduce_t` to `reduce::dispatch` | 2026-02-26 |  | gemm |
+| [#7795](../sources/prs/cccl/PR-7795.md) | Add env SegmentedReduce (non fixed-size overloads) | 2026-02-25 |  | gemm |
+| [#7718](../sources/prs/cccl/PR-7718.md) | Optimize non fixed size segmented reduce for small segments using max_segment_size | 2026-02-19 |  | gemm |
+| [#7669](../sources/prs/cccl/PR-7669.md) | Implement the new tuning API for `DeviceRleDispatch` | 2026-02-13 |  | gemm |
+| [#7384](../sources/prs/cccl/PR-7384.md) | Radix-selection based `BlockTopK` specialization | 2026-01-27 |  | gemm |
+| [#7346](../sources/prs/cccl/PR-7346.md) | Implement the new tuning API for deterministic (rfa) reduce dispatch | 2026-01-25 |  | gemm |
+| [#7114](../sources/prs/cccl/PR-7114.md) | Two-phase reduction for fixed size segmented reduction for very large segment sizes | 2026-01-08 |  | gemm |
+| [#7093](../sources/prs/cccl/PR-7093.md) | Implement new tuning API arch dispatching | 2026-01-06 |  | gemm |
+| [#6819](../sources/prs/cccl/PR-6819.md) | Use integer promotion for `warp_reduce` | 2025-12-01 |  | gemm |
+| [#6811](../sources/prs/cccl/PR-6811.md) | Integrate decoupled lookahead warpspeed scan | 2025-11-28 |  | gemm |
+| [#6597](../sources/prs/cccl/PR-6597.md) | Split fixed-size segmented reduce dispatch header | 2025-11-12 |  | gemm |
+| [#6152](../sources/prs/cccl/PR-6152.md) | Fix debug section around line 390 of dispatch_topk | 2025-10-08 |  | gemm |
+| [#6069](../sources/prs/cccl/PR-6069.md) | Add dynamic CUB dispatch for segmented_sort | 2025-09-30 |  | gemm |
+| [#6077](../sources/prs/cccl/PR-6077.md) | [CUB] Use `BlockLoadToShared` in `DeviceMerge` | 2025-09-30 |  | gemm |
+| [#5408](../sources/prs/cccl/PR-5408.md) | Combine `block_reduce_warp_reduction_nondeterministic.cuh` specialization with original deterministic one  | 2025-08-01 |  | gemm |
+| [#5314](../sources/prs/cccl/PR-5314.md) | CUB - Add internal integer utils and tests (Split `WarpReduce` PR) | 2025-07-18 |  | gemm |
+| [#4961](../sources/prs/cccl/PR-4961.md) | Add nondeterministic reduce that uses atomics | 2025-06-11 |  | gemm |
+| [#4716](../sources/prs/cccl/PR-4716.md) | Split Optimize Warp Reduce PR - CUB part | 2025-05-15 |  | gemm |
+| [#3691](../sources/prs/cccl/PR-3691.md) | Fix SM100 histogram tunings | 2025-02-05 |  | gemm |
+| [#3559](../sources/prs/cccl/PR-3559.md) | Add b200 tunings for scan.exclusive.sum | 2025-01-28 |  | gemm |
+| [#3517](../sources/prs/cccl/PR-3517.md) | Fix the vectorized loading of BlockLoad | 2025-01-24 |  | gemm |
+| [#3236](../sources/prs/cccl/PR-3236.md) | Fix scan / sm90 perf regression  | 2025-01-02 |  | gemm |
+| [#2944](../sources/prs/cccl/PR-2944.md) | fix thread-reduce performance regression | 2024-11-22 |  | gemm |
+| [#1973](../sources/prs/cccl/PR-1973.md) | Experimental Python cooperative algorithms | 2024-07-11 |  | gemm |
+
+<a id="nvidiacutlass"></a>
+## NVIDIA/cutlass
+44 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#3184](../sources/prs/cutlass/PR-3184.md) | Add Snake activation functor for EVT | 2026-04-24 | epilogue-fusion | epilogue-fusion |
+| [#3176](../sources/prs/cutlass/PR-3176.md) | Small Tile N BlockScaled GEMM + Grouped GEMM on SM12x | 2026-04-19 | kernel-fusion | gemm, kernel-fusion, tma |
 | [#3130](../sources/prs/cutlass/PR-3130.md) | Update blackwell tutorial to be compatible with 4.5-dev version | 2026-03-25 | persistent-kernel | gemm, persistent-kernel |
 | [#3106](../sources/prs/cutlass/PR-3106.md) | [CLI] add cutedsl fp16 gemm tutorial from 2 to 6 | 2026-03-13 |  | gemm |
+| [#3092](../sources/prs/cutlass/PR-3092.md) | Support for Group GEMM in CUTLASS Profiler for GeForce and Spark | 2026-03-07 |  | gemm, grouped-gemm |
 | [#3091](../sources/prs/cutlass/PR-3091.md) | [Hopper CuTeDSL] Add grouped GEMM kernel example | 2026-03-06 |  | gemm, grouped-gemm |
+| [#3055](../sources/prs/cutlass/PR-3055.md) | Replace std::min with cute::min in sm120 blockwise scaling device functions | 2026-02-23 |  | gemm, tma |
 | [#3021](../sources/prs/cutlass/PR-3021.md) | [Cute-DSL] Add option for issue_clc_query without multicast | 2026-02-11 |  | clc |
 | [#2995](../sources/prs/cutlass/PR-2995.md) | [CuTeDSL] Fix: SM100 block-scale gemm overlapping accumulator | 2026-02-03 | double-buffering, pipeline-stages, epilogue-fusion | block-scale, cute-dsl, double-buffering |
 | [#2965](../sources/prs/cutlass/PR-2965.md) | [Bug Fix]Set NumSplitsM to 1 when TileShapeM < 128 in sm90 fp8 blockwise scaling CollectiveMma | 2026-01-19 |  | fp8, gemm, tma |
 | [#2946](../sources/prs/cutlass/PR-2946.md) | [Cutlass gemm] Fix SM100 FP8 nosmem epilogue-fusion shape_div 'Divisibility Condition' for non-multiple-of-64 N tiles | 2026-01-10 | epilogue-fusion | gemm, fp8, epilogue-fusion |
 | [#2921](../sources/prs/cutlass/PR-2921.md) | Fix incorrect tensor layout strides in Blackwell MMA tutorial comments | 2026-01-03 |  | gemm |
 | [#2881](../sources/prs/cutlass/PR-2881.md) | new example with TMA prefetch feature targeting for DRAM latency boun… | 2025-12-16 | persistent-kernel | gemm, persistent-kernel, tma |
+| [#2875](../sources/prs/cutlass/PR-2875.md) | [cute] Add constexpr specifier to make_tiled_copy | 2025-12-12 |  | gemm |
 | [#2865](../sources/prs/cutlass/PR-2865.md) | [Bug Fix]Bypass launch grids for SM120 Kernel with SM90 Mainloop & SM100 TileScheduler | 2025-12-09 |  | gemm, tma |
+| [#2790](../sources/prs/cutlass/PR-2790.md) | Blockscaled Ragged Contiguous Grouped Gemm for MoEs | 2025-11-21 |  | gemm, moe |
 | [#2750](../sources/prs/cutlass/PR-2750.md) | Add tutorial fp16_gemm_1 | 2025-11-05 |  | gemm |
 | [#2746](../sources/prs/cutlass/PR-2746.md) | Support for GEMM-K=0 for Blackwell Grouped GEMMs | 2025-11-04 | warp-specialization, persistent-kernel, pipeline-stages | grouped-gemm, gemm, pipeline-stages |
 | [#2719](../sources/prs/cutlass/PR-2719.md) | Support PDL for SM90 Array TMA GEMM | 2025-10-24 |  | gemm, tma |
@@ -32,30 +309,74 @@
 | [#2291](../sources/prs/cutlass/PR-2291.md) | Correct divmod order in example 77 (blackwell fmha) | 2025-05-13 | tile-scheduling | flash-attention, tile-scheduling |
 | [#2292](../sources/prs/cutlass/PR-2292.md) | Handle get_masked_trip_count for small length in fmha example | 2025-05-13 | kernel-fusion | flash-attention, kernel-fusion |
 | [#2267](../sources/prs/cutlass/PR-2267.md) | war to fix blackwell grouped groupwise hang | 2025-04-29 | tile-scheduling | gemm, tile-scheduling |
+| [#2270](../sources/prs/cutlass/PR-2270.md) | hopper-blockwise-generalization-optimization | 2025-04-29 |  | fp8, gemm, tma |
+| [#2256](../sources/prs/cutlass/PR-2256.md) | Use cudaMemcpyAsync in gemm grouped with kRequiresPrecomputation sche… | 2025-04-21 |  | gemm |
 | [#2220](../sources/prs/cutlass/PR-2220.md) | Set EpiTile correctly when TileN is not divisible by 32 | 2025-04-04 | epilogue-fusion | epilogue-fusion |
 | [#2167](../sources/prs/cutlass/PR-2167.md) | Fix sm100 gemm wrong static constexpr that breaks compilation on Windows | 2025-03-13 |  | gemm, tma |
+| [#2172](../sources/prs/cutlass/PR-2172.md) | Fix SM90 beta=1 hang and stream-K launch errors | 2025-03-13 | tile-scheduling | gemm, tile-scheduling, tma |
 | [#2161](../sources/prs/cutlass/PR-2161.md) | Blockwise Improvement and Programmatic Dependent Launch | 2025-03-10 | persistent-kernel, tile-scheduling | pdl, gdc, gemm |
 | [#2134](../sources/prs/cutlass/PR-2134.md) | Flash MLA Support - Step 2 | 2025-02-26 |  | mla, tma |
 | [#2139](../sources/prs/cutlass/PR-2139.md) | Blockwise and Groupwise GEMM for Blackwell and Improvements for Hopper | 2025-02-26 | warp-specialization, fine-grained-quantization | gemm, grouped-gemm, fp8 |
 | [#2130](../sources/prs/cutlass/PR-2130.md) | Flash MLA support | 2025-02-24 |  | mla, tma |
+| [#2123](../sources/prs/cutlass/PR-2123.md) | Hopper Grouped GEMM support for FP8 Accum | 2025-02-20 |  | fp8, gemm, grouped-gemm |
+| [#2095](../sources/prs/cutlass/PR-2095.md) | Improvements for: Groupwise scaling along M for FP8 gemm | 2025-02-10 | warp-specialization | fp8, gemm, tma |
 | [#2037](../sources/prs/cutlass/PR-2037.md) | Groupwise scaling along M for FP8 gemm | 2025-01-13 | warp-specialization | fp8, gemm, tma |
 | [#2033](../sources/prs/cutlass/PR-2033.md) | [EVT] Add support for Row/Col broadcast PtrArray | 2025-01-08 | epilogue-fusion, kernel-fusion | epilogue-fusion, kernel-fusion, tma |
+| [#1883](../sources/prs/cutlass/PR-1883.md) | Improve sm90 mixed dtype kernel | 2024-10-18 | epilogue-fusion | epilogue-fusion, fp8, gemm |
 
 <a id="deepseek-aideepgemm"></a>
 ## deepseek-ai/DeepGEMM
-1 PRs
+10 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#328](../sources/prs/DeepGEMM/PR-328.md) | Sync nv_dev with upstream #316 (Mega MoE optimizations & benchmarks) | 2026-05-07 |  | attention, fp4, fp8 |
 | [#304](../sources/prs/DeepGEMM/PR-304.md) | [Public release 26/04] Introducing Mega MoE, FP4 Indexer and other features/fixes | 2026-04-17 | kernel-fusion, fine-grained-quantization, communication-overlap | gemm, moe, fused-kernel |
+| [#270](../sources/prs/DeepGEMM/PR-270.md) | fix: use SM90ArchSpec instead of SM100ArchSpec in sm90_bf16_k_grouped_gemm | 2025-12-31 |  | gemm, grouped-gemm |
+| [#193](../sources/prs/DeepGEMM/PR-193.md) | Fix multicast bug and optimize masked GEMM | 2025-09-12 |  | gemm |
+| [#168](../sources/prs/DeepGEMM/PR-168.md) | Fix performance issue of m-grouped contiguous GEMMs. | 2025-08-20 |  | gemm |
+| [#88](../sources/prs/DeepGEMM/PR-88.md) | Support TMA multicast on B with m_grouped_gemm_contiguous. | 2025-04-18 |  | fp8, gemm, grouped-gemm |
+| [#86](../sources/prs/DeepGEMM/PR-86.md) | Use swizzling instead of padding | 2025-04-14 | swizzling | fp8, gemm, grouped-gemm |
+| [#83](../sources/prs/DeepGEMM/PR-83.md) | Use 1D TMA store instead of 3D | 2025-04-11 |  | fp8, gemm, grouped-gemm |
+| [#78](../sources/prs/DeepGEMM/PR-78.md) |  Solving bank conflict via padding and TMA 3D store | 2025-04-03 |  | fp8, gemm, grouped-gemm |
+| [#42](../sources/prs/DeepGEMM/PR-42.md) | Performance: reducing the percentage of FFMA interleaving yields a sight performance gain, roughly 0.5% | 2025-03-05 |  | gemm |
 
 <a id="flashinfer-aiflashinfer"></a>
 ## flashinfer-ai/flashinfer
-583 PRs
+623 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#3317](../sources/prs/flashinfer/PR-3317.md) | Update trtllm FMHA cubins | 2026-05-14 |  | flash-attention |
+| [#3322](../sources/prs/flashinfer/PR-3322.md) | [feat] Add gemma RMS AR fusion | 2026-05-14 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#3324](../sources/prs/flashinfer/PR-3324.md) | checkpointing_ssu kernel: fused replay + conditional state-write for Mamba2 | 2026-05-14 | kernel-fusion | kernel-fusion |
+| [#3328](../sources/prs/flashinfer/PR-3328.md) | feat(cute_dsl/moe): add `moe_output_memset_inplace` dense memset wrapper | 2026-05-14 | kernel-fusion | kernel-fusion, moe |
+| [#3315](../sources/prs/flashinfer/PR-3315.md) | Ep api design - Build Infra dependencies | 2026-05-13 |  | moe |
+| [#3286](../sources/prs/flashinfer/PR-3286.md) | feat(cute_dsl/moe): deterministic balanced autotune profile inputs | 2026-05-11 | kernel-fusion | kernel-fusion, moe |
+| [#3276](../sources/prs/flashinfer/PR-3276.md) | fix(fmha_v2): fix FP8 V-scratch pipeline and varlen scheduler on SM90 | 2026-05-09 | pipeline-stages | attention, flash-attention, fp8 |
+| [#3268](../sources/prs/flashinfer/PR-3268.md) | Ameyn/gdn bf16 dispatcher and 4d pool | 2026-05-08 |  | decode |
+| [#3271](../sources/prs/flashinfer/PR-3271.md) | feat(moe): add SM120 W4A16 b12x kernels | 2026-05-08 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#3259](../sources/prs/flashinfer/PR-3259.md) | Add dynamic tokens-per-page TRTLLM-GEN GQA kernels | 2026-05-07 |  | attention, flash-attention |
+| [#3239](../sources/prs/flashinfer/PR-3239.md) | Update moe gemm | 2026-05-06 |  | gemm, moe |
+| [#3252](../sources/prs/flashinfer/PR-3252.md) | fix(cute_dsl/moe): unbias autotuner profiling for tile_size enumeration | 2026-05-06 | kernel-fusion | kernel-fusion, moe |
+| [#3235](../sources/prs/flashinfer/PR-3235.md) | Support Kimi K2.5 H64 CuTe DSL MLA decode | 2026-05-05 | persistent-kernel | attention, decode, fp8 |
+| [#3237](../sources/prs/flashinfer/PR-3237.md) | perf: optimize per-token nvfp4 quantization kernel. | 2026-05-05 |  | fp4, nvfp4, quantization |
+| [#3227](../sources/prs/flashinfer/PR-3227.md) | [Bugfix] Fix fused MoE autotuning correctness issues by filtering clusterDimZ | 2026-05-04 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#3221](../sources/prs/flashinfer/PR-3221.md) | feat(trace): embed runnable init() in every TraceTemplate | 2026-05-02 | kernel-fusion | attention, block-scale, decode |
+| [#3216](../sources/prs/flashinfer/PR-3216.md) | fix(cute_dsl/moe): make autotuner bucket configuration adapt to runtime input | 2026-05-01 | kernel-fusion | kernel-fusion, moe |
+| [#3203](../sources/prs/flashinfer/PR-3203.md) | Include TinyGEMM into BF16 autotuner | 2026-04-29 |  | gemm |
+| [#3191](../sources/prs/flashinfer/PR-3191.md) | fix(sm12x): fix micro-kernel workspace sizing when routed_rows > num_local_experts | 2026-04-27 | kernel-fusion | kernel-fusion, moe |
+| [#3180](../sources/prs/flashinfer/PR-3180.md) | Fix/3170 dense blockscaled sm12x | 2026-04-26 |  | gemm |
+| [#3181](../sources/prs/flashinfer/PR-3181.md) | cute-dsl fmha prefill (cubin integration): remove front-padding, add attention_sink, and pdl support | 2026-04-26 |  | attention, flash-attention, prefill |
+| [#3183](../sources/prs/flashinfer/PR-3183.md) | test: enable bmm_mxfp8 cutlass backend coverage on SM12x | 2026-04-26 |  | fp8, gemm |
+| [#3185](../sources/prs/flashinfer/PR-3185.md) | feat: enable glm5 router gemm | 2026-04-26 |  | gemm |
+| [#3151](../sources/prs/flashinfer/PR-3151.md) | perf: Add no-bias path for tinygemm_bf16 | 2026-04-23 |  | gemm |
+| [#3152](../sources/prs/flashinfer/PR-3152.md) | Integrate CUTLASS Small Tile N Blockscaled GEMMs/Grouped GEMMs for SM120 and SM121 | 2026-04-23 |  | fp4, fp8, gemm |
+| [#3157](../sources/prs/flashinfer/PR-3157.md) | feat: DiT layer norm fusions for WAN: flashinfer.diffusion_ops | 2026-04-23 | kernel-fusion | kernel-fusion |
+| [#3129](../sources/prs/flashinfer/PR-3129.md) | feat: Enable FP8 (E4M3/E5M2) in concat_mla_k for optimize long-context prefill performance and refactor type dispatch for BF16/FP16 | 2026-04-21 |  | fp8, mla, prefill |
+| [#3097](../sources/prs/flashinfer/PR-3097.md) | Support NVFP4 KV for prefill and batch attention kernels | 2026-04-17 | persistent-kernel, swizzling | attention, decode, fp4 |
 | [#3058](../sources/prs/flashinfer/PR-3058.md) | Support lse in trtllm paged attn kernels | 2026-04-14 |  | attention, decode, flash-attention |
+| [#3059](../sources/prs/flashinfer/PR-3059.md) | Support Allreduce + Norm + Per-token Group Fp8 Quant Fusion | 2026-04-14 | kernel-fusion | fp8, kernel-fusion |
 | [#3066](../sources/prs/flashinfer/PR-3066.md) | feat: Add b12x CuTe DSL fused MoE for SM120 | 2026-04-14 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#3051](../sources/prs/flashinfer/PR-3051.md) | feat: Add backend="b12x" for mm_fp4 on SM120 | 2026-04-13 |  | fp4, gemm |
 | [#3032](../sources/prs/flashinfer/PR-3032.md) | fused_moe: pre-filter SM89 tactics with zero occupancy on SM120 Blackwell (fix review feedback on #2764) | 2026-04-10 | kernel-fusion | gemm, kernel-fusion, moe |
@@ -63,6 +384,7 @@
 | [#3024](../sources/prs/flashinfer/PR-3024.md) | [feat] Add routing_replay_out support to MoE kernels and Python API | 2026-04-09 | kernel-fusion | kernel-fusion, moe |
 | [#3025](../sources/prs/flashinfer/PR-3025.md) | Prevent MoE autotuner buffer overflow on large token buckets | 2026-04-09 | kernel-fusion | kernel-fusion, moe |
 | [#3026](../sources/prs/flashinfer/PR-3026.md) | perf: Port TRT-LLM SM120/SM121 FP4 CUTLASS GEMM optimizations. Add PDL | 2026-04-09 |  | fp4, gemm |
+| [#3027](../sources/prs/flashinfer/PR-3027.md) | [feat] Trtllm-gen Per-token Nvfp4 MoE | 2026-04-09 | kernel-fusion | fp4, gemm, kernel-fusion |
 | [#3014](../sources/prs/flashinfer/PR-3014.md) | perf: Optimize CUTLASS MoE helper kernels for small-batch decode workloads | 2026-04-08 | kernel-fusion | decode, kernel-fusion, moe |
 | [#3017](../sources/prs/flashinfer/PR-3017.md) | [chore] Install nvidia-cutlass-dsl[cu13] for cu130+ | 2026-04-08 |  | gemm |
 | [#3001](../sources/prs/flashinfer/PR-3001.md) | [feat] Add blackwell GDN prefill kernel | 2026-04-07 | tile-scheduling | gated-delta-net, prefill, tile-scheduling |
@@ -77,13 +399,16 @@
 | [#2974](../sources/prs/flashinfer/PR-2974.md) | test: skip unsupported mm_mxfp8 configurations on SM12x | 2026-04-03 |  | fp8, gemm |
 | [#2954](../sources/prs/flashinfer/PR-2954.md) | Only swizzle on v block scale; rename kv_block_scales to kv_cache_sf | 2026-04-02 | swizzling | attention, block-scale, decode |
 | [#2960](../sources/prs/flashinfer/PR-2960.md) | Update NVSHMEM interface to use NVSHMEM4Py instead of custom bindings | 2026-04-02 |  | gemm |
+| [#2962](../sources/prs/flashinfer/PR-2962.md) | Improved `simple` mamba SSU kernel  | 2026-04-02 |  | gemm |
 | [#2963](../sources/prs/flashinfer/PR-2963.md) | test: xfail cuDNN FP8 prefill on Blackwell with CUDA <= 12.9 | 2026-04-02 |  | attention, fp8, prefill |
 | [#2965](../sources/prs/flashinfer/PR-2965.md) | Add flashinfer.fused_rmsnorm_silu() with native kernel backend | 2026-04-02 | kernel-fusion | kernel-fusion |
 | [#2940](../sources/prs/flashinfer/PR-2940.md) | CuTe DSL FP4 GEMM Heuristic | 2026-04-01 |  | fp4, gemm |
 | [#2942](../sources/prs/flashinfer/PR-2942.md) | [Perf] Refactor MoE autotuning to set valid topk ids in routed MoE tuning | 2026-04-01 | kernel-fusion | kernel-fusion, moe |
+| [#2944](../sources/prs/flashinfer/PR-2944.md) | feat: Add CuTe DSL grouped-gemm + combine fusion support | 2026-04-01 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
 | [#2945](../sources/prs/flashinfer/PR-2945.md) | fix: use float instead of double in sampling binary search to avoid FP64 bottleneck on SM103 | 2026-04-01 |  | gemm |
 | [#2926](../sources/prs/flashinfer/PR-2926.md) | feat: add Relu2 (squared ReLU) activation support in CUTLASS MoE backend | 2026-03-31 | epilogue-fusion | epilogue-fusion, gemm, moe |
 | [#2927](../sources/prs/flashinfer/PR-2927.md) | feat: SM121 (GB10) tile filtering and autotuner robustness | 2026-03-31 |  | gemm |
+| [#2914](../sources/prs/flashinfer/PR-2914.md) | feat: Add cuBLASLt backend for `mm_bf16` and enable multi-tactic autotuning for FP8/MXFP8 runners | 2026-03-30 |  | fp8, gemm |
 | [#2916](../sources/prs/flashinfer/PR-2916.md) | fix: Fix autotuner crash on meta-device tensor in trtllm_fp4_block_scale_routed_moe | 2026-03-30 | kernel-fusion | block-scale, fp4, kernel-fusion |
 | [#2913](../sources/prs/flashinfer/PR-2913.md) | [NVIDIA] fix(jit): enable GDC for CUTLASS fused MoE PDL — prevent random crashes on SM12x | 2026-03-29 | kernel-fusion | fp8, gemm, kernel-fusion |
 | [#2908](../sources/prs/flashinfer/PR-2908.md) | feat(gdn): state checkpointing in chunk_gated_delta_rule | 2026-03-28 |  | gated-delta-net, prefill, tma |
@@ -91,6 +416,7 @@
 | [#2902](../sources/prs/flashinfer/PR-2902.md) | feat: add MXFP8 GEMM support for SM120 | 2026-03-27 |  | fp8, gemm |
 | [#2904](../sources/prs/flashinfer/PR-2904.md) | perf: Optimize CuTe-DSL fp4 and fp8 quantization kernels | 2026-03-27 |  | fp4, fp8, nvfp4 |
 | [#2898](../sources/prs/flashinfer/PR-2898.md) | fix: snap weight_scale_vec_size to handle block_scale_interleave padding for SM120 | 2026-03-26 | kernel-fusion | block-scale, fp4, kernel-fusion |
+| [#2870](../sources/prs/flashinfer/PR-2870.md) | fix: fix cute dsl swap_ab tactic failure | 2026-03-24 |  | gemm |
 | [#2872](../sources/prs/flashinfer/PR-2872.md) | fix: add cute dsl moe utils to AOT | 2026-03-24 |  | moe |
 | [#2876](../sources/prs/flashinfer/PR-2876.md) | [fix] bugfix 2856: Fix pre-allocated out shape check in trtllm_batch_decode_with_kv_cache_mla for q_len_per_req > 1 | 2026-03-24 |  | attention, decode, mla |
 | [#2882](../sources/prs/flashinfer/PR-2882.md) | Fix silent bug with FP8 per tensor non-gated MoE | 2026-03-24 | kernel-fusion | fp8, kernel-fusion, moe |
@@ -99,17 +425,20 @@
 | [#2853](../sources/prs/flashinfer/PR-2853.md) | fix: int32 overflow in `trtllm_fp4_block_scale_moe` causing "Unsupported hidden state scale shape" for EP32+ configs | 2026-03-22 | kernel-fusion | block-scale, fp4, kernel-fusion |
 | [#2836](../sources/prs/flashinfer/PR-2836.md) | [Fmha] Sparse MLA decode kernel selection heuristics | 2026-03-20 |  | decode, flash-attention, mla |
 | [#2838](../sources/prs/flashinfer/PR-2838.md) | feat: Add CuTe-DSL backend for NVFP4 quantization | 2026-03-20 |  | fp4, nvfp4, quantization |
+| [#2841](../sources/prs/flashinfer/PR-2841.md) | [Perf] Add FMHAv2 to flashinfer_benchmark.py and eliminate unnecessary H2D | 2026-03-20 | epilogue-fusion | attention, epilogue-fusion, flash-attention |
 | [#2842](../sources/prs/flashinfer/PR-2842.md) | perf: Optimize GDN MTP decode kernel (v15) — eliminate ilp=1 fallback… | 2026-03-20 |  | decode |
 | [#2844](../sources/prs/flashinfer/PR-2844.md) | read real strides for kv and block scale | 2026-03-20 |  | decode, flash-attention, prefill |
 | [#2821](../sources/prs/flashinfer/PR-2821.md) | fix: Autotuner _find_nearest_profile non-power-of-2 num_tokens, create launchers for all supported tileN in trtllm fused MoE | 2026-03-19 | kernel-fusion | kernel-fusion, moe |
 | [#2828](../sources/prs/flashinfer/PR-2828.md) | [Spark unit test] Adjust tolerance for test_xqa, test_logits_processor | 2026-03-19 |  | attention |
 | [#2811](../sources/prs/flashinfer/PR-2811.md) | CuteDSL MoE fix redundant output buffer zeroing | 2026-03-18 | kernel-fusion | gemm, grouped-gemm, kernel-fusion |
+| [#2799](../sources/prs/flashinfer/PR-2799.md) | [fmha-v2] Support HND and NHD paged KV cache layouts with conditional stride handling | 2026-03-17 | kernel-fusion | attention, flash-attention, kernel-fusion |
 | [#2802](../sources/prs/flashinfer/PR-2802.md) | [fix] Bugfix 1367: fix VariableBlockSparseAttention buffer overflow by dynamically resizing kv_lens_buffer | 2026-03-17 |  | attention, decode, prefill |
 | [#2805](../sources/prs/flashinfer/PR-2805.md) | [CuTe DSL] Add modular FMHA prefill and MLA decode attention kernels | 2026-03-17 | epilogue-fusion, kernel-fusion, persistent-kernel | attention, decode, epilogue-fusion |
 | [#2810](../sources/prs/flashinfer/PR-2810.md) | feat(gdn): add padding index guard for bf16 decode kernel | 2026-03-17 |  | decode |
 | [#2792](../sources/prs/flashinfer/PR-2792.md) | feat: Support padding tokens with seqlen=0 for rope+quant+kv cache update fusion kernel | 2026-03-16 | kernel-fusion | attention, kernel-fusion |
 | [#2798](../sources/prs/flashinfer/PR-2798.md) | Upgrade cutlass 4.2.1 -> 4.4.2 | 2026-03-16 |  | gemm, moe, tma |
 | [#2777](../sources/prs/flashinfer/PR-2777.md) | perf: Performance tune cute dsl RMSNorm variants | 2026-03-13 | kernel-fusion | kernel-fusion |
+| [#2779](../sources/prs/flashinfer/PR-2779.md) | feat: FP8 output support for CUTLASS MLA paged attention | 2026-03-13 |  | attention, fp8, mla |
 | [#2780](../sources/prs/flashinfer/PR-2780.md) | fix(jit): enable GDC for CUTLASS GEMM PDL — SM100 flag only | 2026-03-13 |  | gemm |
 | [#2781](../sources/prs/flashinfer/PR-2781.md) | tests: skip sliding window + fp8 to prevent hang in fmha_v2 unit tests | 2026-03-13 |  | attention, flash-attention, fp8 |
 | [#2770](../sources/prs/flashinfer/PR-2770.md) | feat: Expose TRT-LLM FMHA style paged KV Cache and page table layout | 2026-03-12 |  | attention, decode, flash-attention |
@@ -128,6 +457,7 @@
 | [#2702](../sources/prs/flashinfer/PR-2702.md) | Add NVFP4 KV cache quantization support for SM100 | 2026-03-06 |  | attention, decode, flash-attention |
 | [#2707](../sources/prs/flashinfer/PR-2707.md) | feat: Add support for TRTLLM MXFP8 non-gated MoE with ReLU2 | 2026-03-06 | kernel-fusion | fp8, kernel-fusion, moe |
 | [#2709](../sources/prs/flashinfer/PR-2709.md) | Mamba2 SSD Combined Forward Pass (Blackwell CuTe DSL Kernel) | 2026-03-06 | tile-scheduling | tile-scheduling |
+| [#2711](../sources/prs/flashinfer/PR-2711.md) | feat: Add DiT-oriented kernels where Qk (Bmm1) type can be reinterpreted into Int8 or BFloat16 | 2026-03-06 |  | attention, flash-attention, prefill |
 | [#2700](../sources/prs/flashinfer/PR-2700.md) | Add varlen and speculative decoding support to selective state update | 2026-03-05 |  | gemm |
 | [#2670](../sources/prs/flashinfer/PR-2670.md) | fix: reduce smem allocation for tinygemm2 kernel in SM120 | 2026-03-03 |  | gemm |
 | [#2677](../sources/prs/flashinfer/PR-2677.md) | feat: add support for more MLA head dimensions | 2026-03-03 |  | attention, flash-attention, mla |
@@ -159,7 +489,9 @@
 | [#2585](../sources/prs/flashinfer/PR-2585.md) | tests: add bias testing to nvfp4 moe | 2026-02-18 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#2573](../sources/prs/flashinfer/PR-2573.md) | [Bug] Fix spark unit test failures for test_add_rmsnorm_fp4_quant_cute_dsl | 2026-02-17 |  | fp4 |
 | [#2574](../sources/prs/flashinfer/PR-2574.md) | feat: add is_sm12x_supported() helper for SM12x family detection | 2026-02-17 |  | attention, flash-attention, gemm |
+| [#2563](../sources/prs/flashinfer/PR-2563.md) | Add support for the combinations of allreduce, allgather, and reducescatter | 2026-02-14 |  | gemm |
 | [#2564](../sources/prs/flashinfer/PR-2564.md) | fix: W4A8 autotune crash in cutlass_fused_moe profiler workspace | 2026-02-14 | kernel-fusion | kernel-fusion, moe |
+| [#2557](../sources/prs/flashinfer/PR-2557.md) | [Bugfix][comm] Fix FP4 one-shot launch config instability in trtllm_allreduce_fusion | 2026-02-13 | kernel-fusion | fp4, kernel-fusion |
 | [#2559](../sources/prs/flashinfer/PR-2559.md) | fix: allow fmha_v2_prefill_deepseek on SM121 (DGX Spark) | 2026-02-13 |  | attention, flash-attention, prefill |
 | [#2560](../sources/prs/flashinfer/PR-2560.md) | fix: guard CUTLASS FMHA against SM12x and fix fmha_v2 SM121a check | 2026-02-13 |  | attention, flash-attention, prefill |
 | [#2543](../sources/prs/flashinfer/PR-2543.md) | misc: point triton blackwell-ptxas to local cuda ptxas | 2026-02-12 |  | gemm |
@@ -733,12 +1065,76 @@
 
 <a id="sgl-projectsglang"></a>
 ## sgl-project/sglang
-645 PRs
+730 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#25825](../sources/prs/sglang/PR-25825.md) | [Refactor] Pass PP start_layer via model constructor instead of forward_batch.token_to_kv_pool | 2026-05-20 |  | moe |
+| [#25831](../sources/prs/sglang/PR-25831.md) | [Test] Stage-a sanity kits; consolidate core/ + models_e2e/ tests | 2026-05-20 |  | attention, decode, fp4 |
+| [#25764](../sources/prs/sglang/PR-25764.md) | [Codex] Remove stale DeepSeek V4 JIT kernels | 2026-05-19 |  | gemm |
+| [#25821](../sources/prs/sglang/PR-25821.md) | [Refactor] Rename NSA → DSA: user-facing aliases, file/class/import rename | 2026-05-19 | kernel-fusion | attention, decode, kernel-fusion |
+| [#25554](../sources/prs/sglang/PR-25554.md) | amd/deepseek_v4 27/N [fix] Reduce Triton autotune configs for faster first-time server launch | 2026-05-18 | kernel-fusion | attention, decode, kernel-fusion |
+| [#25569](../sources/prs/sglang/PR-25569.md) | Add DeepSeekV4 fused MoE Triton autotune support | 2026-05-18 | kernel-fusion | kernel-fusion, moe |
+| [#25570](../sources/prs/sglang/PR-25570.md) | Use triton_attn as default vision attention on B300 (SM103) | 2026-05-18 |  | attention |
+| [#25571](../sources/prs/sglang/PR-25571.md) | [Benchmark] Add SGLANG_SIMULATE_UNIFORM_EXPERTS for balanced expert routing with dummy weights | 2026-05-18 |  | moe |
+| [#25611](../sources/prs/sglang/PR-25611.md) | Introduce SchedulerDPAttnAdapter to own DP-attention state | 2026-05-18 |  | attention, decode, prefill |
+| [#25612](../sources/prs/sglang/PR-25612.md) | Move DP-attention adapter methods to SchedulerDPAttnAdapter | 2026-05-18 |  | attention, decode, prefill |
+| [#25685](../sources/prs/sglang/PR-25685.md) | [SP] Fix runtime_max_tokens_per_rank for sequence parallelism | 2026-05-18 |  | moe |
+| [#25688](../sources/prs/sglang/PR-25688.md) | Add no_combine support to cutlass_moe_fp4 | 2026-05-18 |  | fp4, moe, quantization |
+| [#25695](../sources/prs/sglang/PR-25695.md) | fix (jit kernel): elementwise activation C++ error | 2026-05-18 |  | gemm |
+| [#25697](../sources/prs/sglang/PR-25697.md) | [diffusion] Fix GLM-Image /v1/images/edits support | 2026-05-18 | kernel-fusion, pipeline-stages | kernel-fusion, pipeline-stages |
+| [#25509](../sources/prs/sglang/PR-25509.md) | [misc] Throw error when single batch overlap is enabled on Hopper  | 2026-05-17 |  | moe |
+| [#25522](../sources/prs/sglang/PR-25522.md) | Fix logging for inplace setting in the flashInfer-trtllm backend | 2026-05-17 | kernel-fusion | kernel-fusion, moe |
+| [#25524](../sources/prs/sglang/PR-25524.md) | [Bug Fix] Align glm4_moe_nextn NPU MTP loading with qwen3 MTP | 2026-05-17 |  | moe |
+| [#25525](../sources/prs/sglang/PR-25525.md) | [MoE Refactor] Migrate flashinfer_cutedsl + DeepEP to MoeRunner | 2026-05-17 |  | moe, quantization |
+| [#25532](../sources/prs/sglang/PR-25532.md) | [fp8] SM90 swap-AB scaled_mm dispatch (~1.16x kernel geomean, +5.8-18.5% end-to-end) | 2026-05-17 | epilogue-fusion | epilogue-fusion, fp8, gemm |
+| [#25540](../sources/prs/sglang/PR-25540.md) | Use DeepGEMM BF16 for unquantized DeepEP LL MoE | 2026-05-17 |  | gemm, moe, quantization |
+| [#25483](../sources/prs/sglang/PR-25483.md) | [codex] Update Wan2.2 ModelOpt CI checkpoints | 2026-05-16 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
+| [#25489](../sources/prs/sglang/PR-25489.md) | Support draft extend cuda graph for tokenspeed_mla attention backend | 2026-05-16 |  | attention, mla |
+| [#25499](../sources/prs/sglang/PR-25499.md) | Update logging for inplace setting in MoE layer | 2026-05-16 | kernel-fusion | kernel-fusion, moe |
+| [#25336](../sources/prs/sglang/PR-25336.md) | [Intel GPU] Enable DeepSeek V4 Inference on XPU | 2026-05-15 | kernel-fusion | attention, fp4, fp8 |
+| [#25356](../sources/prs/sglang/PR-25356.md) | [AMD] test(sgl-kernel): seed RNG on ROCm in test_moe_topk_sigmoid to fix tie-break flake | 2026-05-15 |  | moe |
+| [#25390](../sources/prs/sglang/PR-25390.md) | [AMD] Enable shared-experts fusion with new KIMI-K2.5-MXFP4 model. | 2026-05-15 | kernel-fusion | fp4, kernel-fusion, quantization |
+| [#25256](../sources/prs/sglang/PR-25256.md) | [MUSA][Diffusion] Improve  wan model inference speed using torch.compile | 2026-05-14 | kernel-fusion | kernel-fusion |
+| [#25284](../sources/prs/sglang/PR-25284.md) | Support Gemma4 Pipeline Parallelism | 2026-05-14 | pipeline-stages | gemm, pipeline-stages |
+| [#25285](../sources/prs/sglang/PR-25285.md) | Fix EPLB mapping for TopK paths | 2026-05-14 |  | moe |
+| [#25286](../sources/prs/sglang/PR-25286.md) | [Gemma4]: Fix FP8 Triton scale layout | 2026-05-14 |  | fp8, gemm, quantization |
+| [#25299](../sources/prs/sglang/PR-25299.md) | [NSA] Avoid repeated NSA MQA logits memory queries | 2026-05-14 |  | attention |
+| [#25180](../sources/prs/sglang/PR-25180.md) | Fix AMX GQA extend attention | 2026-05-13 |  | attention |
+| [#25107](../sources/prs/sglang/PR-25107.md) | perf(nvfp4): free unused source scales after weight processing | 2026-05-12 |  | fp4, nvfp4, quantization |
+| [#24925](../sources/prs/sglang/PR-24925.md) | [attn backend] Integrate tokenspeed_mla prefill/decode kernels (fp8 kv cache, blackwell) | 2026-05-11 |  | attention, decode, fp8 |
+| [#24933](../sources/prs/sglang/PR-24933.md) | Amd/deepseek v4 rebase main 0509 | 2026-05-11 |  | attention, fp8, mla |
+| [#24986](../sources/prs/sglang/PR-24986.md) | [rebase]Deepseek_v4 support w4(mxfp4)a16 on hopper | 2026-05-11 | kernel-fusion | fp4, fp8, gemm |
+| [#24816](../sources/prs/sglang/PR-24816.md) | Add FlashInfer SM90 cutlass MXFP4 MoE backend (W4A16) for GPT-OSS + DeepSeek-V4 | 2026-05-09 |  | fp4, fp8, moe |
+| [#24640](../sources/prs/sglang/PR-24640.md) | Support spec v2 for FlashMLA speculative decoding | 2026-05-08 |  | attention, mla |
+| [#24696](../sources/prs/sglang/PR-24696.md) | [Gemma4] Optimize Gemm4 with fused Q/K/V RMSNorm + per-expert FP8 ckpt loader | 2026-05-08 | kernel-fusion | fp8, gemm, kernel-fusion |
+| [#24710](../sources/prs/sglang/PR-24710.md) | [codex] Optimize hidden-size 512 RMSNorm dispatch | 2026-05-08 |  | gemm |
+| [#24562](../sources/prs/sglang/PR-24562.md) | Fix performance regression on Deepseek V3 on `moe-runner-backend=triton` on SM90 | 2026-05-07 | kernel-fusion | kernel-fusion, moe |
+| [#24611](../sources/prs/sglang/PR-24611.md) | [Codex] Opt Mistral Large performace  | 2026-05-07 |  | fp8, moe |
+| [#24490](../sources/prs/sglang/PR-24490.md) | Port MXFP4 Marlin MoE support to JIT kernel path | 2026-05-06 | kernel-fusion | fp4, fp8, gemm |
+| [#24411](../sources/prs/sglang/PR-24411.md) | [diffusion] Fuse LTX2 split rotary embedding | 2026-05-05 | kernel-fusion | kernel-fusion |
+| [#24271](../sources/prs/sglang/PR-24271.md) | [KDA] Optimize prefill kernels with diagonal and recompute fuse | 2026-05-02 |  | attention, prefill |
+| [#24197](../sources/prs/sglang/PR-24197.md) | Refactor device timer, clean up metrics collector, and add fwd occupancy metric | 2026-05-01 |  | fp8, quantization |
+| [#24048](../sources/prs/sglang/PR-24048.md) | [VLM] Optimize Gemma4 VLM with PCG and fuse RMSNorm + residual add + scalar | 2026-04-29 | kernel-fusion | gemm, kernel-fusion |
+| [#23938](../sources/prs/sglang/PR-23938.md) | Optimize large GroupNorm SiLU apply | 2026-04-28 | kernel-fusion | kernel-fusion |
+| [#23961](../sources/prs/sglang/PR-23961.md) | [feat] Init true on policy with qwen_dense | 2026-04-28 |  | attention, moe |
+| [#23965](../sources/prs/sglang/PR-23965.md) | Enable PDL for various kernels in DSV32/GLM5 | 2026-04-28 | kernel-fusion | attention, gemm, kernel-fusion |
+| [#23745](../sources/prs/sglang/PR-23745.md) | Use Cute-DSL NVFP4 quantization kernels | 2026-04-26 |  | fp4, moe, nvfp4 |
+| [#23756](../sources/prs/sglang/PR-23756.md) | feat: port SGLANG_JIT_DEEPGEMM_FAST_WARMUP to deepseek_v4 branch | 2026-04-26 |  | gemm |
+| [#23760](../sources/prs/sglang/PR-23760.md) | [MoE] Unify DeepEPMoE+MoriEPMoE through AITER MoeRunner pre/post-permute | 2026-04-26 |  | fp4, fp8, moe |
+| [#23686](../sources/prs/sglang/PR-23686.md) | Deepseek_v4 support w4(mxfp4)a16 on hopper | 2026-04-25 | kernel-fusion | fp4, fp8, kernel-fusion |
+| [#23590](../sources/prs/sglang/PR-23590.md) | Reland Cute-DSL FP4 dense GEMM | 2026-04-23 |  | fp4, gemm, nvfp4 |
+| [#23482](../sources/prs/sglang/PR-23482.md) | [Diffusion][NPU]Add attention backends for diffusion models for Ascend NPU | 2026-04-22 | kernel-fusion, pipeline-stages | attention, kernel-fusion, pipeline-stages |
+| [#23331](../sources/prs/sglang/PR-23331.md) | [BugFix] Resolve adaptive speculative decoding conflicts for Qwen3.5 (hybrid GDN) | 2026-04-21 | kernel-fusion | attention, kernel-fusion |
+| [#23148](../sources/prs/sglang/PR-23148.md) | [codex] diffusion: enable group norm silu fuse by default | 2026-04-18 | kernel-fusion | kernel-fusion |
+| [#22918](../sources/prs/sglang/PR-22918.md) | [FlashInfer v0.6.11] [RL] Support FlashInfer per-token NVFP4 MoE | 2026-04-16 |  | fp4, moe, nvfp4 |
+| [#22931](../sources/prs/sglang/PR-22931.md) | [Fix/Kernel] Add JIT rmsnorm_hf kernel to fix transformers backend MMLU accuracy regression  | 2026-04-16 |  | gemm |
 | [#22773](../sources/prs/sglang/PR-22773.md) | [Step3p5] Optimize allreduce in MoE layers  | 2026-04-14 |  | moe |
+| [#22809](../sources/prs/sglang/PR-22809.md) | Dual MoE CUDA graph capture for lora/nolora batches | 2026-04-14 |  | moe |
+| [#22814](../sources/prs/sglang/PR-22814.md) | diffusion: add HunyuanVideo GroupNorm+SiLU fast path | 2026-04-14 | kernel-fusion | kernel-fusion |
+| [#22822](../sources/prs/sglang/PR-22822.md) | [Refactor] Refactor DeepEP dispatcher | 2026-04-14 | kernel-fusion | kernel-fusion, moe, quantization |
 | [#22653](../sources/prs/sglang/PR-22653.md) | [Docker] Remove flashinfer cache copy | 2026-04-13 |  | gemm |
+| [#22669](../sources/prs/sglang/PR-22669.md) | feat: Support flashinfer_cutedsl MoE runner with flashinfer alltoall backend | 2026-04-13 |  | moe, quantization |
 | [#22672](../sources/prs/sglang/PR-22672.md) | reland [Diffusion] Add FLUX.1-dev ModelOpt NVFP4 support | 2026-04-13 | kernel-fusion, pipeline-stages | fp4, fp8, kernel-fusion |
 | [#22681](../sources/prs/sglang/PR-22681.md) | [Diffusion] Add Wan2.2 ModelOpt NVFP4 support | 2026-04-13 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
 | [#22723](../sources/prs/sglang/PR-22723.md) | [Fix] Fix accuracy bug in Flashmla sparse MLA kernel | 2026-04-13 |  | mla |
@@ -756,6 +1152,7 @@
 | [#22322](../sources/prs/sglang/PR-22322.md) | [Docker] Fix Trivy CVEs, cubin download 403s, and kernels command order | 2026-04-08 |  | gemm |
 | [#22323](../sources/prs/sglang/PR-22323.md) | [Lora] Lora quat info re-factor and support deepseekv3 mla lora | 2026-04-08 |  | fp8, mla, moe |
 | [#22336](../sources/prs/sglang/PR-22336.md) | [AMD] Add GLM-5.1-FP8 nightly accuracy and performance benchmarks for MI30x and MI35x | 2026-04-08 |  | fp8 |
+| [#22338](../sources/prs/sglang/PR-22338.md) | :sparkles: [diffusion][npu][quant] Add MXFP4 quantization support for Wan2.2 Diffusion on Ascend NPU | 2026-04-08 | kernel-fusion | fp4, kernel-fusion, quantization |
 | [#22365](../sources/prs/sglang/PR-22365.md) | [Diffusion] modelopt diffusion fp8 support for flux1/flux2 and wan2.2 | 2026-04-08 | kernel-fusion | fp8, kernel-fusion, quantization |
 | [#22372](../sources/prs/sglang/PR-22372.md) | [DSA] Hopper FP8 FlashMLA KV padding | 2026-04-08 |  | attention, fp8, mla |
 | [#22381](../sources/prs/sglang/PR-22381.md) | [Lora] Lora kimi support | 2026-04-08 |  | moe, quantization |
@@ -786,7 +1183,9 @@
 | [#21783](../sources/prs/sglang/PR-21783.md) | [DSA] Support trtllm sparse mla kernel for prefill batches  | 2026-03-31 |  | attention, mla, prefill |
 | [#21787](../sources/prs/sglang/PR-21787.md) | Remove redundant test_moe_eval_accuracy_large | 2026-03-31 |  | moe |
 | [#21649](../sources/prs/sglang/PR-21649.md) | fix: TRT-LLM MHA CUDA illegal address with EAGLE v2 + DP attention | 2026-03-30 |  | attention |
+| [#21654](../sources/prs/sglang/PR-21654.md) | [jit_kernel] Optimize fused_qknorm_rope: deduplicate sincosf for interleave RoPE  | 2026-03-30 | kernel-fusion | kernel-fusion, moe |
 | [#21657](../sources/prs/sglang/PR-21657.md) | [AMD] Use tgemm.mm for MoEGate router gemm in deepseek_v2.py | 2026-03-30 |  | gemm, moe |
+| [#21668](../sources/prs/sglang/PR-21668.md) | [XPU] Enable qwen3.5 on XPU | 2026-03-30 | kernel-fusion | attention, gated-delta-net, kernel-fusion |
 | [#21710](../sources/prs/sglang/PR-21710.md) | [AMD] Add GLM-5-FP8 nightly performance benchmarks for MI30x and MI35x | 2026-03-30 |  | fp8 |
 | [#21711](../sources/prs/sglang/PR-21711.md) | Remove flashinfer wheel cache cleanup that deletes other versions | 2026-03-30 |  | gemm |
 | [#21576](../sources/prs/sglang/PR-21576.md) | [FlashInver v0.6.7] Integrate flashinfer_trtllm mxfp8 gemm | 2026-03-28 |  | fp8, gemm, quantization |
@@ -794,6 +1193,7 @@
 | [#21511](../sources/prs/sglang/PR-21511.md) | [AMD] Enable FP8 KV cache and FP8 attention kernel for NSA on MI300/MI355 with TileLang backend | 2026-03-27 |  | attention, fp8, mla |
 | [#21561](../sources/prs/sglang/PR-21561.md) | test: point DSV3 int8 MLA CI models to lmsys Hugging Face org | 2026-03-27 |  | mla |
 | [#21436](../sources/prs/sglang/PR-21436.md) | fix nemotron capture for non attention layers | 2026-03-26 |  | attention |
+| [#21440](../sources/prs/sglang/PR-21440.md) | [Diffusion] Add qknorm rope fuse kernel | 2026-03-26 | kernel-fusion | kernel-fusion |
 | [#21446](../sources/prs/sglang/PR-21446.md) | Add explicit disable flag for FlashInfer allreduce fusion | 2026-03-26 | kernel-fusion | kernel-fusion |
 | [#21452](../sources/prs/sglang/PR-21452.md) | fix: piecewise_cuda_graph get correct qo_indptr | 2026-03-26 |  | attention |
 | [#21463](../sources/prs/sglang/PR-21463.md) | Migrate all callers from /get_server_info to /server_info | 2026-03-26 |  | attention, fp4, fp8 |
@@ -803,6 +1203,7 @@
 | [#21280](../sources/prs/sglang/PR-21280.md) | [RL] Support mxfp8 DeepSeek V3 | 2026-03-24 | kernel-fusion | fp8, kernel-fusion, moe |
 | [#21296](../sources/prs/sglang/PR-21296.md) | [MUSA] apply_vocab_mask support musa device | 2026-03-24 |  | gemm |
 | [#21314](../sources/prs/sglang/PR-21314.md) | CUTLASS NVFP4 GEMM improvement of SM120 | 2026-03-24 |  | fp4, gemm, nvfp4 |
+| [#21321](../sources/prs/sglang/PR-21321.md) | [Kernel] Support FlashInfer TRTLLM-Gen fused MoE for non-gated FP4 & FP8 (Nemotron) | 2026-03-24 | kernel-fusion | fp4, fp8, kernel-fusion |
 | [#21325](../sources/prs/sglang/PR-21325.md) | [misc] clean up kernel API | 2026-03-24 | kernel-fusion | attention, flash-attention, fp4 |
 | [#21339](../sources/prs/sglang/PR-21339.md) | Add dedicated FlashInferCuteDslMoE layer for standard-path FP4 MoE | 2026-03-24 |  | fp4, moe, quantization |
 | [#21166](../sources/prs/sglang/PR-21166.md) | [Not-Merge][AMD] GLM-5 performance optimization | 2026-03-23 |  | attention |
@@ -815,6 +1216,7 @@
 | [#21239](../sources/prs/sglang/PR-21239.md) | Refactor JIT kernel CI to use run_suite.py registration system | 2026-03-23 | kernel-fusion | attention, flash-attention, fp4 |
 | [#21240](../sources/prs/sglang/PR-21240.md) | [NVIDIA] Enable FP4 flashinfer trtllm routed moe | 2026-03-23 |  | fp4, moe, quantization |
 | [#21118](../sources/prs/sglang/PR-21118.md) | ci: remove IS_BLACKWELL env var; auto-detect Blackwell | 2026-03-22 |  | gemm |
+| [#21104](../sources/prs/sglang/PR-21104.md) | perf: precompute FA3 scheduler_metadata to eliminate per-layer prepare_varlen_num_blocks | 2026-03-21 |  | attention |
 | [#20957](../sources/prs/sglang/PR-20957.md) | [Tiny Fix] Fix IS_BLACKWELL env var empty string warning in rerun-ut workflow | 2026-03-20 |  | gemm |
 | [#20988](../sources/prs/sglang/PR-20988.md) | ci: run Stage A CUDA tests as stage-a-test-small-1-gpu on 5090 | 2026-03-20 | kernel-fusion | attention, fp8, kernel-fusion |
 | [#21019](../sources/prs/sglang/PR-21019.md) | [Qwen3.5] Fuse split/reshape/cat ops in GDN projection with Triton kernel | 2026-03-20 | kernel-fusion | kernel-fusion |
@@ -825,12 +1227,16 @@
 | [#20874](../sources/prs/sglang/PR-20874.md) | [JIT Kernel] Fix NVFP4 multi-arch compilation failure | 2026-03-18 |  | fp4, nvfp4 |
 | [#20887](../sources/prs/sglang/PR-20887.md) | CUTLASS FP8 Blockwise GEMM improvement of SM120 | 2026-03-18 |  | fp8, gemm |
 | [#20755](../sources/prs/sglang/PR-20755.md) | Use FlashInfer tinygemm for GPT-OSS MoE router on SM90+ | 2026-03-17 |  | gemm, moe |
+| [#20661](../sources/prs/sglang/PR-20661.md) | Fix(jit): support rmsnorm for hidden_size in {64, 128, 256} | 2026-03-16 |  | gemm |
+| [#20673](../sources/prs/sglang/PR-20673.md) | [Feature][JIT Kernel] Fused TP QK norm For Minimax | 2026-03-16 | kernel-fusion | kernel-fusion |
 | [#20699](../sources/prs/sglang/PR-20699.md) | [Diffusion] Fix compile graph broken by flashinfer rope | 2026-03-16 | kernel-fusion | kernel-fusion |
 | [#20708](../sources/prs/sglang/PR-20708.md) | Add Mistral Small 4 (Pixtral) support | 2026-03-16 |  | moe |
 | [#20606](../sources/prs/sglang/PR-20606.md) | FIX: (NSA) Compute topk_indices_offset when NSA prefill flashmla_sparse is used with FP8 KV cache | 2026-03-15 |  | attention, fp8, mla |
 | [#20619](../sources/prs/sglang/PR-20619.md) | fix(docs): correct quantization documentation (#20301) | 2026-03-15 |  | quantization |
 | [#20632](../sources/prs/sglang/PR-20632.md) | [Diffusion] Add a benchmark for rmsnorm/fuse_add_rmsnorm | 2026-03-15 | kernel-fusion | kernel-fusion |
+| [#20576](../sources/prs/sglang/PR-20576.md) | [Diffusion] Clean upstream fa3 in hopper | 2026-03-14 | kernel-fusion | attention, kernel-fusion |
 | [#20604](../sources/prs/sglang/PR-20604.md) | Use Flashinfer for target_verify in GDN model for SM120 | 2026-03-14 |  | attention |
+| [#20479](../sources/prs/sglang/PR-20479.md) | Support Triton MLA FP8 KV cache | 2026-03-13 |  | attention, decode, fp8 |
 | [#20501](../sources/prs/sglang/PR-20501.md) | [Kernel] Fuse temperature + softmax in sampling for decode speedup | 2026-03-13 | kernel-fusion | decode, kernel-fusion, tma |
 | [#20394](../sources/prs/sglang/PR-20394.md) | [NVIDIA] Enable fp8 flashinfer_trtllm_routed MoE for MiniMax-M2.5 | 2026-03-12 |  | fp8, moe, quantization |
 | [#20399](../sources/prs/sglang/PR-20399.md) | [AMD][Bug-fix] Fix gpu fault when run the test with dp-attention-enabled and max-concurrency is over 256 | 2026-03-12 |  | attention |
@@ -855,6 +1261,7 @@
 | [#19928](../sources/prs/sglang/PR-19928.md) | [AMD] Fix Tensor Memory Aliasing  | 2026-03-05 |  | attention |
 | [#19935](../sources/prs/sglang/PR-19935.md) | [AMD] Fix FP8 assertion failure in aiter MLA decode by falling back to self.k_scale | 2026-03-05 |  | attention, decode, fp4 |
 | [#19945](../sources/prs/sglang/PR-19945.md) | [AMD] Tilelang sparse fwd for dsv32 mi355/mi300 | 2026-03-05 |  | attention |
+| [#19880](../sources/prs/sglang/PR-19880.md) | [JIT Kernel][Feature] Support JIT custom all reduce (rewrite as v2) | 2026-03-04 |  | gemm |
 | [#19889](../sources/prs/sglang/PR-19889.md) | Use TRTLLM allreduce fusion for Qwen 3.5 | 2026-03-04 | kernel-fusion | kernel-fusion, moe |
 | [#19902](../sources/prs/sglang/PR-19902.md) | Fix MLA decode path returning unwritten (padded) rows | 2026-03-04 |  | attention, decode, mla |
 | [#19725](../sources/prs/sglang/PR-19725.md) | [SGLang-Diffusion] Fix custom op fake impl missing eps default for torch.compile | 2026-03-03 | kernel-fusion | kernel-fusion |
@@ -874,6 +1281,7 @@
 | [#19247](../sources/prs/sglang/PR-19247.md) | [AMD] Fix accuracy while using --enable-dp-attention | 2026-02-24 |  | attention |
 | [#19174](../sources/prs/sglang/PR-19174.md) | Adjust padding size to improve triton_kernels moe performance | 2026-02-23 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#19143](../sources/prs/sglang/PR-19143.md) | feat: Support MXFP4 quantized dense models on AMD CDNA2/CDNA3 GPUs | 2026-02-22 |  | fp4, nvfp4, quantization |
+| [#19148](../sources/prs/sglang/PR-19148.md) | [DeepSeek-V3.2][JIT-kernel] Support nsa fuse store indexer k cache | 2026-02-22 | kernel-fusion | attention, kernel-fusion |
 | [#19150](../sources/prs/sglang/PR-19150.md) | [NVIDIA] Integrate FlashInfer decode kernel (Blackwell) for Qwen3.5 | 2026-02-22 |  | attention, decode |
 | [#19059](../sources/prs/sglang/PR-19059.md) | [jit_kernel] Add fused_qknorm_rope JIT kernel | 2026-02-20 | kernel-fusion | kernel-fusion, moe |
 | [#19089](../sources/prs/sglang/PR-19089.md) | Support skip-softmax attention | 2026-02-20 |  | attention, mla, tma |
@@ -886,12 +1294,14 @@
 | [#18855](../sources/prs/sglang/PR-18855.md) | Add claude skills for sgl-kernel and jit-kernel | 2026-02-15 |  | gemm |
 | [#18858](../sources/prs/sglang/PR-18858.md) | [Perf] ~9.5x faster Blackwell MXFP4 MoE weight loading | 2026-02-15 |  | fp4, moe, quantization |
 | [#18871](../sources/prs/sglang/PR-18871.md) | Migrate norm kernels to FlashInfer JIT implementation | 2026-02-15 |  | gemm |
+| [#18762](../sources/prs/sglang/PR-18762.md) | [diffusion] Diffusion norm fusion for z-image | 2026-02-13 | kernel-fusion | kernel-fusion |
 | [#18787](../sources/prs/sglang/PR-18787.md) | fix: add SM110 (Jetson AGX Thor) to Blackwell capability check | 2026-02-13 |  | gemm |
 | [#18696](../sources/prs/sglang/PR-18696.md) | use flashinfer.sampling | 2026-02-12 |  | gemm |
 | [#18742](../sources/prs/sglang/PR-18742.md) | [RL] Support per-layer mixed FP8/BF16 serving for FP8 checkpoints | 2026-02-12 |  | fp8, quantization |
 | [#18751](../sources/prs/sglang/PR-18751.md) | fix: update Blackwell log/error messages to include SM12x | 2026-02-12 |  | gemm |
 | [#18607](../sources/prs/sglang/PR-18607.md) | [AMD] Fix accuracy issue when running TP4 dsv3 model with mtp | 2026-02-11 |  | attention |
 | [#18624](../sources/prs/sglang/PR-18624.md) | [AMD] DSR1/V3 use fp8 bmm in MLA for MI300X | 2026-02-11 |  | fp8, mla |
+| [#18639](../sources/prs/sglang/PR-18639.md) | [sglang-miles] True on-policy training support for FSDP2 | 2026-02-11 | kernel-fusion | kernel-fusion, moe, quantization |
 | [#18528](../sources/prs/sglang/PR-18528.md) | Fp8 prefill attn kernel integration | 2026-02-10 |  | attention, fp8, prefill |
 | [#18479](../sources/prs/sglang/PR-18479.md) | docs: expand and update modelopt documentation | 2026-02-09 |  | quantization |
 | [#18488](../sources/prs/sglang/PR-18488.md) | Tilelang sparse decode fwd for dsv32 mi355 | 2026-02-09 |  | attention, decode |
@@ -919,6 +1329,7 @@
 | [#17838](../sources/prs/sglang/PR-17838.md) | Feature/support longcat flash lite | 2026-01-27 |  | gemm |
 | [#17784](../sources/prs/sglang/PR-17784.md) | Upgrade transformers==5.3.0 | 2026-01-26 | pipeline-stages | gemm, moe, pipeline-stages |
 | [#17627](../sources/prs/sglang/PR-17627.md) | [feat] Support nvfp4 quantized model of Qwen3-Next | 2026-01-23 |  | fp4, nvfp4, quantization |
+| [#17554](../sources/prs/sglang/PR-17554.md) | Kernel: optimize decoding metadata in NSA multi-spec backend with fused kernels | 2026-01-22 | kernel-fusion | attention, kernel-fusion |
 | [#17591](../sources/prs/sglang/PR-17591.md) | [hotfix] Reenable all reduce fusion on sm100 | 2026-01-22 | kernel-fusion | kernel-fusion |
 | [#17600](../sources/prs/sglang/PR-17600.md) | Make flashMLA work on: Cu13, B300 | 2026-01-22 |  | mla |
 | [#17449](../sources/prs/sglang/PR-17449.md) | Add mxfp8 support for online quantization, Triton dense linear, and CUTLASS MoE | 2026-01-21 |  | fp8, moe, quantization |
@@ -935,9 +1346,11 @@
 | [#17166](../sources/prs/sglang/PR-17166.md) | [Fix] GLM 4.7 + NVFP4 + MTP | 2026-01-15 |  | fp4, moe, nvfp4 |
 | [#17053](../sources/prs/sglang/PR-17053.md) | [MUSA][2/N] sgl-kernel build | 2026-01-14 |  | gemm |
 | [#17007](../sources/prs/sglang/PR-17007.md) | [NPU]bugfix: fix for dsv3.2 and dsvl2 | 2026-01-13 |  | attention, mla |
+| [#16961](../sources/prs/sglang/PR-16961.md) | [DeepSeek v3.2] Opt MTP decode cuda batch sizes and nsa implementation | 2026-01-12 |  | attention, decode |
 | [#16892](../sources/prs/sglang/PR-16892.md) | Support mxint4 flashinfer_trtllm moe gemm | 2026-01-11 | kernel-fusion | gemm, kernel-fusion, moe |
 | [#16791](../sources/prs/sglang/PR-16791.md) | [AMD] Support redundant expert with a2a moe in gfx95x. | 2026-01-09 |  | moe |
 | [#16824](../sources/prs/sglang/PR-16824.md) | [Fix] `flashinfer_trtllm` `intermediate_size` assertion with Qwen3 + TP=8 | 2026-01-09 | kernel-fusion | kernel-fusion, moe |
+| [#16723](../sources/prs/sglang/PR-16723.md) | [Rework] Add SwapAB Optimization for triton fused_moe_kernel on SM90. | 2026-01-08 | kernel-fusion | kernel-fusion, moe |
 | [#16622](../sources/prs/sglang/PR-16622.md) | Fix FP8 MoE NaN with DeepGEMM on Blackwell | 2026-01-07 |  | fp8, gemm, moe |
 | [#16502](../sources/prs/sglang/PR-16502.md) | [Fix]Pin mooncake version to 0.3.7.post2 in grace blackwell | 2026-01-05 |  | gemm |
 | [#16382](../sources/prs/sglang/PR-16382.md) | [Fix]Fix FA3 Performance in Diffusion Model  | 2026-01-04 | kernel-fusion | attention, kernel-fusion |
@@ -960,6 +1373,7 @@
 | [#15891](../sources/prs/sglang/PR-15891.md) | [fix]deepgemm precompile when warmup | 2025-12-26 |  | gemm |
 | [#15894](../sources/prs/sglang/PR-15894.md) | Bugfix for ds-vl2 | 2025-12-26 |  | attention, mla |
 | [#15904](../sources/prs/sglang/PR-15904.md) | [NPU] NZ for non-quantized MOE, Qwen3 MOE double memory consumption fix | 2025-12-26 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#15835](../sources/prs/sglang/PR-15835.md) | [Feature] JIT Fused QK norm + qk norm clean up | 2025-12-25 | kernel-fusion | kernel-fusion, moe |
 | [#15836](../sources/prs/sglang/PR-15836.md) | [JIT kernel] Apply jit per_tensor_quant_fp8 kernel | 2025-12-25 |  | fp8, gemm, moe |
 | [#15712](../sources/prs/sglang/PR-15712.md) | Add SwapAB Optimization for triton fused_moe_kernel on SM90. | 2025-12-24 | kernel-fusion | kernel-fusion, moe |
 | [#15731](../sources/prs/sglang/PR-15731.md) | [Perf] Eliminate the slice op for Flashinfer `trtllm_fp4_block_scale_moe` | 2025-12-24 |  | block-scale, fp4, moe |
@@ -974,6 +1388,7 @@
 | [#15526](../sources/prs/sglang/PR-15526.md) | Optimize Bailing-MoE with FlashInfer Fused All-Reduce | 2025-12-20 | kernel-fusion | kernel-fusion, moe |
 | [#15539](../sources/prs/sglang/PR-15539.md) | MoE: Skip SiLU/GELU activation for masked experts | 2025-12-20 | kernel-fusion | kernel-fusion, moe |
 | [#15464](../sources/prs/sglang/PR-15464.md) | Optimize MiMo-V2-Flash by flashinfer fused allreduce | 2025-12-19 | kernel-fusion | kernel-fusion |
+| [#15471](../sources/prs/sglang/PR-15471.md) | [sgl-kernel][6/7]Support Expert Specialization Grouped GEMM | 2025-12-19 |  | fp8, gemm, grouped-gemm |
 | [#15352](../sources/prs/sglang/PR-15352.md) | [Tiny]Add warning for deepgemm on Blackwell | 2025-12-18 |  | gemm |
 | [#15363](../sources/prs/sglang/PR-15363.md) | [NPU]mindspore model support moe | 2025-12-18 |  | moe |
 | [#15381](../sources/prs/sglang/PR-15381.md) | [NPU]DeepSeek-V3.2 support npu mlaprolog | 2025-12-18 |  | attention, mla, quantization |
@@ -1191,6 +1606,8 @@
 | [#7649](../sources/prs/sglang/PR-7649.md) | [Feature] CUDA Green Context Support | 2025-06-30 |  | gemm |
 | [#7663](../sources/prs/sglang/PR-7663.md) | chore: upgrade flashinfer v0.2.7 jit | 2025-06-30 |  | gemm |
 | [#7667](../sources/prs/sglang/PR-7667.md) | Add fp4 quantize before all-gather for Flashinfer cutlass MoE DP (max throughput) | 2025-06-30 | kernel-fusion | attention, fp4, kernel-fusion |
+| [#7627](../sources/prs/sglang/PR-7627.md) | Add dsv3 router gemm kernel | 2025-06-29 |  | gemm |
+| [#7630](../sources/prs/sglang/PR-7630.md) | Add dsv3 fused a gemm to sgl-kernel | 2025-06-29 | kernel-fusion | gemm, kernel-fusion |
 | [#7634](../sources/prs/sglang/PR-7634.md) | [Feature] Layer-wise Prefill | 2025-06-29 |  | gemm, moe, prefill |
 | [#7635](../sources/prs/sglang/PR-7635.md) | Apply dsv3_fused_a_gemm kernel | 2025-06-29 | kernel-fusion | gemm, kernel-fusion |
 | [#7621](../sources/prs/sglang/PR-7621.md) | [b200] support trt-llm allreduce fuse rms_norm_add kernel | 2025-06-28 | kernel-fusion | kernel-fusion |
@@ -1383,13 +1800,108 @@
 | [#2967](../sources/prs/sglang/PR-2967.md) | upgrade cutlass v3.7.0 | 2025-01-18 |  | gemm |
 | [#2752](../sources/prs/sglang/PR-2752.md) | Support cutlass Int8 gemm | 2025-01-06 | epilogue-fusion | epilogue-fusion, gemm |
 
-<a id="vllm-projectvllm"></a>
-## vllm-project/vllm
-833 PRs
+<a id="tile-aitilelang"></a>
+## tile-ai/tilelang
+29 PRs
 
 | PR | Title | Date | Techniques | Tags |
 |-----|-------|------|------------|------|
+| [#2216](../sources/prs/tilelang/PR-2216.md) | [TIR][IR] Update to use tirx | 2026-05-18 |  | fp4, gemm, quantization |
+| [#2218](../sources/prs/tilelang/PR-2218.md) | [Python] Drop Python 3.9 support | 2026-05-18 |  | gemm, tcgen05, wgmma |
+| [#2219](../sources/prs/tilelang/PR-2219.md) | [Perf] Enable fast math in sparse MLA example | 2026-05-18 | pipeline-stages | mla, pipeline-stages |
+| [#2198](../sources/prs/tilelang/PR-2198.md) | [CUDA] Add native SM75 MMA GEMM support for FP16, INT8 and INT4 | 2026-05-13 |  | gemm |
+| [#2153](../sources/prs/tilelang/PR-2153.md) | [codex] Split GEMM implementations by backend | 2026-05-06 |  | gemm, tcgen05, wgmma |
+| [#2129](../sources/prs/tilelang/PR-2129.md) | [CUDA][TMA] Add TMA tile::gather4 / tile::scatter4 support | 2026-04-30 |  | gemm, tma |
+| [#2112](../sources/prs/tilelang/PR-2112.md) | feat: auto-vectorize bf16/fp16 reduce with packed add2 intrinsics | 2026-04-28 |  | gemm, wgmma |
+| [#2107](../sources/prs/tilelang/PR-2107.md) | [TMA] Support FP4 TensorMap TMA copies | 2026-04-27 |  | fp4, tma |
+| [#2087](../sources/prs/tilelang/PR-2087.md) | [Bugfix] Enable `.shared::cta` in TMA copy paths only on CUDA 12.8+ | 2026-04-22 |  | tma |
+| [#2073](../sources/prs/tilelang/PR-2073.md) | [CUDA] Improve int4 GEMM lowering and packed codegen support | 2026-04-21 |  | gemm |
+| [#2063](../sources/prs/tilelang/PR-2063.md) | [CUDA] Support int4 `T.gemm` | 2026-04-19 | pipeline-stages | decode, gemm, mla |
+| [#2048](../sources/prs/tilelang/PR-2048.md) | [Backend] Refactor gemm_sp | 2026-04-16 |  | gemm, tma, wgmma |
+| [#2003](../sources/prs/tilelang/PR-2003.md) | [Transform] Add InjectTcgen05Fence pass | 2026-03-31 | persistent-kernel | gemm, persistent-kernel, tcgen05 |
+| [#1981](../sources/prs/tilelang/PR-1981.md) | [Feature] Support TMA store in T.tma_copy() | 2026-03-27 |  | tma |
+| [#1972](../sources/prs/tilelang/PR-1972.md) | [Bugfix] Fix CuTeDSL autotune cache invalid ELF header (#1967) | 2026-03-25 |  | gemm |
+| [#1945](../sources/prs/tilelang/PR-1945.md) | [Feature] Block-scaled GEMM support for MXFP8 on Blackwell | 2026-03-18 |  | block-scale, fp8, gemm |
+| [#1908](../sources/prs/tilelang/PR-1908.md) | [Feature] Add T.copy_cluster to support TMA multicast and SM-to-SM cluster copy | 2026-03-07 | pipeline-stages | pipeline-stages, tma |
+| [#1909](../sources/prs/tilelang/PR-1909.md) | [Feature] Add Producer-Consumer Warp Specialization and T.tma_copy() API | 2026-03-07 | pipeline-stages, warp-specialization | attention, decode, flash-attention |
+| [#1882](../sources/prs/tilelang/PR-1882.md) | [Feature] 2-SM support for TMA, TMEM and TCGEN5MMA on Blackwell | 2026-02-27 | persistent-kernel, swizzling | 2sm-cooperative, gemm, mbarrier |
+| [#1874](../sources/prs/tilelang/PR-1874.md) | [Feature] Support cluster launch, query, synchronization and barrier operations | 2026-02-24 | persistent-kernel, swizzling, warp-specialization | gemm, mbarrier, persistent-kernel |
+| [#1866](../sources/prs/tilelang/PR-1866.md) | [CUDA] Support tcgen5mma gemm ts | 2026-02-22 |  | gemm, tcgen05 |
+| [#1840](../sources/prs/tilelang/PR-1840.md) | [BugFix] Fix Hopper TMA lowering without warp specialization | 2026-02-11 |  | tma |
+| [#1786](../sources/prs/tilelang/PR-1786.md) | fix(intrinsics): add missing _legalize_to_buffer_region in SM70 emitter | 2026-02-04 |  | gemm |
+| [#1764](../sources/prs/tilelang/PR-1764.md) | [Feature] Support tcgen5mma lowering for `.kind::i8` | 2026-02-01 |  | gemm, tcgen05 |
+| [#1736](../sources/prs/tilelang/PR-1736.md) | Add swizzle layout detection and automatic merging for layout conflicts | 2026-01-27 | swizzling | gemm, swizzling, wgmma |
+| [#1667](../sources/prs/tilelang/PR-1667.md) | [Feature] Support `cp.reduce.async.bulk.tensor` | 2026-01-13 |  | attention, flash-attention, tma |
+| [#1658](../sources/prs/tilelang/PR-1658.md) | [Feat] profiler support cudagraph backend | 2026-01-12 |  | gemm |
+| [#1327](../sources/prs/tilelang/PR-1327.md) | [Enhancement] add more dtype and fix mma.ws for fp16 for tcgen05 | 2025-11-24 |  | fp8, gemm, tcgen05 |
+| [#1229](../sources/prs/tilelang/PR-1229.md) | [WIP] support more dtypes for tcgen05 | 2025-11-11 |  | fp8, gemm, tcgen05 |
+
+<a id="vllm-projectvllm"></a>
+## vllm-project/vllm
+921 PRs
+
+| PR | Title | Date | Techniques | Tags |
+|-----|-------|------|------------|------|
+| [#43043](../sources/prs/vllm/PR-43043.md) | [XPU] update xpu graph usage | 2026-05-19 |  | attention |
+| [#43073](../sources/prs/vllm/PR-43073.md) | [Model Refactoring] Move deepseek_v4_ops to models/deepseek_v4 [3/N] | 2026-05-19 | kernel-fusion | attention, fp8, kernel-fusion |
+| [#43119](../sources/prs/vllm/PR-43119.md) | [CI failure] Temporarily disable using persistent cache for flashinfer autotune | 2026-05-19 | persistent-kernel | persistent-kernel |
+| [#43004](../sources/prs/vllm/PR-43004.md) | [Model Refactoring] Migrate DeepSeek V4 to vllm/models/ [1/N]  | 2026-05-18 |  | moe, quantization |
+| [#42857](../sources/prs/vllm/PR-42857.md) | [Perf] Re-enable flashinfer autotune by default and cleanup | 2026-05-17 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#42885](../sources/prs/vllm/PR-42885.md) | [Perf][MLA] Enable FULL cudagraph capture for TRITON_MLA decode | 2026-05-17 |  | attention, decode, mla |
+| [#42899](../sources/prs/vllm/PR-42899.md) | add cutedsl dsv4 indexer fp8 kernel | 2026-05-17 | kernel-fusion | attention, fp8, kernel-fusion |
+| [#42810](../sources/prs/vllm/PR-42810.md) | [ROCm] [Bugfix] Fix DeepSeek V4 Functionality and Accuracy | 2026-05-16 |  | attention, mla |
+| [#42849](../sources/prs/vllm/PR-42849.md) | [Perf] Add do_not_specialize in fused FP8 RoPE kernel | 2026-05-16 | kernel-fusion | attention, fp8, kernel-fusion |
+| [#42707](../sources/prs/vllm/PR-42707.md) | [CPU] Add fused GDN support for AMX CPU platform | 2026-05-15 | kernel-fusion | attention, kernel-fusion |
+| [#42716](../sources/prs/vllm/PR-42716.md) | Fix Weight loading for  Qwen3.5-MTP and Qwen3-VL using runai_streamer | 2026-05-15 |  | moe |
+| [#42740](../sources/prs/vllm/PR-42740.md) | [CPU] Specify required KV cache layout for CPU attention backend | 2026-05-15 |  | attention |
+| [#42767](../sources/prs/vllm/PR-42767.md) | [Refactor] Remove dead cuda kernels | 2026-05-15 |  | attention, moe |
+| [#42774](../sources/prs/vllm/PR-42774.md) | [Perf] Padded nvfp4 quant kernel to remove additional copy, 2.4%~5.7% e2e performance improvement | 2026-05-15 |  | fp4, nvfp4, quantization |
+| [#42663](../sources/prs/vllm/PR-42663.md) | [6/n] Migrate activation kernels, gptq, gguf, non cutlass w8a8 to libtorch stable ABI (continued) | 2026-05-14 |  | attention, fp8, gemm |
+| [#42483](../sources/prs/vllm/PR-42483.md) | Refactor AWQ Marlin MoE onto modular WNA16 oracle | 2026-05-13 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#42497](../sources/prs/vllm/PR-42497.md) | [Perf] Wire silu_and_mul_per_block_quant into TritonFP8MoE (MiniMax-M2)  | 2026-05-13 | kernel-fusion | fp8, kernel-fusion, moe |
+| [#42527](../sources/prs/vllm/PR-42527.md) | [Kernel] Pack topk id/weights triton kernel | 2026-05-13 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#42537](../sources/prs/vllm/PR-42537.md) | [UX] Add a persistent cache for FlashInfer autotuning | 2026-05-13 | persistent-kernel | persistent-kernel |
+| [#42540](../sources/prs/vllm/PR-42540.md) | [Misc] add humming to dependencies | 2026-05-13 |  | quantization |
+| [#42541](../sources/prs/vllm/PR-42541.md) | [Bugfix] fix swiglu limit issue for humming backend + deepseek v4 | 2026-05-13 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#42430](../sources/prs/vllm/PR-42430.md) | [Bugfix] mamba: run single-token extends as decodes | 2026-05-12 |  | attention, decode |
+| [#42236](../sources/prs/vllm/PR-42236.md) | [DSv4] Improved dequant gather K cache kernel | 2026-05-10 | kernel-fusion | attention, kernel-fusion |
+| [#42242](../sources/prs/vllm/PR-42242.md) | [LoRA] Support 2D and 3D MoE LoRA adapter  at the same time | 2026-05-10 | kernel-fusion | kernel-fusion, moe |
+| [#42153](../sources/prs/vllm/PR-42153.md) | [Perf] Use 2D-grid to eliminate divmod in W8W8 group quant | 2026-05-09 |  | fp8, quantization |
+| [#42080](../sources/prs/vllm/PR-42080.md) | [feat] Add FP8 per-tensor Q scale support to Triton attention backend | 2026-05-08 |  | attention, fp8 |
+| [#42112](../sources/prs/vllm/PR-42112.md) | [Bugfix] Fix TRTLLM ragged MLA prefill workspace warmup | 2026-05-08 |  | attention, mla, prefill |
+| [#41882](../sources/prs/vllm/PR-41882.md) | Add NVFP4 all-gather GEMM fusion for AsyncTP | 2026-05-07 | kernel-fusion | fp4, gemm, kernel-fusion |
+| [#41922](../sources/prs/vllm/PR-41922.md) | [CPU] Add MXFP4 W4A16 MoE support | 2026-05-07 | kernel-fusion | fp4, fp8, gemm |
+| [#41979](../sources/prs/vllm/PR-41979.md) | [MoE] Move various experts classes to fused_moe/experts/ | 2026-05-07 | kernel-fusion | fp4, fp8, gemm |
+| [#41986](../sources/prs/vllm/PR-41986.md) | [Bugfix] Add swiglu limits to deepgemm fp8 methods | 2026-05-07 | kernel-fusion | fp4, fp8, gemm |
+| [#41778](../sources/prs/vllm/PR-41778.md) | [MLA Attention Backend] Add TOKENSPEED_MLA backend for DSR1/Kimi K25 prefill + decode on Blackwell | 2026-05-06 |  | attention, decode, mla |
+| [#41868](../sources/prs/vllm/PR-41868.md) | [CUDA][CUTLASS] Enable cutlass scaled mm for non-compatible sizes  | 2026-05-06 |  | quantization |
+| [#41710](../sources/prs/vllm/PR-41710.md) | fix: remove unused norm for dpskv4 | 2026-05-05 |  | attention |
+| [#41745](../sources/prs/vllm/PR-41745.md) | [Spec Decode] Add Gemma4 MTP speculative decoding support | 2026-05-05 |  | decode, gemm |
+| [#41664](../sources/prs/vllm/PR-41664.md) | [MXFP4] Support for linear layers + compressed-tensors integration | 2026-05-04 |  | fp4, moe, quantization |
+| [#41665](../sources/prs/vllm/PR-41665.md) | [Bugfix] Fix condition to clear persistent topk so that it can be captured regardless | 2026-05-04 | persistent-kernel | persistent-kernel |
+| [#41566](../sources/prs/vllm/PR-41566.md) | [Quantization] Rework quantization_config to use QuantKey and allow for activation override | 2026-05-03 | kernel-fusion | fp4, fp8, kernel-fusion |
+| [#41436](../sources/prs/vllm/PR-41436.md) | [ROCm][Quantization][3/N] Refactor quark_moe w4a4 w/ oracle | 2026-05-01 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#41326](../sources/prs/vllm/PR-41326.md) | Faster per-token fp8 group quant packed kernel for blackwell | 2026-04-30 |  | fp8, quantization |
+| [#41428](../sources/prs/vllm/PR-41428.md) | [DSv4] Improved fused Indexer Q quant kernel | 2026-04-30 | kernel-fusion | attention, kernel-fusion |
+| [#41233](../sources/prs/vllm/PR-41233.md) | [Bugfix][Hybrid][NemotronH] Fix mamba_cache_mode=all + speculative decoding crash | 2026-04-29 |  | attention |
+| [#41263](../sources/prs/vllm/PR-41263.md) | [DSV4]   Fuse norm and router for low latency scenario | 2026-04-29 | kernel-fusion | gemm, kernel-fusion, moe |
+| [#40950](../sources/prs/vllm/PR-40950.md) | [DSV4] Add silu clamp limit to shared expert | 2026-04-27 | kernel-fusion | kernel-fusion, moe |
+| [#40960](../sources/prs/vllm/PR-40960.md) | [DSV4] Add BF16 and MXFP8 A2A support for flashinfer a2a one sided | 2026-04-27 | kernel-fusion | fp4, fp8, kernel-fusion |
+| [#41050](../sources/prs/vllm/PR-41050.md) | [Kernel][MoE] Support GELU on TRT-LLM NvFP4 fused MoE for Gemma4 | 2026-04-27 | kernel-fusion | fp4, gemm, kernel-fusion |
+| [#40941](../sources/prs/vllm/PR-40941.md) | [Attention][TurboQuant] Share dequant buffers, eliminate float16_copy | 2026-04-26 |  | attention, decode |
+| [#40850](../sources/prs/vllm/PR-40850.md) | [Kernel][Helion] Optimize Helion config parsing latency | 2026-04-25 |  | fp8 |
+| [#40717](../sources/prs/vllm/PR-40717.md) | [GDN] Enable FI Blackwell GDN prefill kernel | 2026-04-23 |  | prefill |
+| [#40574](../sources/prs/vllm/PR-40574.md) | [MoE] Move cutlass moe to fused_moe/experts/ | 2026-04-22 | kernel-fusion | fp4, fp8, gemm |
+| [#40392](../sources/prs/vllm/PR-40392.md) | [Performance][DSR1]: Fused RoPE+KVCache+q_concat for MLA | 2026-04-20 | kernel-fusion | kernel-fusion, mla |
+| [#40408](../sources/prs/vllm/PR-40408.md) | [Perf] Batch invariance with Cutlass fp8 support, 28.9% E2E latency improvement | 2026-04-20 |  | fp8, quantization |
+| [#40273](../sources/prs/vllm/PR-40273.md) | Fix MoE backend selection for LoRA (unquantized MoE) | 2026-04-19 | kernel-fusion | kernel-fusion, moe, quantization |
+| [#40191](../sources/prs/vllm/PR-40191.md) | [Bugfix] Guard mxfp4_experts_quant bindings on ENABLE_NVFP4_SM100 | 2026-04-18 |  | fp4, nvfp4, quantization |
+| [#40105](../sources/prs/vllm/PR-40105.md) | [Bugfix] Add Marlin kernel in block scaled mm kernel selection. | 2026-04-17 |  | gemm |
+| [#40131](../sources/prs/vllm/PR-40131.md) | [Bugfix] moe lora align kernel grid | 2026-04-17 |  | moe |
+| [#40177](../sources/prs/vllm/PR-40177.md) | Add nvfp4 kv cache support | 2026-04-17 |  | attention, fp4, nvfp4 |
+| [#40045](../sources/prs/vllm/PR-40045.md) | [Attention] use diff kv backend for mimo v2 flash | 2026-04-16 |  | attention |
 | [#40057](../sources/prs/vllm/PR-40057.md) | [Bugfix] Temporarily disable B200 fp4 MoE layer tests | 2026-04-16 |  | fp4, moe |
+| [#39917](../sources/prs/vllm/PR-39917.md) | [Core] Replace routing replay with device cache and async D2H pipeline | 2026-04-15 | kernel-fusion, pipeline-stages | kernel-fusion, moe, pipeline-stages |
 | [#39752](../sources/prs/vllm/PR-39752.md) | add warning when FP8 KV cache misses prefill query quantization | 2026-04-14 |  | attention, fp8, mla |
 | [#39796](../sources/prs/vllm/PR-39796.md) | [Bugfix] add support for 'num_attention_groups' in ModelArchConfigConvertorBase for Step3p5 | 2026-04-14 |  | attention |
 | [#39820](../sources/prs/vllm/PR-39820.md) | [Bug] Fix batch invariance nvfp4 support | 2026-04-14 |  | fp4, nvfp4 |
@@ -1402,8 +1914,11 @@
 | [#39644](../sources/prs/vllm/PR-39644.md) | [Bugfix] [Tests] Enforce `out` tensor device in `kernel/moe/test_cutedsl_moe.py` | 2026-04-12 |  | moe |
 | [#39510](../sources/prs/vllm/PR-39510.md) | [Kernel] Support TRTLLM GEN NVFP4 MoE for non-512-aligned hidden dims via weight padding | 2026-04-10 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#39542](../sources/prs/vllm/PR-39542.md) | [Bugfix] Fix tensor shape mismatch in sparse attention with speculative decoding | 2026-04-10 |  | attention |
+| [#39547](../sources/prs/vllm/PR-39547.md) | [Perf] Fuse Zero Initializer for FP8 DeepGemm Block Quant Kernel | 2026-04-10 |  | fp8, gemm, quantization |
+| [#39391](../sources/prs/vllm/PR-39391.md) | fix: clamp NaN/Inf in topk_softmax to prevent duplicate expert IDs | 2026-04-09 | kernel-fusion | kernel-fusion, moe, tma |
 | [#39418](../sources/prs/vllm/PR-39418.md) | [Bugfix][CT] Fix KV cache scale handling | 2026-04-09 |  | quantization |
 | [#39458](../sources/prs/vllm/PR-39458.md) | [MLA] Optimize mla indexer prepare uniform decode for MTP > 1 | 2026-04-09 |  | attention, decode, mla |
+| [#39306](../sources/prs/vllm/PR-39306.md) | Use CU_MEMCPY_SRC_ACCESS_ORDER_ANY for batch KV cache swaps | 2026-04-08 |  | gemm |
 | [#39315](../sources/prs/vllm/PR-39315.md) | [Bugfix] FlashInfer MXINT4 MoE crashes, missing do_finalize | 2026-04-08 |  | moe, quantization |
 | [#39322](../sources/prs/vllm/PR-39322.md) | [Feature] Batch invariant nvfp4 linear support | 2026-04-08 |  | fp4, nvfp4, quantization |
 | [#39353](../sources/prs/vllm/PR-39353.md) | [Model Runner V2] Fix flex attention kv blocks calculation issue | 2026-04-08 |  | attention |
@@ -1437,12 +1952,14 @@
 | [#38819](../sources/prs/vllm/PR-38819.md) | [Attention][MLA] Re-enable FA4 as default MLA prefill backend | 2026-04-02 |  | attention, mla, prefill |
 | [#38832](../sources/prs/vllm/PR-38832.md) | [Bugfix] Fix NVFP4+MTP crash: force unquantized mtp.fc for Qwen3.5 | 2026-04-02 |  | fp4, nvfp4, quantization |
 | [#38835](../sources/prs/vllm/PR-38835.md) | [Attention] relax the head dim 512 and paged kv for sm90+FA4 | 2026-04-02 |  | attention |
+| [#38670](../sources/prs/vllm/PR-38670.md) | [Bugfix] Fix AWQ models batch invariance issues | 2026-04-01 |  | quantization |
 | [#38682](../sources/prs/vllm/PR-38682.md) | [XPU] add  xpu backend implementation of mxfp8 quant | 2026-04-01 |  | fp8, quantization |
 | [#38690](../sources/prs/vllm/PR-38690.md) | [FA4] Update flash-attention to latest upstream FA4 | 2026-04-01 |  | attention, flash-attention |
 | [#38730](../sources/prs/vllm/PR-38730.md) | [Bugfix] Restrict TRTLLM attention to SM100, fixing GB300 (SM103) hang | 2026-04-01 |  | attention |
 | [#38615](../sources/prs/vllm/PR-38615.md) | [ROCm] Fix aiter persistent mode mla with q/o nhead<16 for kimi-k2.5 tp8 | 2026-03-31 | persistent-kernel | attention, mla, persistent-kernel |
 | [#38631](../sources/prs/vllm/PR-38631.md) | Fix MLA runs when use_inductor_graph_partition=True | 2026-03-31 |  | attention, mla |
 | [#38491](../sources/prs/vllm/PR-38491.md) | [XPU] Fix spec-decode UTs under tests/v1/spec_decode | 2026-03-30 |  | decode |
+| [#38504](../sources/prs/vllm/PR-38504.md) | [Kernels][MoE] Fix legacy_routing to use bitmatrix-based routing path | 2026-03-30 | kernel-fusion | fp4, fp8, kernel-fusion |
 | [#38562](../sources/prs/vllm/PR-38562.md) | [Bugfix][MLA] Change default SM100 MLA prefill backend back to TRT-LLM | 2026-03-30 |  | attention, mla, prefill |
 | [#38573](../sources/prs/vllm/PR-38573.md) | [Compile] Fix nvfp4 compile warning | 2026-03-30 |  | fp4, nvfp4, quantization |
 | [#38460](../sources/prs/vllm/PR-38460.md) | [Perf] Batch KV cache swap copies via cuMemcpyBatchAsync | 2026-03-29 |  | gemm |
@@ -1457,10 +1974,13 @@
 | [#38391](../sources/prs/vllm/PR-38391.md) | [CI Bugfix] Pre-download missing FlashInfer headers in Docker build | 2026-03-27 |  | gemm |
 | [#38251](../sources/prs/vllm/PR-38251.md) | [Quantization] Add FlashInfer CuteDSL batched experts backend for NVFP4 MoE | 2026-03-26 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#38050](../sources/prs/vllm/PR-38050.md) | [MoE Kernel] Flashinfer nvfp4 cutedsl moe kernel integration | 2026-03-25 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#38065](../sources/prs/vllm/PR-38065.md) | [Perf] FP8 FlashInfer Attn for ViT | 2026-03-25 |  | attention, fp8, quantization |
 | [#38083](../sources/prs/vllm/PR-38083.md) | [Bugfix] Fix DeepGemm E8M0 accuracy degradation for Qwen3.5 FP8 on Blackwell | 2026-03-25 |  | fp4, fp8, gemm |
 | [#38148](../sources/prs/vllm/PR-38148.md) | Fix NaN from stale FP4 scale padding in create_fp4_scale_tensor | 2026-03-25 |  | fp4 |
 | [#37940](../sources/prs/vllm/PR-37940.md) | [NIXL][BUG] Fix Triton heterogeneous TP | 2026-03-24 |  | attention |
 | [#37948](../sources/prs/vllm/PR-37948.md) | [Perf] triton bilinear_pos_embed kernel for ViT | 2026-03-24 |  | gemm |
+| [#37970](../sources/prs/vllm/PR-37970.md) | [Kernel] Optimize SM120 CUTLASS blockwise FP8 GEMM | 2026-03-24 |  | fp8, gemm, quantization |
+| [#37844](../sources/prs/vllm/PR-37844.md) | [XPU] add gptq(int4) support | 2026-03-23 |  | quantization |
 | [#37880](../sources/prs/vllm/PR-37880.md) | [Feature] Support per-draft-model MoE backend via `--speculative-config` | 2026-03-23 |  | decode, moe |
 | [#37887](../sources/prs/vllm/PR-37887.md) | [ROCm][perf] fix Aiter sparse MLA with MTP>1 | 2026-03-23 |  | decode, mla |
 | [#37759](../sources/prs/vllm/PR-37759.md) | [MoE] Move FlashInfer CuteDSL experts into fused_moe/experts/ | 2026-03-21 | kernel-fusion | fp4, kernel-fusion, moe |
@@ -1480,12 +2000,14 @@
 | [#37364](../sources/prs/vllm/PR-37364.md) | [Model Runner V2] fix draft attention metadata generation | 2026-03-18 |  | attention, decode |
 | [#37373](../sources/prs/vllm/PR-37373.md) | [torch.compile] Refactor Attention Quant Fusion Pass and Remove Boilerplate | 2026-03-18 | kernel-fusion | attention, kernel-fusion |
 | [#37421](../sources/prs/vllm/PR-37421.md) | [Perf][Kernel] Persistent TopK scheduler: unified CUDAGraph-safe kernel with dynamic per-row dispatch - DeepSeek-V3.2 DSA decode | 2026-03-18 | persistent-kernel | attention, decode, mla |
+| [#37463](../sources/prs/vllm/PR-37463.md) | [Kernel] Add MXFP4 W4A4 CUTLASS MoE kernel for SM100 | 2026-03-18 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#37465](../sources/prs/vllm/PR-37465.md) | [Bugfix] Remove assertion for NVFP4 scale dynamic range | 2026-03-18 |  | fp4, nvfp4, quantization |
 | [#37475](../sources/prs/vllm/PR-37475.md) | [BugFix] Allow qk_nope_head_dim=192 in FlashInfer MLA backend checks | 2026-03-18 |  | attention, mla |
 | [#37252](../sources/prs/vllm/PR-37252.md) | [Perf] Set Flashinfer sparse MLA as default backend for FP8 kv cache | 2026-03-17 |  | attention, fp8, mla |
 | [#37303](../sources/prs/vllm/PR-37303.md) | [Attention] Support distinguishing between short extends and decodes | 2026-03-17 |  | attention, decode, prefill |
 | [#37320](../sources/prs/vllm/PR-37320.md) | [Kernel] Add non-gated support for NVFP4 CUTLASS MoE | 2026-03-17 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#37322](../sources/prs/vllm/PR-37322.md) | [Bugfix] Fix EP weight filter breaking EPLB and NVFP4 accuracy | 2026-03-17 |  | fp4, nvfp4 |
+| [#37332](../sources/prs/vllm/PR-37332.md) | Add nvfp4 support to reshape_and_cache_flash | 2026-03-17 |  | attention, fp4, nvfp4 |
 | [#37143](../sources/prs/vllm/PR-37143.md) | [XPU] support MLA model on Intel GPU | 2026-03-16 |  | attention, fp8, mla |
 | [#37199](../sources/prs/vllm/PR-37199.md) | [Misc] Add `float16` to `CacheDType` | 2026-03-16 |  | attention, mla |
 | [#37205](../sources/prs/vllm/PR-37205.md) | [Kernel] Add gpt-oss Router GEMM kernel | 2026-03-16 | kernel-fusion | gemm, kernel-fusion, moe |
@@ -1544,12 +2066,15 @@
 | [#35751](../sources/prs/vllm/PR-35751.md) | [MoE][Perf] Wrap DSV3 QKVAProj GEMM in custom op for torch.compile | 2026-03-02 |  | gemm, moe |
 | [#35753](../sources/prs/vllm/PR-35753.md) | [Mamba] Add stochastic rounding support | 2026-03-02 |  | gemm |
 | [#35777](../sources/prs/vllm/PR-35777.md) | [Kernel] Add fused_sigmoid_gating_delta_rule_update kernel for Qwen3 Next | 2026-03-02 | kernel-fusion | kernel-fusion |
+| [#35382](../sources/prs/vllm/PR-35382.md) | fix(mxfp4): return is_monolithic=False when LoRA is enabled for Triton backend | 2026-02-26 |  | fp4, quantization |
 | [#35422](../sources/prs/vllm/PR-35422.md) | [Performance] Extract KV cache update op from flashinfer forward | 2026-02-26 |  | attention |
 | [#35430](../sources/prs/vllm/PR-35430.md) | [Bugfix] Fix KV Scale loading for MLA Models | 2026-02-26 |  | mla, quantization |
 | [#35448](../sources/prs/vllm/PR-35448.md) | [Quant][Feature] Support online MXFP8 quantization for MoE and dense models | 2026-02-26 | kernel-fusion | fp8, kernel-fusion, moe |
+| [#35271](../sources/prs/vllm/PR-35271.md) | [Feat] Add CUDA torch fallbacks for fp8_mqa_logits/fp8_paged_mqa_logits_torch function | 2026-02-25 |  | attention, fp8, gemm |
 | [#35290](../sources/prs/vllm/PR-35290.md) | [Attention][Perf] Optimize cp_gather_and_upconvert_fp8_kv_cache - DeepSeek-v3.2 | 2026-02-25 |  | attention, fp8 |
 | [#35156](../sources/prs/vllm/PR-35156.md) | [BUGFIX][Qwen3.5] Hardcode `mlp.gate` as not quantizable  | 2026-02-24 |  | quantization |
 | [#35157](../sources/prs/vllm/PR-35157.md) | [Linear Attention] fix bug for linear attention + prefix caching + reset_prefix_cache | 2026-02-24 |  | attention |
+| [#35161](../sources/prs/vllm/PR-35161.md) | [Bugfix] Fix expert_ids padding values in moe_align_block_size kernel | 2026-02-24 |  | moe |
 | [#35210](../sources/prs/vllm/PR-35210.md) | [BugFix] Fix fp4 quant kernel on CUDA 12.8 | 2026-02-24 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
 | [#35219](../sources/prs/vllm/PR-35219.md) | [BUGFIX][Mamba][Qwen3.5] Zero freed SSM cache blocks on GPU | 2026-02-24 |  | attention |
 | [#35075](../sources/prs/vllm/PR-35075.md) | [Bug][DSV3.2] Always prepare metadata for DeepGEMM Sparse Attention | 2026-02-23 |  | attention, gemm, mla |
@@ -1568,20 +2093,25 @@
 | [#34718](../sources/prs/vllm/PR-34718.md) | [torch.compile] Turn on silu+fp4 quant fusion by default for O1+ | 2026-02-17 | kernel-fusion | fp4, kernel-fusion |
 | [#34725](../sources/prs/vllm/PR-34725.md) | [Bugfix] Fix NVFP4 TRTLLM MoE non-gated support; add gsm8k for Nemotron-3-Nano FP8+NVFP4 | 2026-02-17 |  | fp4, fp8, moe |
 | [#34732](../sources/prs/vllm/PR-34732.md) | [Attention] Use FA4 for MLA prefill | 2026-02-17 |  | attention, mla, prefill |
+| [#34758](../sources/prs/vllm/PR-34758.md) | [Model Bash] DeepSeek R1 BF16 Min Latency QKV A GEMM (0.5% E2E Speedup) | 2026-02-17 | kernel-fusion | gemm, kernel-fusion, mla |
 | [#34597](../sources/prs/vllm/PR-34597.md) | [Kernel] Add FP8 KV cache support to Triton MLA decode attention | 2026-02-16 |  | attention, decode, fp8 |
 | [#34577](../sources/prs/vllm/PR-34577.md) | [Bugfix] Rescale NVFP4 weight scales to fix BF16 dequant underflow | 2026-02-15 |  | fp4, nvfp4, quantization |
 | [#34552](../sources/prs/vllm/PR-34552.md) | [BugFix] Add support for MTP num_speculative_tokens > 1 with sparse MLA | 2026-02-14 |  | attention, decode, mla |
+| [#34556](../sources/prs/vllm/PR-34556.md) | [Quantization] add humming quantization kernel | 2026-02-14 | kernel-fusion | kernel-fusion, moe, quantization |
 | [#34476](../sources/prs/vllm/PR-34476.md) | [BUGFIX] Fix accuracy regression for NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 with TP>1 | 2026-02-13 |  | fp4, nvfp4 |
 | [#34478](../sources/prs/vllm/PR-34478.md) | [Model] Add NVFP4 quantization support for Step3.5-Flash | 2026-02-13 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#34494](../sources/prs/vllm/PR-34494.md) | [Bugfix] Handle num_expert_group=None in flashinfer block-scale FP8 MoE | 2026-02-13 | kernel-fusion | block-scale, fp8, kernel-fusion |
+| [#34389](../sources/prs/vllm/PR-34389.md) | [Custom Ops] Add functional + out variant for scaled_fp4_quant | 2026-02-12 | kernel-fusion | fp4, kernel-fusion, nvfp4 |
 | [#34434](../sources/prs/vllm/PR-34434.md) | [CPU][Perf] Accelerate Attention head for s390x using vector intrinsics | 2026-02-12 |  | attention |
 | [#34448](../sources/prs/vllm/PR-34448.md) | [Kernel] Integrate SM100 MXFP8 blockscaled grouped MM and quant kernels | 2026-02-12 |  | fp8, moe |
 | [#34471](../sources/prs/vllm/PR-34471.md) | [Llama4,Quantization] Simplify and generalize logic for Q/K permutations in quantized self-attn layers  | 2026-02-12 |  | quantization |
 | [#34298](../sources/prs/vllm/PR-34298.md) | [ModelBash][DSR1 NVFp4] Avoid Bf16 Bias Cast | 2026-02-11 |  | fp4, moe, nvfp4 |
 | [#34302](../sources/prs/vllm/PR-34302.md) | [ModelBash][DSV3] Add TRTLLM DSV3 Router GEMM kernel (6% B1 Speedup) | 2026-02-11 |  | gemm, moe |
 | [#34374](../sources/prs/vllm/PR-34374.md) | [Bugfix] Enforce DeepGEMM when using sparse_attn_indexer on CUDA | 2026-02-11 |  | gemm |
+| [#34206](../sources/prs/vllm/PR-34206.md) | [Kernel] Optimize grouped topk kernel | 2026-02-10 |  | moe |
 | [#34158](../sources/prs/vllm/PR-34158.md) | [Bugfix] Relax TRTLLM KV cache contiguity assertion for cross-layer layout | 2026-02-09 |  | attention |
 | [#34187](../sources/prs/vllm/PR-34187.md) | [Bugfix] Fix DP Attention Padding in Dummy Run | 2026-02-09 |  | attention |
+| [#34043](../sources/prs/vllm/PR-34043.md) | Reapply [Attention][FA3] Update FA3 to include new swizzle optimization | 2026-02-07 | swizzling | attention, mla, swizzling |
 | [#34052](../sources/prs/vllm/PR-34052.md) | fix(cpu): fix mla_decode compilation on x86 without AVX512 | 2026-02-07 |  | decode, mla |
 | [#33972](../sources/prs/vllm/PR-33972.md) | [Bugfix]fix output Nan/Inf in marlin if dtype=float16 | 2026-02-06 |  | fp4, moe, quantization |
 | [#33932](../sources/prs/vllm/PR-33932.md) | [Bugfix] Fix DSV3.2 NVFP4 | 2026-02-05 |  | attention, fp4, mla |
@@ -1590,10 +2120,12 @@
 | [#33695](../sources/prs/vllm/PR-33695.md) | enable skipping of SW attention layers when using FP8 KV cache | 2026-02-03 |  | attention, fp8, quantization |
 | [#33529](../sources/prs/vllm/PR-33529.md) | Triton MLA perf fixes | 2026-02-02 |  | attention, decode, mla |
 | [#33540](../sources/prs/vllm/PR-33540.md) | [Feature][Core] Support Fabric detection to adapt the MNNVL protocol for the GB series | 2026-02-02 |  | gemm |
+| [#33568](../sources/prs/vllm/PR-33568.md) | [Perf] Disable clean_logits in deepgemm fp8_mqa_logits kernel | 2026-02-02 |  | attention, fp8, gemm |
 | [#33579](../sources/prs/vllm/PR-33579.md) | [Bugfix] Fix sparse MLA metadata building | 2026-02-02 |  | attention, mla |
 | [#33506](../sources/prs/vllm/PR-33506.md) | [Kernel] Support Flashinfer trtllm fused MoE non gated FP8 & NVFP4 | 2026-02-01 | kernel-fusion | fp4, fp8, kernel-fusion |
 | [#33517](../sources/prs/vllm/PR-33517.md) | [Kernel] Add enable_sm120_or_later for SM121 (DGX Spark) CUTLASS support | 2026-02-01 |  | fp8, quantization |
 | [#33417](../sources/prs/vllm/PR-33417.md) | fix: Add SM120 (RTX Blackwell) support for FlashInfer CUTLASS NVFP4 MoE kernels | 2026-01-30 | kernel-fusion | fp4, kernel-fusion, moe |
+| [#33255](../sources/prs/vllm/PR-33255.md) | [Bugfix] Fix quant RMS norm fusion for quantization with TMA-aligned scales | 2026-01-28 | kernel-fusion | fp8, gemm, kernel-fusion |
 | [#33285](../sources/prs/vllm/PR-33285.md) | [Bugfix] Register fp8 cutlass_group_gemm as supported for only SM90+SM100 | 2026-01-28 |  | fp8, gemm |
 | [#33291](../sources/prs/vllm/PR-33291.md) | [PERF] Change GDN Attention State Layout from [N, HV, K, V] to [N, HV, V, K] | 2026-01-28 | kernel-fusion | attention, kernel-fusion |
 | [#33174](../sources/prs/vllm/PR-33174.md) | Add support for Mistral Large 3 inference with Flashinfer MoE | 2026-01-27 | kernel-fusion | fp8, kernel-fusion, moe |
@@ -1611,10 +2143,12 @@
 | [#32887](../sources/prs/vllm/PR-32887.md) | [Spec Decode] Unified Parallel Drafting | 2026-01-22 |  | attention, decode |
 | [#32795](../sources/prs/vllm/PR-32795.md) | [Bugfix][Attention] Explicitly report support for kv_cache_dtype bfloat16 | 2026-01-21 |  | attention, mla, quantization |
 | [#32614](../sources/prs/vllm/PR-32614.md) | fix: Add glm4_moe_lite to MLA detection | 2026-01-19 |  | attention, mla, moe |
+| [#32619](../sources/prs/vllm/PR-32619.md) | [Perf] Create TMA-aligned input scale tensor for DeepGemm on Hopper | 2026-01-19 |  | fp8, gemm, quantization |
 | [#32520](../sources/prs/vllm/PR-32520.md) | [Perf][Kernel] Optimize FP4 quantization kernels (SM100F) | 2026-01-17 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#32437](../sources/prs/vllm/PR-32437.md) | [Hardware][SM100] Add TRTLLM Kernel for INT4 W4A16 Kernel. | 2026-01-16 | kernel-fusion | kernel-fusion, moe, quantization |
 | [#32361](../sources/prs/vllm/PR-32361.md) | [BugFix] Fix DeepSeek-V3.1 + DeepGEMM incompatible scale shapes | 2026-01-15 |  | gemm, quantization |
 | [#32385](../sources/prs/vllm/PR-32385.md) | [Model] Molmo2: Enable quantized weight mapping for vision backbone | 2026-01-15 |  | quantization |
+| [#32195](../sources/prs/vllm/PR-32195.md) | Add TMA support to fused_moe_lora kernel | 2026-01-12 | kernel-fusion | kernel-fusion, moe, tma |
 | [#32008](../sources/prs/vllm/PR-32008.md) | [MISC] Add strict contiguity check for FlashInfer attention tensors | 2026-01-09 |  | attention |
 | [#32060](../sources/prs/vllm/PR-32060.md) | [4/N][Attention] Move MLA common to model_executor | 2026-01-09 |  | attention, decode, mla |
 | [#32064](../sources/prs/vllm/PR-32064.md) | [5/N][Attention] Finish eliminating `vllm/attention` folder | 2026-01-09 | kernel-fusion, pipeline-stages | attention, fp4, fp8 |
@@ -1769,6 +2303,7 @@
 | [#27190](../sources/prs/vllm/PR-27190.md) | [BUGFIX][ROCM] ViT FlashAttention on ROCm (no GFX9) and contiguous on qwen3vl ROCm TORCH_SDPA | 2025-10-20 |  | attention |
 | [#27223](../sources/prs/vllm/PR-27223.md) | Flashinfer_CUTLASS_MOE fuses quantization for TP | 2025-10-20 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#27229](../sources/prs/vllm/PR-27229.md) | [Feature] Batch Invariant for R1 TP 8 on Blackwell | 2025-10-20 |  | gemm |
+| [#27134](../sources/prs/vllm/PR-27134.md) | [Kernels] Enable FlashInfer FP8 Blockscale on SM90 (for TEP DSR1) | 2025-10-18 | kernel-fusion | fp8, kernel-fusion, moe |
 | [#27146](../sources/prs/vllm/PR-27146.md) | [torch.compile] Enable silu_mul_fp8_quant fusion without custom ops enabled | 2025-10-18 | kernel-fusion | fp8, kernel-fusion |
 | [#27127](../sources/prs/vllm/PR-27127.md) | [Feature] Batch Invariant: Support DeepGEMM and Blackwell | 2025-10-17 |  | fp8, gemm, quantization |
 | [#26859](../sources/prs/vllm/PR-26859.md) | Disable FlashInfer sampler by default | 2025-10-15 |  | gemm |
@@ -1932,6 +2467,7 @@
 | [#21497](../sources/prs/vllm/PR-21497.md) | [MoE] More balanced expert sharding | 2025-07-24 | kernel-fusion | kernel-fusion, moe |
 | [#21499](../sources/prs/vllm/PR-21499.md) | [NVIDIA] Fix Llama4 Scout FP4 functionality issues | 2025-07-24 | kernel-fusion | fp4, kernel-fusion, moe |
 | [#21548](../sources/prs/vllm/PR-21548.md) | Enable 4bit bnb prequant MOE | 2025-07-24 |  | moe |
+| [#21556](../sources/prs/vllm/PR-21556.md) | [Kernel] Improve machete memory bound perf | 2025-07-24 |  | quantization |
 | [#21419](../sources/prs/vllm/PR-21419.md) | [V1] Fix local chunked attention always disabled | 2025-07-23 |  | attention |
 | [#21420](../sources/prs/vllm/PR-21420.md) | [Bugfix][CUDA] fixes CUDA FP8 kv cache dtype supported | 2025-07-23 |  | fp8 |
 | [#21428](../sources/prs/vllm/PR-21428.md) | [BugFix] Fix shared storage connector load kv only load attention layer | 2025-07-23 |  | attention |
@@ -2189,6 +2725,7 @@
 | [#13236](../sources/prs/vllm/PR-13236.md) | [Quant][Perf] Use moe_wna16 kernel by default for MoEs with many experts | 2025-02-13 |  | moe, quantization |
 | [#13167](../sources/prs/vllm/PR-13167.md) | [Model] Deepseek GGUF support  | 2025-02-12 | kernel-fusion | kernel-fusion, moe, quantization |
 | [#12978](../sources/prs/vllm/PR-12978.md) | [Kernel]Add streamK for block-quantized CUTLASS kernels | 2025-02-09 |  | fp8, gemm, quantization |
+| [#12931](../sources/prs/vllm/PR-12931.md) | [Misc][Kernel]: Add GPTQAllSpark Quantization | 2025-02-08 |  | gemm, quantization |
 | [#12796](../sources/prs/vllm/PR-12796.md) | [Bugfix] Better FP8 supported defaults | 2025-02-06 |  | fp8, quantization |
 | [#12807](../sources/prs/vllm/PR-12807.md) | [Attention] Use FA3 for MLA on Hopper | 2025-02-06 |  | attention, mla |
 | [#12850](../sources/prs/vllm/PR-12850.md) | Optimize moe_align_block_size for deepseek_v3 | 2025-02-06 | kernel-fusion | kernel-fusion, moe |
@@ -2222,4 +2759,8 @@
 | [#12049](../sources/prs/vllm/PR-12049.md) | [ROCm][MoE] moe tuning support for rocm | 2025-01-14 |  | moe |
 | [#11868](../sources/prs/vllm/PR-11868.md) | [Kernel] Update `cutlass_scaled_mm` to support 2d group (blockwise) scaling | 2025-01-08 |  | fp8, gemm, quantization |
 | [#11743](../sources/prs/vllm/PR-11743.md) | [Core] Support fully transparent sleep mode | 2025-01-05 | pipeline-stages | pipeline-stages |
+| [#10995](../sources/prs/vllm/PR-10995.md) | [Kernel]: Cutlass 2:4 Sparsity + FP8/Int8 Quant Support | 2024-12-08 | epilogue-fusion | epilogue-fusion, fp8, quantization |
+| [#9218](../sources/prs/vllm/PR-9218.md) | [Bugfix] Fix Machete unittests failing with `NotImplementedError` | 2024-10-10 |  | quantization |
+| [#7701](../sources/prs/vllm/PR-7701.md) | [Kernel] (2/N) Machete - Integrate into CompressedTensorsWNA16 and GPTQMarlin | 2024-08-20 |  | gemm, moe, quantization |
+| [#7174](../sources/prs/vllm/PR-7174.md) | [Kernel] (1/N) Machete - Hopper Optimized Mixed Precision Linear Kernel  | 2024-08-05 |  | gemm, quantization |
 

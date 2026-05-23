@@ -54,6 +54,9 @@ techniques:
   - fine-grained-quantization
   - cuda-core-promotion
   - jit-compilation
+  - top-k-selection
+  - parallel-scan
+  - stream-k
 
 kernel_types:
   - gemm
@@ -72,6 +75,10 @@ kernel_types:
   - linear-attention
   - gated-dual-gemm
   - batched-gemv
+  - topk
+  - scan
+  - reduction
+  - sort
 
 languages:
   - cuda-cpp

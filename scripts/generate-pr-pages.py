@@ -47,6 +47,8 @@ KW_TO_KT = {
     "grouped-gemm": "grouped-gemm", "decode": "decode", "prefill": "prefill",
     "sparse_attention": "sparse-attention", "sparse-attention": "sparse-attention",
     "gated_delta": "gated-delta-net", "quantiz": "quantization",
+    "topk": "topk", "top-k": "topk", "scan": "scan", "reduce": "reduction",
+    "reduction": "reduction", "sort": "sort", "radix": "sort",
 }
 KW_TO_TECH = {
     "warp_special": "warp-specialization", "warp-specialization": "warp-specialization",
@@ -54,6 +56,8 @@ KW_TO_TECH = {
     "pipeline": "pipeline-stages", "epilogue": "epilogue-fusion",
     "tile_schedul": "tile-scheduling", "double_buffer": "double-buffering",
     "fusion": "kernel-fusion", "fused": "kernel-fusion",
+    "topk": "top-k-selection", "top-k": "top-k-selection",
+    "scan": "parallel-scan", "stream-k": "stream-k", "streamk": "stream-k",
 }
 KW_TO_LANG = {
     ".cu": "cuda-cpp", ".cuh": "cuda-cpp", "cuda": "cuda-cpp",
@@ -319,7 +323,12 @@ def process_ledger(ledger_path, max_pages=None, captured_at=None, audit_map=None
         repo_map = {
             "cutlass": "NVIDIA/cutlass", "sglang": "sgl-project/sglang",
             "vllm": "vllm-project/vllm", "flashinfer": "flashinfer-ai/flashinfer",
-            "pytorch": "pytorch/pytorch",
+            "pytorch": "pytorch/pytorch", "deepgemm": "deepseek-ai/DeepGEMM",
+            "flash-attention": "Dao-AILab/flash-attention",
+            "tensorrt-llm": "NVIDIA/TensorRT-LLM", "cccl-cub": "NVIDIA/cccl",
+            "triton": "triton-lang/triton", "tilelang": "tile-ai/tilelang",
+            "thunderkittens": "HazyResearch/ThunderKittens",
+            "tilekernels": "deepseek-ai/TileKernels", "quack": "Dao-AILab/quack",
         }
         repo = repo_map.get(slug, f"unknown/{slug}")
     repo_slug = repo.split("/")[1]

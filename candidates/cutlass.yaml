@@ -1,5 +1,5 @@
 repo: NVIDIA/cutlass
-searched_at: '2026-04-27'
+searched_at: '2026-05-20'
 keywords_used:
 - blackwell
 - sm100
@@ -23,8 +23,8 @@ keywords_used:
 - tile_scheduler
 - grouped_gemm
 - sub_byte
-total_candidates: 66
-included: 34
+total_candidates: 79
+included: 47
 excluded: 8
 deferred: 24
 prs:
@@ -424,3 +424,599 @@ prs:
   decision: defer
   reason: from refresh search; needs-triage
   files_changed: []
+- number: 3176
+  pr: 3176
+  title: Small Tile N BlockScaled GEMM + Grouped GEMM on SM12x
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/3176
+  date: '2026-04-21'
+  merged_at: '2026-04-21T16:32:40Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - arch_pipeline
+  tags:
+  - arch_pipeline
+  - blockscaled
+  - gemm_quant
+  - grouped gemm
+  - sm120
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - kernel-fusion
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - hopper
+  - tma
+  kernel_types:
+  - decode
+  - gemm
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cutlass/gemm/collective/builders/sm120_blockscaled_mma_builder.inl
+  - include/cutlass/gemm/collective/sm120_blockscaled_mma_array_tma.hpp
+  - include/cutlass/gemm/collective/sm120_blockscaled_mma_tma.hpp
+  - include/cutlass/gemm/collective/sm120_mma_array_tma_blockwise_scaling.hpp
+  - include/cutlass/gemm/collective/sm120_mma_tma.hpp
+  - include/cutlass/gemm/collective/sm120_mma_tma_blockwise_scaling.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_cooperative.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_pingpong.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_tma_warpspecialized_cooperative.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_tma_warpspecialized_pingpong.hpp
+  - python/cutlass_library/generator.py
+  - test/unit/gemm/device/sm120_blockscaled_tensorop_gemm/sm120_bs_gemm_mxf4_mxf4_f32_f32.cu
+  - test/unit/gemm/device/sm120_blockscaled_tensorop_gemm/sm120_bs_gemm_nvf4_nvf4_f32_nvf4_group_gemm_fusion.cu
+  score: 42
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-3176
+- number: 2790
+  pr: 2790
+  title: Blockscaled Ragged Contiguous Grouped Gemm for MoEs
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2790
+  date: '2025-11-27'
+  merged_at: '2025-11-27T01:16:49Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - arch_pipeline
+  tags:
+  - arch_pipeline
+  - blockscaled
+  - gemm_quant
+  - grouped gemm
+  - moe_routing
+  - tma
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - blackwell
+  - tma
+  kernel_types:
+  - gemm
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - examples/92_blackwell_moe_gemm/92_blackwell_moe_gemm_blockscaled_rcgrouped.cu
+  - examples/92_blackwell_moe_gemm/CMakeLists.txt
+  - include/cutlass/gemm/collective/builders/sm100_blockscaled_umma_builder.inl
+  - include/cutlass/gemm/collective/collective_mma.hpp
+  - include/cutlass/gemm/collective/sm100_blockscaled_mma_array_warpspecialized_rcggemm.hpp
+  - include/cutlass/gemm/dispatch_policy.hpp
+  score: 40
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2790
+- number: 3092
+  pr: 3092
+  title: Support for Group GEMM in CUTLASS Profiler for GeForce and Spark
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/3092
+  date: '2026-03-07'
+  merged_at: '2026-03-07T01:36:30Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - arch_pipeline
+  tags:
+  - arch_pipeline
+  - gemm_quant
+  - recent-kernel-path
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - pipeline-stages
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - gemm
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - examples/79_blackwell_geforce_gemm/CMakeLists.txt
+  - examples/80_blackwell_geforce_sparse_gemm/CMakeLists.txt
+  - examples/87_blackwell_geforce_gemm_blockwise/CMakeLists.txt
+  - include/cutlass/gemm/collective/builders/sm120_blockscaled_mma_builder.inl
+  - include/cutlass/gemm/collective/builders/sm1xx_common.inl
+  - python/cutlass_library/generator.py
+  - python/cutlass_library/library.py
+  - tools/library/src/grouped_gemm_operation_3x.hpp
+  score: 38
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-3092
+- number: 2256
+  pr: 2256
+  title: Use cudaMemcpyAsync in gemm grouped with kRequiresPrecomputation sche…
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2256
+  date: '2025-04-30'
+  merged_at: '2025-04-30T19:28:06Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - memory_primitives
+  tags:
+  - gemm_quant
+  - grouped gemm
+  - memory_primitives
+  - moe_routing
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features: []
+  kernel_types:
+  - gemm
+  - memory
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cutlass/gemm/device/base_grouped.h
+  score: 32
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2256
+- number: 2095
+  pr: 2095
+  title: 'Improvements for: Groupwise scaling along M for FP8 gemm'
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2095
+  date: '2025-02-28'
+  merged_at: '2025-02-28T03:39:29Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - arch_pipeline
+  tags:
+  - arch_pipeline
+  - fp8
+  - gemm_quant
+  - hopper
+  - sm90
+  - tma
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - fp8
+  - hopper
+  - tma
+  kernel_types:
+  - gemm
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - examples/67_hopper_fp8_warp_specialized_gemm_with_blockwise_scaling/67_hopper_fp8_warp_specialized_gemm_with_blockwise_scaling.cu
+  - examples/67_hopper_fp8_warp_specialized_gemm_with_blockwise_scaling/67_hopper_fp8_warp_specialized_gemm_with_groupwise_scaling.cu
+  - examples/67_hopper_fp8_warp_specialized_gemm_with_blockwise_scaling/reference/host/gemm_with_groupwise_scaling.h
+  - include/cutlass/gemm/collective/sm90_mma_tma_gmma_ss_warpspecialized_fp8_blockwise_scaling.hpp
+  score: 30
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2095
+- number: 3184
+  pr: 3184
+  title: Add Snake activation functor for EVT
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/3184
+  date: '2026-05-12'
+  merged_at: '2026-05-12T02:09:53Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  tags:
+  - EVT
+  - epilogue
+  - norm_elementwise
+  - sm90
+  architectures:
+  - sm90
+  techniques:
+  - epilogue-fusion
+  hardware_features:
+  - hopper
+  kernel_types:
+  - norm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cutlass/epilogue/thread/activation.h
+  - test/unit/epilogue/thread/activation.cu
+  score: 24
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-3184
+- number: 2875
+  pr: 2875
+  title: '[cute] Add constexpr specifier to make_tiled_copy'
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2875
+  date: '2026-01-03'
+  merged_at: '2026-01-03T20:39:43Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Transfer primitive policy carefully: coalescing, shared-memory staging, partial tiles, and determinism are part of the contract.'
+  seed_source: legacy-pr-index
+  primary_category: memory_primitives
+  categories:
+  - memory_primitives
+  - compiler_runtime
+  tags:
+  - compiler_runtime
+  - int8
+  - memory_primitives
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - memory
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cute/atom/copy_atom.hpp
+  score: 25
+  ncu_hint: DRAM throughput, L2 hit rate, memory sectors, shared-memory conflicts, and synchronization overhead.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2875
+- number: 2596
+  pr: 2596
+  title: Fix broken imports in heuristics_provider.py
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2596
+  date: '2025-08-29'
+  merged_at: '2025-08-29T02:32:55Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Treat scheduler/autotune configs as shape-specific evidence; replay benchmark shapes before generalizing.
+  seed_source: legacy-pr-index
+  primary_category: scheduler_autotune
+  categories:
+  - scheduler_autotune
+  tags:
+  - recent-kernel-path
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - scheduler
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/cutlass_library/heuristics.py
+  - python/cutlass_library/heuristics_provider.py
+  score: 16
+  ncu_hint: SM occupancy, waves/SM, active cycles, tail effects, and load imbalance.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2596
+- number: 2123
+  pr: 2123
+  title: Hopper Grouped GEMM support for FP8 Accum
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2123
+  date: '2025-02-21'
+  merged_at: '2025-02-21T02:55:26Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - gemm_quant
+  - moe_routing
+  tags:
+  - arch_pipeline
+  - collective builder
+  - fp8
+  - gemm_quant
+  - grouped gemm
+  - hopper
+  - moe_routing
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - fp8
+  - hopper
+  - tma
+  kernel_types:
+  - gemm
+  - moe
+  - runtime
+  languages:
+  - cute-dsl
+  changed_paths:
+  - .gitignore
+  - CONTRIBUTORS.md
+  - include/cutlass/gemm/collective/builders/sm90_gmma_builder.inl
+  - include/cutlass/gemm/collective/collective_mma.hpp
+  - include/cutlass/gemm/collective/sm90_mma_array_tma_gmma_ss_warpspecialized_fp8.hpp
+  - include/cutlass/gemm/dispatch_policy.hpp
+  - python/cutlass_library/library.py
+  - python/cutlass_library/sm90_utils.py
+  - tools/library/src/grouped_gemm_operation_3x.hpp
+  score: 45
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2123
+- number: 1883
+  pr: 1883
+  title: Improve sm90 mixed dtype kernel
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/1883
+  date: '2024-10-18'
+  merged_at: '2024-10-18T00:06:38Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - gemm_quant
+  tags:
+  - arch_pipeline
+  - gemm_quant
+  - sm90
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - epilogue-fusion
+  - fine-grained-quantization
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - fp8
+  - hopper
+  - tma
+  kernel_types:
+  - gemm
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - examples/55_hopper_mixed_dtype_gemm/55_hopper_int4_bf16_gemm.cu
+  - examples/55_hopper_mixed_dtype_gemm/55_hopper_int4_fp8_gemm.cu
+  - examples/55_hopper_mixed_dtype_gemm/CMakeLists.txt
+  - examples/55_hopper_mixed_dtype_gemm/packed_scale.hpp
+  - examples/55_hopper_mixed_dtype_gemm/reorder_utils.hpp
+  - include/cute/algorithm/tuple_algorithms.hpp
+  - include/cutlass/detail/layout.hpp
+  - include/cutlass/epilogue/collective/sm90_epilogue_tma_warpspecialized.hpp
+  - include/cutlass/gemm/collective/builders/sm90_gmma_builder.inl
+  - include/cutlass/gemm/collective/sm90_mma_tma_gmma_rs_warpspecialized_mixed_input.hpp
+  - include/cutlass/gemm/gemm.h
+  score: 37
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-1883
+- number: 2270
+  pr: 2270
+  title: hopper-blockwise-generalization-optimization
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2270
+  date: '2025-04-29'
+  merged_at: '2025-04-29T20:47:22Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - gemm_quant
+  tags:
+  - arch_pipeline
+  - gemm_quant
+  - hopper
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - fp8
+  - hopper
+  - tma
+  kernel_types:
+  - gemm
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cute/atom/mma_traits_sm90_gmma.hpp
+  - include/cutlass/gemm/collective/builders/sm90_gmma_builder.inl
+  - include/cutlass/gemm/collective/fp8_accumulation.hpp
+  - include/cutlass/gemm/collective/sm90_mma_tma_gmma_ss_warpspecialized_fp8_blockwise_scaling.hpp
+  - include/cutlass/gemm/dispatch_policy.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_cooperative.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_pingpong.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_tma_warpspecialized_cooperative.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_tma_warpspecialized_pingpong.hpp
+  score: 35
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2270
+- number: 3055
+  pr: 3055
+  title: Replace std::min with cute::min in sm120 blockwise scaling device functions
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/3055
+  date: '2026-04-24'
+  merged_at: '2026-04-24T15:13:38Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - gemm_quant
+  - compiler_runtime
+  tags:
+  - arch_pipeline
+  - compiler_runtime
+  - gemm_quant
+  - sm120
+  - tma
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  hardware_features:
+  - tma
+  kernel_types:
+  - compiler
+  - gemm
+  - runtime
+  languages:
+  - cute-dsl
+  changed_paths:
+  - include/cutlass/gemm/collective/sm120_mma_array_tma_blockwise_scaling.hpp
+  - include/cutlass/gemm/collective/sm120_mma_tma_blockwise_scaling.hpp
+  score: 34
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-3055
+- number: 2172
+  pr: 2172
+  title: Fix SM90 beta=1 hang and stream-K launch errors
+  repo: NVIDIA/cutlass
+  url: https://github.com/NVIDIA/cutlass/pull/2172
+  date: '2025-03-13'
+  merged_at: '2025-03-13T18:07:37Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - scheduler_autotune
+  tags:
+  - arch_pipeline
+  - scheduler_autotune
+  - sm90
+  - stream-k
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - autotuning
+  - pipeline-stages
+  - tile-scheduling
+  - warp-specialization
+  hardware_features:
+  - hopper
+  - tma
+  kernel_types:
+  - gemm
+  - runtime
+  - scheduler
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_cooperative.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_array_tma_warpspecialized_pingpong.hpp
+  - include/cutlass/gemm/kernel/sm90_gemm_tma_warpspecialized_pingpong.hpp
+  - include/cutlass/gemm/kernel/tile_scheduler_params.h
+  score: 32
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/cutlass/gh-2172

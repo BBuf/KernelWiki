@@ -4,9 +4,11 @@
 
 | Technique | Tags | Architectures | Confidence | Reproducibility | Sources |
 |-----------|------|--------------|------------|-----------------|---------|
+| [CCCL CUB Memory Primitives For Selection And Scan](../wiki/techniques/cccl-memory-primitives.md) | cuda-cpp, top-k-selection, parallel-scan, vectorized-loads | sm100, sm90 | source-reported | snippet | 2 |
 | [Chunk-Based Parallelism for Linear Attention](../wiki/techniques/chunk-parallelism.md) | chunk-parallelism, linear-attention, gated-delta-net, pipeline-stages | sm100, sm90 | source-reported | snippet | 3 |
 | [Double/Multi-Buffering Patterns](../wiki/techniques/double-buffering.md) | double-buffering, tmem, pipeline-stages | sm100, sm90 | source-reported | snippet | 3 |
 | [Epilogue Fusion](../wiki/techniques/epilogue-fusion.md) | epilogue-fusion, tmem, warp-specialization | sm100, sm90 | source-reported | snippet | 3 |
+| [External Source-Map Research For Kernel Edits](../wiki/techniques/external-source-map-research.md) | cuda-cpp, cute-dsl, tma, wgmma | sm100, sm90 | source-reported | snippet | 5 |
 | [Fine-Grained FP8/FP4 Quantization](../wiki/techniques/fine-grained-quantization.md) | fine-grained-quantization, fp8, fp4, nvfp4 | sm100, sm90 | source-reported | snippet | 3 |
 | [Kernel Fusion](../wiki/techniques/kernel-fusion.md) | kernel-fusion, fused-kernel, tmem | sm100, sm90 | source-reported | snippet | 3 |
 | [PTX Cache Policy Differentiation](../wiki/techniques/cache-policy.md) | cache-policy, vectorized-loads | sm100, sm90 | source-reported | snippet | 4 |

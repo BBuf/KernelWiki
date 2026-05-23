@@ -1,5 +1,5 @@
 repo: sgl-project/sglang
-searched_at: '2026-04-27'
+searched_at: '2026-05-20'
 keywords_used:
 - blackwell
 - sm100
@@ -11,10 +11,10 @@ keywords_used:
 - flashinfer
 - moe
 - attention
-total_candidates: 1254
-included: 684
-excluded: 121
-deferred: 449
+total_candidates: 1387
+included: 777
+excluded: 159
+deferred: 451
 prs:
 - number: 22989
   title: '[Ray] Bind scheduler actors to GPU-local NUMA node'
@@ -7540,3 +7540,6061 @@ prs:
   decision: defer
   reason: from refresh search; needs-triage
   files_changed: []
+- number: 23965
+  pr: 23965
+  title: Enable PDL for various kernels in DSV32/GLM5
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23965
+  date: '2026-05-09'
+  merged_at: '2026-05-09T10:42:57Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - attention_kv
+  - scheduler_autotune
+  - norm_elementwise
+  - memory_primitives
+  tags:
+  - PDL
+  - attention_kv
+  - flashinfer
+  - gemm_quant
+  - memory_primitives
+  - norm_elementwise
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - autotuning
+  - cache-policy
+  - fine-grained-quantization
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features:
+  - fp8
+  - pdl
+  - tma
+  kernel_types:
+  - attention
+  - gemm
+  - memory
+  - mla
+  - norm
+  - scheduler
+  - softmax
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  - python/sglang/srt/layers/attention/utils.py
+  - python/sglang/srt/mem_cache/utils.py
+  - sgl-kernel/csrc/elementwise/pos_enc.cuh
+  - sgl-kernel/csrc/gemm/dsv3_fused_a_gemm.cu
+  - sgl-kernel/csrc/gemm/dsv3_router_gemm_bf16_out.cu
+  - sgl-kernel/csrc/gemm/dsv3_router_gemm_float_out.cu
+  - sgl-kernel/csrc/gemm/per_token_group_quant_8bit_v2.cu
+  score: 57
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23965
+- number: 15471
+  pr: 15471
+  title: '[sgl-kernel][6/7]Support Expert Specialization Grouped GEMM'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/15471
+  date: '2026-03-19'
+  merged_at: '2026-03-19T07:39:53Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - benchmark_test
+  tags:
+  - PDL
+  - benchmark_test
+  - csrc kernel
+  - gemm_quant
+  - moe_routing
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp8
+  - pdl
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - sgl-kernel/benchmark/bench_es_fp8_blockwise_grouped_gemm.py
+  - sgl-kernel/csrc/expert_specialization/es_fp8_blockwise.cu
+  - sgl-kernel/csrc/expert_specialization/es_fp8_blockwise_functor.cuh
+  - sgl-kernel/csrc/expert_specialization/es_fp8_blockwise_launcher.cuh
+  - sgl-kernel/csrc/expert_specialization/es_fp8_blockwise_traits.cuh
+  score: 47
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-15471
+- number: 21321
+  pr: 21321
+  title: '[Kernel] Support FlashInfer TRTLLM-Gen fused MoE for non-gated FP4 & FP8 (Nemotron)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/21321
+  date: '2026-04-29'
+  merged_at: '2026-04-29T08:28:22Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - attention_kv
+  - moe_routing
+  tags:
+  - attention_kv
+  - cutlass
+  - flashinfer
+  - fp4
+  - gemm_quant
+  - moe_routing
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/sglang/srt/layers/moe/flashinfer_trtllm_moe.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_trtllm.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_fp8_moe.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - python/sglang/srt/layers/quantization/utils.py
+  - python/sglang/srt/models/nemotron_h.py
+  - python/sglang/srt/server_args.py
+  score: 46
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-21321
+- number: 23745
+  pr: 23745
+  title: Use Cute-DSL NVFP4 quantization kernels
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23745
+  date: '2026-05-11'
+  merged_at: '2026-05-11T07:40:02Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - compiler_runtime
+  - benchmark_test
+  tags:
+  - PDL
+  - benchmark_test
+  - compiler_runtime
+  - fp4
+  - gemm_quant
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - nvfp4
+  - pdl
+  kernel_types:
+  - compiler
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - benchmark/kernels/quantization/bench_fp4_quant.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_trtllm.py
+  - python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py
+  - python/sglang/srt/layers/moe/token_dispatcher/standard.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a4_nvfp4_moe.py
+  - python/sglang/srt/layers/quantization/fp4_utils.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  score: 46
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23745
+- number: 24816
+  pr: 24816
+  title: Add FlashInfer SM90 cutlass MXFP4 MoE backend (W4A16) for GPT-OSS + DeepSeek-V4
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24816
+  date: '2026-05-13'
+  merged_at: '2026-05-13T21:53:19Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  tags:
+  - cutlass
+  - flashinfer
+  - fused moe
+  - gemm_quant
+  - hopper
+  - moe kernel
+  - moe_routing
+  - mxfp4
+  - sampling kernel
+  - sm90
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - hopper
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  - sampling
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/sglang/srt/layers/moe/topk.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/mxfp4.py
+  - python/sglang/srt/layers/quantization/mxfp4_flashinfer_cutlass_moe.py
+  - python/sglang/srt/layers/quantization/mxfp4_flashinfer_trtllm_moe.py
+  - python/sglang/test/bench_mxfp4_sm90_kernels.py
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_h200.py
+  - test/registered/unit/layers/quantization/test_mxfp4_sm90_cutlass.py
+  score: 45
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24816
+- number: 24696
+  pr: 24696
+  title: '[Gemma4] Optimize Gemm4 with fused Q/K/V RMSNorm + per-expert FP8 ckpt loader'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24696
+  date: '2026-05-10'
+  merged_at: '2026-05-10T07:24:13Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - norm_elementwise
+  - moe_routing
+  tags:
+  - attention kernel
+  - fp8
+  - fused moe
+  - fused norm
+  - gemm_quant
+  - moe kernel
+  - moe_routing
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp8
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/gemma4_fused_ops.py
+  - python/sglang/srt/models/gemma4_causal.py
+  - python/sglang/srt/models/gemma4_mm.py
+  - test/registered/models/test_gemma4_fp8_per_expert_loading.py
+  score: 41
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24696
+- number: 23590
+  pr: 23590
+  title: Reland Cute-DSL FP4 dense GEMM
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23590
+  date: '2026-05-09'
+  merged_at: '2026-05-09T09:20:59Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - benchmark_test
+  tags:
+  - benchmark_test
+  - cutlass
+  - flashinfer
+  - fp4
+  - gemm_quant
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - docs_new/docs/advanced_features/server_arguments.mdx
+  - python/sglang/srt/layers/quantization/fp4_utils.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/srt/utils/common.py
+  - sgl-kernel/benchmark/bench_fp4_gemm.py
+  - test/registered/quant/test_nvfp4_gemm.py
+  score: 38
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23590
+- number: 24986
+  pr: 24986
+  title: '[rebase]Deepseek_v4 support w4(mxfp4)a16 on hopper'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24986
+  date: '2026-05-13'
+  merged_at: '2026-05-13T23:33:46Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  tags:
+  - gemm_quant
+  - hopper
+  - mxfp4
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - hopper
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/gemm/marlin_moe/moe_wna16_marlin.cuh
+  - python/sglang/srt/layers/moe/fused_moe_triton/fused_marlin_moe.py
+  - python/sglang/srt/layers/quantization/marlin_utils_fp4.py
+  - python/sglang/srt/layers/quantization/mxfp4.py
+  - python/sglang/srt/layers/quantization/mxfp4_marlin_moe.py
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_h200.py
+  - test/registered/dsv4/test_deepseek_v4_flash_fp8_h200.py
+  score: 32
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24986
+- number: 23686
+  pr: 23686
+  title: Deepseek_v4 support w4(mxfp4)a16 on hopper
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23686
+  date: '2026-04-28'
+  merged_at: '2026-04-28T07:07:09Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  tags:
+  - deepgemm
+  - gemm_quant
+  - hopper
+  - mxfp4
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - hopper
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/fused_moe_triton/fused_marlin_moe.py
+  - python/sglang/srt/layers/moe/moe_runner/marlin.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/marlin_utils_fp4.py
+  - python/sglang/srt/layers/quantization/mxfp4_deepseek.py
+  - python/sglang/srt/server_args.py
+  - sgl-kernel/csrc/moe/marlin_moe_wna16/marlin_template.h
+  - sgl-kernel/csrc/moe/marlin_moe_wna16/ops.cu
+  score: 30
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23686
+- number: 24490
+  pr: 24490
+  title: Port MXFP4 Marlin MoE support to JIT kernel path
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24490
+  date: '2026-05-07'
+  merged_at: '2026-05-07T09:08:01Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  tags:
+  - CUDA kernel
+  - deepgemm
+  - fp4
+  - fused moe
+  - gemm_quant
+  - hopper
+  - moe kernel
+  - mxfp4
+  - sgl-kernel
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - hopper
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/gemm/marlin_moe/marlin_template.h
+  - python/sglang/srt/layers/moe/fused_moe_triton/fused_marlin_moe.py
+  - python/sglang/srt/layers/moe/moe_runner/marlin.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/marlin_utils_fp4.py
+  - python/sglang/srt/layers/quantization/mxfp4_flashinfer_trtllm_moe.py
+  - python/sglang/srt/layers/quantization/mxfp4_marlin_moe.py
+  score: 29
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24490
+- number: 23756
+  pr: 23756
+  title: 'feat: port SGLANG_JIT_DEEPGEMM_FAST_WARMUP to deepseek_v4 branch'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23756
+  date: '2026-04-27'
+  merged_at: '2026-04-27T23:34:35Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - compiler_runtime
+  tags:
+  - CUDA kernel
+  - compiler_runtime
+  - deepgemm
+  - gemm_quant
+  - sampling kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - gemm
+  - sampling
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/deep_gemm_wrapper/compile_utils.py
+  score: 27
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23756
+- number: 25107
+  pr: 25107
+  title: 'perf(nvfp4): free unused source scales after weight processing'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25107
+  date: '2026-05-12'
+  merged_at: '2026-05-12T23:53:51Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - benchmark_test
+  tags:
+  - benchmark_test
+  - cutlass
+  - flashinfer
+  - fp4
+  - fused moe
+  - gemm_quant
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cute-dsl
+  changed_paths:
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  score: 27
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/sglang/gh-25107
+- number: 17554
+  pr: 17554
+  title: 'Kernel: optimize decoding metadata in NSA multi-spec backend with fused kernels'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/17554
+  date: '2026-02-14'
+  merged_at: '2026-02-14T08:40:15Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - memory_primitives
+  - benchmark_test
+  - norm_elementwise
+  - compiler_runtime
+  tags:
+  - FlashMLA
+  - attention_kv
+  - benchmark_test
+  - compiler_runtime
+  - memory_primitives
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - attention
+  - compiler
+  - memory
+  - mla
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/elementwise/fused_metadata_copy.cuh
+  - python/sglang/jit_kernel/fused_metadata_copy.py
+  - python/sglang/jit_kernel/tests/test_fused_metadata_copy.py
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/attention/nsa/nsa_backend_mtp_precompute.py
+  - python/sglang/srt/layers/attention/nsa/nsa_mtp_verification.py
+  - python/sglang/srt/layers/attention/nsa_backend.py
+  score: 56
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-17554
+- number: 20576
+  pr: 20576
+  title: '[Diffusion] Clean upstream fa3 in hopper'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/20576
+  date: '2026-03-14'
+  merged_at: '2026-03-14T15:41:24Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - norm_elementwise
+  - benchmark_test
+  - arch_pipeline
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  - hopper
+  - norm_elementwise
+  architectures:
+  - sm90
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - hopper
+  kernel_types:
+  - attention
+  - norm
+  - runtime
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/multimodal_gen/.claude/skills/diffusion-kernel/scripts/bench_diffusion_denoise.py
+  - python/sglang/multimodal_gen/.claude/skills/diffusion-kernel/scripts/bench_diffusion_rmsnorm.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/flash_attn.py
+  score: 48
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-20576
+- number: 20479
+  pr: 20479
+  title: Support Triton MLA FP8 KV cache
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/20479
+  date: '2026-05-07'
+  merged_at: '2026-05-07T01:32:39Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - compiler_runtime
+  tags:
+  - PDL
+  - attention_kv
+  - compiler_runtime
+  - sm90
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - cache-policy
+  hardware_features:
+  - fp8
+  - hopper
+  - pdl
+  kernel_types:
+  - attention
+  - compiler
+  - decode
+  - mla
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/triton_backend.py
+  - python/sglang/srt/layers/attention/triton_ops/decode_attention.py
+  - python/sglang/srt/layers/attention/triton_ops/extend_attention.py
+  score: 33
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-20479
+- number: 21104
+  pr: 21104
+  title: 'perf: precompute FA3 scheduler_metadata to eliminate per-layer prepare_varlen_num_blocks'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/21104
+  date: '2026-04-10'
+  merged_at: '2026-04-10T20:57:54Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - scheduler_autotune
+  tags:
+  - attention_kv
+  - sampling kernel
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - cache-policy
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - attention
+  - decode
+  - sampling
+  - scheduler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/attention/flashattention_backend.py
+  score: 30
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-21104
+- number: 24925
+  pr: 24925
+  title: '[attn backend] Integrate tokenspeed_mla prefill/decode kernels (fp8 kv cache, blackwell)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24925
+  date: '2026-05-14'
+  merged_at: '2026-05-14T00:36:17Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  tags:
+  - attention_kv
+  - blackwell
+  - fp8
+  architectures:
+  - sm100
+  techniques:
+  - cache-policy
+  hardware_features:
+  - blackwell
+  - fp8
+  kernel_types:
+  - attention
+  - decode
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/pyproject.toml
+  - python/sglang/srt/layers/attention/attention_registry.py
+  - python/sglang/srt/layers/attention/tokenspeed_mla_backend.py
+  - python/sglang/srt/layers/attention/trtllm_mla_backend.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/models/deepseek_common/attention_backend_handler.py
+  - python/sglang/srt/models/deepseek_common/attention_forward_methods/forward_mla.py
+  - python/sglang/srt/models/deepseek_common/utils.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/srt/speculative/draft_utils.py
+  - python/sglang/srt/utils/common.py
+  score: 28
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24925
+- number: 24271
+  pr: 24271
+  title: '[KDA] Optimize prefill kernels with diagonal and recompute fuse'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24271
+  date: '2026-05-09'
+  merged_at: '2026-05-09T00:52:52Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  tags:
+  - attention kernel
+  - attention_kv
+  - benchmark kernel
+  - hopper
+  - triton kernel
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - hopper
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/fla/chunk_delta_h.py
+  - python/sglang/srt/layers/attention/fla/chunk_intra.py
+  - python/sglang/srt/layers/attention/fla/cumsum.py
+  - python/sglang/srt/layers/attention/fla/kda.py
+  score: 15
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24271
+- number: 16961
+  pr: 16961
+  title: '[DeepSeek v3.2] Opt MTP decode cuda batch sizes and nsa implementation'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/16961
+  date: '2026-01-19'
+  merged_at: '2026-01-19T03:54:11Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  tags:
+  - FlashMLA
+  - attention_kv
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - decode
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/attention/nsa_backend.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  score: 14
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/sglang/gh-16961
+- number: 16723
+  pr: 16723
+  title: '[Rework] Add SwapAB Optimization for triton fused_moe_kernel on SM90.'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/16723
+  date: '2026-01-10'
+  merged_at: '2026-01-10T05:57:44Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  - compiler_runtime
+  - arch_pipeline
+  - benchmark_test
+  tags:
+  - arch_pipeline
+  - benchmark_test
+  - compiler_runtime
+  - moe_routing
+  - sm90
+  architectures:
+  - sm90
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - hopper
+  kernel_types:
+  - compiler
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/fused_moe_triton/fused_moe_triton_kernels.py
+  score: 43
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/sglang/gh-16723
+- number: 22809
+  pr: 22809
+  title: Dual MoE CUDA graph capture for lora/nolora batches
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22809
+  date: '2026-04-22'
+  merged_at: '2026-04-22T21:11:11Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  tags:
+  - CUDA kernel
+  - moe kernel
+  - moe_routing
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/utils.py
+  - python/sglang/srt/lora/lora_moe_runners.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  - python/sglang/srt/server_args.py
+  score: 15
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/sglang/gh-22809
+- number: 18639
+  pr: 18639
+  title: '[sglang-miles] True on-policy training support for FSDP2'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/18639
+  date: '2026-02-12'
+  merged_at: '2026-02-12T21:14:13Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - gemm_quant
+  - moe_routing
+  - scheduler_autotune
+  - compiler_runtime
+  tags:
+  - compiler_runtime
+  - fused norm
+  - gemm_quant
+  - moe_routing
+  - norm_elementwise
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - gemm
+  - moe
+  - norm
+  - scheduler
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/distributed/parallel_state.py
+  - python/sglang/srt/entrypoints/engine.py
+  - python/sglang/srt/entrypoints/http_server.py
+  - python/sglang/srt/layers/layernorm.py
+  - python/sglang/srt/layers/logits_processor.py
+  - python/sglang/srt/layers/moe/fused_moe_triton/fused_moe.py
+  - python/sglang/srt/layers/moe/fused_moe_triton/layer.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/compressed_tensors.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/compressed_tensors_moe.py
+  - python/sglang/srt/layers/rotary_embedding.py
+  - python/sglang/srt/layers/sampler.py
+  - python/sglang/srt/managers/io_struct.py
+  - python/sglang/srt/managers/scheduler.py
+  - python/sglang/srt/managers/scheduler_update_weights_mixin.py
+  - python/sglang/srt/managers/tokenizer_communicator_mixin.py
+  - python/sglang/srt/managers/tp_worker.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/models/qwen2.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/models/qwen3.py
+  - python/sglang/srt/models/qwen3_moe.py
+  - python/sglang/srt/models/qwen3_vl.py
+  score: 69
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-18639
+- number: 21440
+  pr: 21440
+  title: '[Diffusion] Add qknorm rope fuse kernel'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/21440
+  date: '2026-03-27'
+  merged_at: '2026-03-27T06:27:09Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - benchmark_test
+  - compiler_runtime
+  - fused norm
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/benchmark/diffusion/bench_qknorm_rope.py
+  - python/sglang/jit_kernel/csrc/diffusion/qknorm_rope.cuh
+  - python/sglang/jit_kernel/diffusion/qknorm_rope.py
+  - python/sglang/jit_kernel/tests/diffusion/test_qknorm_rope.py
+  - python/sglang/multimodal_gen/runtime/layers/layernorm.py
+  - python/sglang/multimodal_gen/runtime/models/dits/flux.py
+  - python/sglang/multimodal_gen/runtime/models/dits/flux_2.py
+  - python/sglang/multimodal_gen/runtime/models/dits/qwen_image.py
+  - python/sglang/multimodal_gen/runtime/models/dits/zimage.py
+  score: 52
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-21440
+- number: 21654
+  pr: 21654
+  title: '[jit_kernel] Optimize fused_qknorm_rope: deduplicate sincosf for interleave RoPE '
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/21654
+  date: '2026-04-01'
+  merged_at: '2026-04-01T01:04:14Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - benchmark_test
+  - compiler_runtime
+  - csrc kernel
+  - fused norm
+  - jit_kernel
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/benchmark/bench_fused_qknorm_rope.py
+  - python/sglang/jit_kernel/csrc/elementwise/fused_qknorm_rope.cuh
+  - python/sglang/jit_kernel/fused_qknorm_rope.py
+  - python/sglang/jit_kernel/tests/test_fused_qknorm_rope.py
+  - python/sglang/srt/models/qwen3_moe.py
+  score: 46
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-21654
+- number: 22814
+  pr: 22814
+  title: 'diffusion: add HunyuanVideo GroupNorm+SiLU fast path'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22814
+  date: '2026-04-18'
+  merged_at: '2026-04-18T15:38:50Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - compiler_runtime
+  - benchmark_test
+  tags:
+  - CUDA kernel
+  - benchmark_test
+  - compiler_runtime
+  - fused norm
+  - jit_kernel
+  - norm_elementwise
+  - triton kernel
+  architectures:
+  - sm90
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/triton/group_norm_silu.py
+  - python/sglang/jit_kernel/tests/diffusion/test_group_norm_silu.py
+  - python/sglang/multimodal_gen/envs.py
+  - python/sglang/multimodal_gen/runtime/models/vaes/hunyuanvae.py
+  score: 44
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-22814
+- number: 18762
+  pr: 18762
+  title: '[diffusion] Diffusion norm fusion for z-image'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/18762
+  date: '2026-04-04'
+  merged_at: '2026-04-04T06:01:01Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - compiler_runtime
+  - benchmark_test
+  tags:
+  - benchmark_test
+  - compiler_runtime
+  - fused norm
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/cutedsl/norm_tanh_mul_add_norm_scale.py
+  - python/sglang/jit_kernel/tests/test_norm_tanh_mul_add_norm_scale.py
+  - python/sglang/multimodal_gen/runtime/layers/layernorm.py
+  - python/sglang/multimodal_gen/runtime/models/dits/zimage.py
+  score: 40
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-18762
+- number: 23938
+  pr: 23938
+  title: Optimize large GroupNorm SiLU apply
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23938
+  date: '2026-05-02'
+  merged_at: '2026-05-02T12:54:47Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - CUDA kernel
+  - benchmark kernel
+  - benchmark_test
+  - compiler_runtime
+  - fused norm
+  - jit_kernel
+  - norm_elementwise
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - vectorized-loads
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - decode
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/benchmark/diffusion/bench_group_norm_silu.py
+  - python/sglang/jit_kernel/diffusion/triton/group_norm_silu.py
+  score: 40
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23938
+- number: 22931
+  pr: 22931
+  title: '[Fix/Kernel] Add JIT rmsnorm_hf kernel to fix transformers backend MMLU accuracy regression '
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22931
+  date: '2026-04-23'
+  merged_at: '2026-04-23T04:00:32Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - compiler_runtime
+  tags:
+  - PDL
+  - compiler_runtime
+  - csrc kernel
+  - hopper
+  - jit_kernel
+  - norm_elementwise
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - hopper
+  - pdl
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/elementwise/rmsnorm_hf.cuh
+  - python/sglang/jit_kernel/rmsnorm_hf.py
+  - python/sglang/jit_kernel/tests/test_rmsnorm_hf.py
+  - python/sglang/srt/layers/layernorm.py
+  - python/sglang/srt/models/transformers.py
+  score: 38
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-22931
+- number: 20661
+  pr: 20661
+  title: 'Fix(jit): support rmsnorm for hidden_size in {64, 128, 256}'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/20661
+  date: '2026-03-23'
+  merged_at: '2026-03-23T15:17:44Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - compiler_runtime
+  tags:
+  - compiler_runtime
+  - csrc kernel
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/elementwise/rmsnorm.cuh
+  - python/sglang/jit_kernel/norm.py
+  - python/sglang/jit_kernel/tests/test_norm_jit.py
+  score: 36
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-20661
+- number: 23148
+  pr: 23148
+  title: '[codex] diffusion: enable group norm silu fuse by default'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23148
+  date: '2026-05-02'
+  merged_at: '2026-05-02T12:55:52Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - compiler_runtime
+  tags:
+  - CUDA kernel
+  - compiler_runtime
+  - fused norm
+  - jit_kernel
+  - norm_elementwise
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/group_norm_silu.py
+  - python/sglang/jit_kernel/diffusion/triton/group_norm_silu.py
+  - python/sglang/jit_kernel/tests/diffusion/test_group_norm_silu.py
+  - python/sglang/multimodal_gen/envs.py
+  - python/sglang/multimodal_gen/runtime/models/vaes/hunyuanvae.py
+  score: 33
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23148
+- number: 24048
+  pr: 24048
+  title: '[VLM] Optimize Gemma4 VLM with PCG and fuse RMSNorm + residual add + scalar'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24048
+  date: '2026-05-04'
+  merged_at: '2026-05-04T16:36:26Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - gemm_quant
+  tags:
+  - CUDA kernel
+  - benchmark kernel
+  - fused moe
+  - gemm_quant
+  - moe kernel
+  - norm_elementwise
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - decode
+  - gemm
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/gemma4_fused_ops.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/model_executor/piecewise_cuda_graph_runner.py
+  - python/sglang/srt/models/gemma4_causal.py
+  - python/sglang/srt/models/gemma4_mm.py
+  score: 31
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24048
+- number: 19148
+  pr: 19148
+  title: '[DeepSeek-V3.2][JIT-kernel] Support nsa fuse store indexer k cache'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/19148
+  date: '2026-02-26'
+  merged_at: '2026-02-26T02:23:11Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Transfer primitive policy carefully: coalescing, shared-memory staging, partial tiles, and determinism are part of the contract.'
+  seed_source: legacy-pr-index
+  primary_category: memory_primitives
+  categories:
+  - memory_primitives
+  - compiler_runtime
+  - attention_kv
+  tags:
+  - PDL
+  - attention_kv
+  - compiler_runtime
+  - memory_primitives
+  architectures:
+  - sm100
+  techniques:
+  - cache-policy
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp8
+  - pdl
+  kernel_types:
+  - attention
+  - compiler
+  - memory
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/nsa/fused_store_index_cache.cuh
+  - python/sglang/jit_kernel/fused_store_index_cache.py
+  - python/sglang/jit_kernel/utils.py
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  score: 39
+  ncu_hint: DRAM throughput, L2 hit rate, memory sectors, shared-memory conflicts, and synchronization overhead.
+  artifact_dir: evidence/pull-bundles/sglang/gh-19148
+- number: 23707
+  pr: 23707
+  title: '[MoE] Deprecate act_and_mul_triton; fold filter_expert into JIT silu/gelu_and_mul'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23707
+  date: '2026-04-26'
+  merged_at: '2026-04-26T08:41:35Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - moe_routing
+  - norm_elementwise
+  - benchmark_test
+  tags:
+  - CUDA kernel
+  - benchmark kernel
+  - benchmark_test
+  - compiler_runtime
+  - csrc kernel
+  - fused moe
+  - jit_kernel
+  - moe kernel
+  - moe_routing
+  - norm_elementwise
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/activation.py
+  - python/sglang/jit_kernel/benchmark/bench_activation.py
+  - python/sglang/jit_kernel/csrc/elementwise/activation.cuh
+  - python/sglang/jit_kernel/tests/test_activation.py
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/fused_moe.py
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/fused_moe_triton_kernels.py
+  score: 55
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/sglang/gh-23707
+- number: 24562
+  pr: 24562
+  title: Fix performance regression on Deepseek V3 on `moe-runner-backend=triton` on SM90
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24562
+  date: '2026-05-09'
+  merged_at: '2026-05-09T10:49:13Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - moe_routing
+  - scheduler_autotune
+  - arch_pipeline
+  - benchmark_test
+  tags:
+  - arch_pipeline
+  - benchmark_test
+  - compiler_runtime
+  - moe_routing
+  - scheduler_autotune
+  - sm90
+  architectures:
+  - sm90
+  techniques:
+  - autotuning
+  - kernel-fusion
+  - pipeline-stages
+  - tile-scheduling
+  hardware_features:
+  - hopper
+  kernel_types:
+  - compiler
+  - moe
+  - runtime
+  - scheduler
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/fused_moe_triton_config.py
+  score: 53
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24562
+- number: 24411
+  pr: 24411
+  title: '[diffusion] Fuse LTX2 split rotary embedding'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24411
+  date: '2026-05-05'
+  merged_at: '2026-05-05T08:07:40Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - scheduler_autotune
+  tags:
+  - CUDA kernel
+  - compiler_runtime
+  - scheduler_autotune
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - scheduler
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/triton/ltx2_rotary.py
+  - python/sglang/multimodal_gen/runtime/models/dits/ltx_2.py
+  score: 22
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24411
+- number: 19880
+  pr: 19880
+  title: '[JIT Kernel][Feature] Support JIT custom all reduce (rewrite as v2)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/19880
+  date: '2026-03-20'
+  merged_at: '2026-03-20T10:24:08Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - memory_primitives
+  - compiler_runtime
+  - gemm_quant
+  tags:
+  - PDL
+  - benchmark_test
+  - compiler_runtime
+  - gemm_quant
+  - hopper
+  - memory_primitives
+  architectures:
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - hopper
+  - pdl
+  kernel_types:
+  - compiler
+  - gemm
+  - memory
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/.clang-format
+  - python/sglang/jit_kernel/all_reduce.py
+  - python/sglang/jit_kernel/benchmark/bench_custom_all_reduce.py
+  - python/sglang/jit_kernel/csrc/distributed/custom_all_reduce_base.cuh
+  - python/sglang/jit_kernel/csrc/distributed/custom_all_reduce_pull.cuh
+  - python/sglang/jit_kernel/csrc/distributed/custom_all_reduce_push.cuh
+  - python/sglang/jit_kernel/csrc/gemm/marlin/marlin.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/distributed/common.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/distributed/custom_all_reduce.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/ffi.h
+  - python/sglang/jit_kernel/include/sgl_kernel/utils.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/vec.cuh
+  - python/sglang/jit_kernel/tests/test_custom_all_reduce.py
+  - python/sglang/srt/distributed/device_communicators/custom_all_reduce.py
+  - python/sglang/srt/distributed/device_communicators/custom_all_reduce_utils.py
+  - python/sglang/srt/distributed/device_communicators/custom_all_reduce_v2.py
+  score: 67
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-19880
+- number: 20673
+  pr: 20673
+  title: '[Feature][JIT Kernel] Fused TP QK norm For Minimax'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/20673
+  date: '2026-04-13'
+  merged_at: '2026-04-13T12:29:47Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - compiler_runtime
+  - norm_elementwise
+  - memory_primitives
+  tags:
+  - benchmark_test
+  - compiler_runtime
+  - csrc kernel
+  - fused norm
+  - jit_kernel
+  - memory_primitives
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - warp-specialization
+  hardware_features: []
+  kernel_types:
+  - compiler
+  - decode
+  - memory
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/all_reduce.py
+  - python/sglang/jit_kernel/benchmark/bench_tp_qknorm.py
+  - python/sglang/jit_kernel/csrc/distributed/tp_qknorm.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/distributed/common.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/distributed/custom_all_reduce.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/warp.cuh
+  - python/sglang/jit_kernel/tests/test_custom_all_reduce.py
+  - python/sglang/jit_kernel/tests/test_tp_qknorm.py
+  - python/sglang/jit_kernel/tests/utils.py
+  - python/sglang/srt/distributed/device_communicators/custom_all_reduce_v2.py
+  - python/sglang/srt/models/minimax_m2.py
+  score: 58
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-20673
+- number: 24197
+  pr: 24197
+  title: Refactor device timer, clean up metrics collector, and add fwd occupancy metric
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24197
+  date: '2026-05-01'
+  merged_at: '2026-05-01T17:25:26Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - gemm_quant
+  - scheduler_autotune
+  tags:
+  - benchmark_test
+  - cutlass
+  - gemm_quant
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - tile-scheduling
+  hardware_features:
+  - fp8
+  kernel_types:
+  - gemm
+  - scheduler
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - docs/references/environment_variables.md
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/quantization/fp8_utils.py
+  - python/sglang/srt/managers/scheduler.py
+  - python/sglang/srt/managers/scheduler_runtime_checker_mixin.py
+  - python/sglang/srt/managers/tokenizer_manager.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/observability/metrics_collector.py
+  - python/sglang/srt/observability/scheduler_metrics_mixin.py
+  - python/sglang/srt/speculative/eagle_draft_cuda_graph_runner.py
+  - python/sglang/srt/speculative/eagle_draft_extend_cuda_graph_runner.py
+  - python/sglang/srt/utils/device_timer.py
+  - python/sglang/srt/utils/request_logger.py
+  - test/registered/observability/test_metrics.py
+  - test/registered/perf/test_bench_one_batch_1gpu.py
+  score: 55
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-24197
+- number: 15835
+  pr: 15835
+  title: '[Feature] JIT Fused QK norm + qk norm clean up'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/15835
+  date: '2025-12-28'
+  merged_at: '2025-12-28T03:53:50Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - norm_elementwise
+  - compiler_runtime
+  tags:
+  - PDL
+  - benchmark_test
+  - compiler_runtime
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - warp-specialization
+  hardware_features:
+  - pdl
+  kernel_types:
+  - compiler
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/benchmark/bench_qknorm.py
+  - python/sglang/jit_kernel/csrc/norm.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/runtime.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/tensor.h
+  - python/sglang/jit_kernel/include/sgl_kernel/utils.cuh
+  - python/sglang/jit_kernel/include/sgl_kernel/warp.cuh
+  - python/sglang/jit_kernel/norm.py
+  - python/sglang/jit_kernel/tests/test_qknorm.py
+  - python/sglang/jit_kernel/utils.py
+  - python/sglang/srt/models/bailing_moe.py
+  - python/sglang/srt/models/glm4_moe.py
+  - python/sglang/srt/models/llada2.py
+  - python/sglang/srt/models/qwen3.py
+  - python/sglang/srt/models/qwen3_moe.py
+  - python/sglang/srt/models/utils.py
+  score: 54
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-15835
+- number: 7627
+  pr: 7627
+  title: Add dsv3 router gemm kernel
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/7627
+  date: '2025-06-30'
+  merged_at: '2025-06-30T06:31:55Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - gemm_quant
+  tags:
+  - PDL
+  - benchmark_test
+  - gemm_quant
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - pdl
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - sgl-kernel/CMakeLists.txt
+  - sgl-kernel/benchmark/bench_dsv3_router_gemm.py
+  - sgl-kernel/csrc/common_extension.cc
+  - sgl-kernel/csrc/gemm/dsv3_router_gemm.cu
+  - sgl-kernel/include/sgl_kernel_ops.h
+  - sgl-kernel/python/sgl_kernel/__init__.py
+  - sgl-kernel/python/sgl_kernel/gemm.py
+  - sgl-kernel/tests/test_dsv3_router_gemm.py
+  score: 40
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-7627
+- number: 7630
+  pr: 7630
+  title: Add dsv3 fused a gemm to sgl-kernel
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/7630
+  date: '2025-06-29'
+  merged_at: '2025-06-29T09:52:24Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - gemm_quant
+  tags:
+  - PDL
+  - benchmark_test
+  - gemm_quant
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - pdl
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - sgl-kernel/CMakeLists.txt
+  - sgl-kernel/benchmark/bench_dsv3_fused_a_gemm.py
+  - sgl-kernel/csrc/common_extension.cc
+  - sgl-kernel/csrc/gemm/dsv3_fused_a_gemm.cu
+  - sgl-kernel/include/sgl_kernel_ops.h
+  - sgl-kernel/include/utils.h
+  - sgl-kernel/python/sgl_kernel/__init__.py
+  - sgl-kernel/python/sgl_kernel/gemm.py
+  - sgl-kernel/tests/test_dsv3_fused_a_gemm.py
+  score: 40
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-7630
+- number: 22869
+  pr: 22869
+  title: '[diffusion] feat: introduce ltx-2-two-stage device manager'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22869
+  date: '2026-04-18'
+  merged_at: '2026-04-18T03:04:33Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  tags:
+  - benchmark_test
+  - hopper
+  architectures:
+  - sm90
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - hopper
+  kernel_types:
+  - sampling
+  languages: []
+  changed_paths:
+  - docs/diffusion/compatibility_matrix.md
+  - python/sglang/multimodal_gen/runtime/pipelines/ltx_2_pipeline.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/lora_pipeline.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/denoising_av.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/ltx_2_denoising.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/upsampling.py
+  - python/sglang/multimodal_gen/runtime/server_args.py
+  - python/sglang/multimodal_gen/test/server/gpu_cases.py
+  score: 21
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/sglang/gh-22869
+- number: 25861
+  pr: 25861
+  title: Update CODEOWNERS to replace 'nsa' with 'dsa'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25861
+  date: '2026-05-20'
+  merged_at: '2026-05-20T07:31:23Z'
+  author: ch-wan
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - .github/CODEOWNERS
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 1
+  deletions: 1
+  changed_file_count: 1
+- number: 25854
+  pr: 25854
+  title: 'ci(sgl-router): add PR test workflow (pre-positioned for feature PR)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25854
+  date: '2026-05-20'
+  merged_at: '2026-05-20T07:20:04Z'
+  author: Kangyan-Zhou
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - .github/workflows/pr-test-sgl-router.yml
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 347
+  deletions: 0
+  changed_file_count: 1
+- number: 25842
+  pr: 25842
+  title: '[codex] Align diffusion skills with nightly Nvidia benchmarks'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25842
+  date: '2026-05-20'
+  merged_at: '2026-05-20T04:18:06Z'
+  author: BBuf
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/scripts/bench_diffusion_denoise.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - sampling
+  languages: []
+  changed_paths:
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/SKILL.md
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/benchmark-and-profile.md
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/scripts/bench_diffusion_denoise.py
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-performance/SKILL.md
+  path_signals:
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/scripts/bench_diffusion_denoise.py
+  borderline_path_signals:
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/SKILL.md
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/benchmark-and-profile.md
+  - python/sglang/multimodal_gen/.claude/skills/sglang-diffusion-benchmark-profile/scripts/bench_diffusion_denoise.py
+  selection_text_signals:
+  - performance
+  additions: 192
+  deletions: 55
+  changed_file_count: 4
+  artifact_dir: evidence/pull-bundles/sglang/gh-25842
+- number: 25831
+  pr: 25831
+  title: '[Test] Stage-a sanity kits; consolidate core/ + models_e2e/ tests'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25831
+  date: '2026-05-20'
+  merged_at: '2026-05-20T08:58:48Z'
+  author: hnyls2002
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/test/kits/basic_decode_correctness_kit.py, test/registered/attention/test_deepseek_v3_deterministic.py, test/registered/attention/test_deterministic.py,
+    test/registered/attention/test_gemma4_swa_triton_oob_regression.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - triton
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - cache-policy
+  - tile-scheduling
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - attention
+  - decode
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/test/kits/basic_api_contract_kit.py
+  - python/sglang/test/kits/basic_decode_correctness_kit.py
+  - python/sglang/test/kits/basic_scheduler_stress_kit.py
+  - python/sglang/test/kits/server_sanity_kit.py
+  - test/manual/dsv4/test_dsv4_flash_sanity_dp4.py
+  - test/manual/dsv4/test_dsv4_flash_sanity_tp8.py
+  - test/manual/models/test_nvidia_nemotron_3_nano_archived.py
+  - test/registered/attention/test_deepseek_v3_deterministic.py
+  - test/registered/attention/test_deterministic.py
+  - test/registered/attention/test_gemma4_swa_triton_oob_regression.py
+  - test/registered/attention/test_qwen3_next_deterministic.py
+  - test/registered/core/test_basic_sanity.py
+  - test/registered/core/test_engine_child_pids.py
+  - test/registered/core/test_hidden_states.py
+  - test/registered/core/test_srt_endpoint.py
+  - test/registered/core/test_srt_engine.py
+  - test/registered/debug_utils/test_cuda_coredump.py
+  - test/registered/language/test_srt_backend.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_h200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_megamoe_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp8_h200.py
+  - test/registered/models_e2e/test_dsa_dsv32_dp_mtp.py
+  - test/registered/models_e2e/test_dsa_dsv32_tp_mtp.py
+  - test/registered/models_e2e/test_dsa_glm5_dp_mtp.py
+  - test/registered/models_e2e/test_dsa_glm5_tp_mtp.py
+  - test/registered/models_e2e/test_dummy_grok_models.py
+  - test/registered/models_e2e/test_gemma4_fp8_per_expert_loading.py
+  - test/registered/models_e2e/test_gpt_oss_sm120.py
+  - test/registered/models_e2e/test_kimi_linear_models.py
+  - test/registered/models_e2e/test_ministral3_models.py
+  - test/registered/models_e2e/test_ministral4_models.py
+  - test/registered/models_e2e/test_nvidia_nemotron_3_nano.py
+  - test/registered/models_e2e/test_qwen3_next_models_fp4.py
+  - test/registered/radix_cache/test_cpp_radix_cache.py
+  - test/registered/unit/managers/test_mm_process_config.py
+  path_signals:
+  - python/sglang/test/kits/basic_decode_correctness_kit.py
+  - test/registered/attention/test_deepseek_v3_deterministic.py
+  - test/registered/attention/test_deterministic.py
+  - test/registered/attention/test_gemma4_swa_triton_oob_regression.py
+  - test/registered/attention/test_qwen3_next_deterministic.py
+  - test/registered/debug_utils/test_cuda_coredump.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_h200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_megamoe_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp8_h200.py
+  - test/registered/models_e2e/test_gemma4_fp8_per_expert_loading.py
+  - test/registered/models_e2e/test_gpt_oss_sm120.py
+  borderline_path_signals:
+  - python/sglang/test/kits/basic_decode_correctness_kit.py
+  - test/registered/attention/test_deepseek_v3_deterministic.py
+  - test/registered/attention/test_deterministic.py
+  - test/registered/attention/test_gemma4_swa_triton_oob_regression.py
+  - test/registered/attention/test_qwen3_next_deterministic.py
+  - test/registered/debug_utils/test_cuda_coredump.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_h200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp4_megamoe_b200.py
+  - test/registered/models_e2e/test_deepseek_v4_flash_fp8_h200.py
+  - test/registered/models_e2e/test_gemma4_fp8_per_expert_loading.py
+  - test/registered/models_e2e/test_gpt_oss_sm120.py
+  selection_text_signals:
+  - fp4
+  - fp8
+  - gemm
+  - regression
+  additions: 572
+  deletions: 639
+  changed_file_count: 36
+  artifact_dir: evidence/pull-bundles/sglang/gh-25831
+- number: 25826
+  pr: 25826
+  title: Update CI permissions and CODEOWNERS
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25826
+  date: '2026-05-20'
+  merged_at: '2026-05-20T01:19:22Z'
+  author: Fridge003
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages: []
+  changed_paths:
+  - .github/CI_PERMISSIONS.json
+  - .github/CODEOWNERS
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 9
+  deletions: 2
+  changed_file_count: 2
+- number: 25825
+  pr: 25825
+  title: '[Refactor] Pass PP start_layer via model constructor instead of forward_batch.token_to_kv_pool'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25825
+  date: '2026-05-20'
+  merged_at: '2026-05-20T05:16:08Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/models/glm4_moe.py, python/sglang/srt/models/qwen2_moe.py, python/sglang/srt/models/qwen3_moe.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - fp8
+  - moe
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types:
+  - attention
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/models/glm4_moe.py
+  - python/sglang/srt/models/llama.py
+  - python/sglang/srt/models/llama_eagle.py
+  - python/sglang/srt/models/llama_eagle3.py
+  - python/sglang/srt/models/qwen2.py
+  - python/sglang/srt/models/qwen2_eagle.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/models/qwen3.py
+  - python/sglang/srt/models/qwen3_moe.py
+  path_signals:
+  - python/sglang/srt/models/glm4_moe.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/models/qwen3_moe.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 59
+  deletions: 8
+  changed_file_count: 9
+  artifact_dir: evidence/pull-bundles/sglang/gh-25825
+- number: 25821
+  pr: 25821
+  title: '[Refactor] Rename NSA → DSA: user-facing aliases, file/class/import rename'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25821
+  date: '2026-05-20'
+  merged_at: '2026-05-20T07:18:05Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: .claude/skills/llm-torch-profiler-analysis/scripts/triage_kernel_helpers.py, python/sglang/jit_kernel/csrc/dsa/fused_store_index_cache.cuh, python/sglang/jit_kernel/csrc/elementwise/fused_metadata_copy.cuh,
+    python/sglang/jit_kernel/fused_metadata_copy.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - cuda kernel
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - cache-policy
+  - fine-grained-quantization
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - attention
+  - decode
+  - mla
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - .claude/skills/llm-torch-profiler-analysis/references/fuse-overlap-catalog.md
+  - .claude/skills/llm-torch-profiler-analysis/references/overlap-catalog.md
+  - .claude/skills/llm-torch-profiler-analysis/scripts/triage_kernel_helpers.py
+  - .github/workflows/nightly-test-amd-rocm720.yml
+  - .github/workflows/nightly-test-amd.yml
+  - docs/advanced_features/attention_backend.md
+  - docs/advanced_features/hisparse_guide.md
+  - docs/advanced_features/server_arguments.md
+  - docs/basic_usage/deepseek_v32.md
+  - docs/platforms/ascend/ascend_npu_best_practice.md
+  - docs/platforms/ascend/ascend_npu_environment_variables.md
+  - docs/platforms/ascend/ascend_npu_support_features.md
+  - docs/platforms/plugin.md
+  - docs/references/environment_variables.md
+  - docs_new/cookbook/autoregressive/DeepSeek/DeepSeek-V3_2.mdx
+  - docs_new/cookbook/autoregressive/GLM/GLM-5.1.mdx
+  - docs_new/cookbook/autoregressive/GLM/GLM-5.mdx
+  - docs_new/docs/advanced_features/attention_backend.mdx
+  - docs_new/docs/advanced_features/hisparse_guide.mdx
+  - docs_new/docs/advanced_features/server_arguments.mdx
+  - docs_new/docs/basic_usage/deepseek_v32.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_best_practice.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_environment_variables.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_optimization.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_support_features.mdx
+  - docs_new/docs/hardware-platforms/plugin.mdx
+  - docs_new/docs/references/environment_variables.mdx
+  - docs_new/src/snippets/autoregressive/deepseek-v32-deployment.jsx
+  - docs_new/src/snippets/autoregressive/deepseek-v4-deployment.jsx
+  - docs_new/src/snippets/autoregressive/glm-5-deployment.jsx
+  - docs_new/src/snippets/autoregressive/glm-51-deployment.jsx
+  - python/sglang/jit_kernel/csrc/dsa/fused_store_index_cache.cuh
+  - python/sglang/jit_kernel/csrc/elementwise/fused_metadata_copy.cuh
+  - python/sglang/jit_kernel/fused_metadata_copy.py
+  - python/sglang/jit_kernel/fused_store_index_cache.py
+  - python/sglang/jit_kernel/tests/test_fused_metadata_copy.py
+  - python/sglang/jit_kernel/tests/test_fused_store_index_cache.py
+  - python/sglang/jit_kernel/tests/test_set_mla_kv_buffer.py
+  - python/sglang/srt/arg_groups/deepseek_v4_hook.py
+  - python/sglang/srt/arg_groups/hisparse_hook.py
+  - python/sglang/srt/configs/model_config.py
+  - python/sglang/srt/disaggregation/base/conn.py
+  - python/sglang/srt/disaggregation/decode.py
+  - python/sglang/srt/disaggregation/decode_kvcache_offload_manager.py
+  - python/sglang/srt/disaggregation/mooncake/conn.py
+  - python/sglang/srt/disaggregation/mori/conn.py
+  - python/sglang/srt/disaggregation/nixl/conn.py
+  - python/sglang/srt/disaggregation/prefill.py
+  - python/sglang/srt/disaggregation/utils.py
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/hardware_backend/npu/attention/ascend_backend.py
+  - python/sglang/srt/hardware_backend/npu/graph_runner/eagle_draft_extend_npu_graph_runner.py
+  - python/sglang/srt/hardware_backend/npu/graph_runner/eagle_draft_npu_graph_runner.py
+  - python/sglang/srt/hardware_backend/npu/graph_runner/npu_graph_runner.py
+  - python/sglang/srt/hardware_backend/npu/modules/deepseek_v2_attention_mla_npu.py
+  - python/sglang/srt/layers/attention/attention_registry.py
+  - python/sglang/srt/layers/attention/base_attn_backend.py
+  - python/sglang/srt/layers/attention/dsa/dequant_k_cache.py
+  - python/sglang/srt/layers/attention/dsa/dsa_backend_mtp_precompute.py
+  - python/sglang/srt/layers/attention/dsa/dsa_indexer.py
+  - python/sglang/srt/layers/attention/dsa/dsa_mtp_verification.py
+  - python/sglang/srt/layers/attention/dsa/index_buf_accessor.py
+  - python/sglang/srt/layers/attention/dsa/quant_k_cache.py
+  - python/sglang/srt/layers/attention/dsa/tilelang_kernel.py
+  - python/sglang/srt/layers/attention/dsa/transform_index.py
+  - python/sglang/srt/layers/attention/dsa/triton_kernel.py
+  - python/sglang/srt/layers/attention/dsa/utils.py
+  - python/sglang/srt/layers/attention/dsa_backend.py
+  - python/sglang/srt/layers/attention/dsv4/compress_hip.py
+  - python/sglang/srt/layers/attention/dsv4/compressor.py
+  - python/sglang/srt/layers/attention/dsv4/indexer.py
+  - python/sglang/srt/layers/attention/hip_flash_mla.py
+  - python/sglang/srt/layers/attention/hybrid_attn_backend.py
+  - python/sglang/srt/layers/attention/nsa/__init__.py
+  - python/sglang/srt/layers/attention/nsa/dequant_k_cache.py
+  - python/sglang/srt/layers/attention/nsa/index_buf_accessor.py
+  - python/sglang/srt/layers/attention/nsa/nsa_backend_mtp_precompute.py
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  - python/sglang/srt/layers/attention/nsa/nsa_mtp_verification.py
+  - python/sglang/srt/layers/attention/nsa/quant_k_cache.py
+  - python/sglang/srt/layers/attention/nsa/tilelang_kernel.py
+  - python/sglang/srt/layers/attention/nsa/transform_index.py
+  - python/sglang/srt/layers/attention/nsa/triton_kernel.py
+  - python/sglang/srt/layers/attention/nsa/utils.py
+  - python/sglang/srt/layers/attention/nsa_backend.py
+  - python/sglang/srt/layers/communicator.py
+  - python/sglang/srt/layers/communicator_dsa_cp.py
+  - python/sglang/srt/layers/dp_attention.py
+  - python/sglang/srt/layers/mhc.py
+  - python/sglang/srt/layers/utils/cp_utils.py
+  - python/sglang/srt/managers/hisparse_coordinator.py
+  - python/sglang/srt/managers/schedule_policy.py
+  - python/sglang/srt/managers/scheduler_pp_mixin.py
+  - python/sglang/srt/mem_cache/deepseek_v4_memory_pool.py
+  - python/sglang/srt/mem_cache/hiradix_cache.py
+  - python/sglang/srt/mem_cache/hisparse_memory_pool.py
+  - python/sglang/srt/mem_cache/hybrid_cache/hybrid_pool_assembler.py
+  - python/sglang/srt/mem_cache/memory_pool.py
+  - python/sglang/srt/mem_cache/memory_pool_host.py
+  - python/sglang/srt/mem_cache/sparsity/__init__.py
+  - python/sglang/srt/mem_cache/sparsity/algorithms/__init__.py
+  - python/sglang/srt/mem_cache/sparsity/algorithms/deepseek_dsa.py
+  - python/sglang/srt/mem_cache/sparsity/backend/__init__.py
+  - python/sglang/srt/mem_cache/sparsity/backend/backend_adaptor.py
+  - python/sglang/srt/mem_cache/sparsity/factory.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/model_executor/model_runner_kv_cache_mixin.py
+  - python/sglang/srt/model_executor/pool_configurator.py
+  - python/sglang/srt/models/deepseek_common/attention_backend_handler.py
+  - python/sglang/srt/models/deepseek_common/attention_forward_methods/forward_mha.py
+  - python/sglang/srt/models/deepseek_common/attention_forward_methods/forward_mla.py
+  - python/sglang/srt/models/deepseek_common/utils.py
+  - python/sglang/srt/models/deepseek_nextn.py
+  - python/sglang/srt/models/deepseek_v2.py
+  - python/sglang/srt/models/deepseek_v4.py
+  - python/sglang/srt/models/deepseek_v4_nextn.py
+  - python/sglang/srt/models/glm4_moe_lite.py
+  - python/sglang/srt/models/mistral_large_3_eagle.py
+  - python/sglang/srt/models/sarvam_moe.py
+  path_signals:
+  - .claude/skills/llm-torch-profiler-analysis/scripts/triage_kernel_helpers.py
+  - python/sglang/jit_kernel/csrc/dsa/fused_store_index_cache.cuh
+  - python/sglang/jit_kernel/csrc/elementwise/fused_metadata_copy.cuh
+  - python/sglang/jit_kernel/fused_metadata_copy.py
+  - python/sglang/jit_kernel/fused_store_index_cache.py
+  - python/sglang/jit_kernel/tests/test_fused_metadata_copy.py
+  - python/sglang/jit_kernel/tests/test_fused_store_index_cache.py
+  - python/sglang/jit_kernel/tests/test_set_mla_kv_buffer.py
+  - python/sglang/srt/disaggregation/decode.py
+  - python/sglang/srt/disaggregation/decode_kvcache_offload_manager.py
+  - python/sglang/srt/hardware_backend/npu/attention/ascend_backend.py
+  - python/sglang/srt/hardware_backend/npu/modules/deepseek_v2_attention_mla_npu.py
+  borderline_path_signals:
+  - docs/advanced_features/attention_backend.md
+  - docs_new/docs/advanced_features/attention_backend.mdx
+  - python/sglang/jit_kernel/tests/test_fused_metadata_copy.py
+  - python/sglang/jit_kernel/tests/test_fused_store_index_cache.py
+  - python/sglang/jit_kernel/tests/test_set_mla_kv_buffer.py
+  - test/manual/dsv4/test_h200_fp8_flash.py
+  - test/manual/layers/attention/dsa/test_act_quant_triton.py
+  - test/manual/layers/attention/dsa/test_get_k_scale_triton_kernel.py
+  - test/manual/layers/attention/dsa/test_index_buf_accessor.py
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_b200.py
+  - test/registered/kernels/test_dsa_indexer.py
+  - test/registered/quant/test_deepseek_v32_fp4_mtp_4gpu.py
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - fp4
+  - fp8
+  additions: 11303
+  deletions: 10745
+  changed_file_count: 162
+  artifact_dir: evidence/pull-bundles/sglang/gh-25821
+- number: 25814
+  pr: 25814
+  title: Update GLM-5 H200 FP8
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25814
+  date: '2026-05-20'
+  merged_at: '2026-05-20T06:44:55Z'
+  author: faradawn
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - fp8
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - docs_new/cookbook/autoregressive/GLM/GLM-5.mdx
+  - docs_new/src/snippets/autoregressive/glm-5-deployment.jsx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 6
+  deletions: 0
+  changed_file_count: 2
+- number: 25778
+  pr: 25778
+  title: '[NPU] [DOC] remove Qwen3-235B-A22B 2K+2K 100ms mixed mode benchmark'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25778
+  date: '2026-05-19'
+  merged_at: '2026-05-19T12:48:44Z'
+  author: amote-i
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_best_practice.mdx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 0
+  deletions: 82
+  changed_file_count: 1
+- number: 25764
+  pr: 25764
+  title: '[Codex] Remove stale DeepSeek V4 JIT kernels'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25764
+  date: '2026-05-19'
+  merged_at: '2026-05-19T12:04:33Z'
+  author: BBuf
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/csrc/deepseek_v4/rmsnorm.cuh, python/sglang/jit_kernel/csrc/deepseek_v4/silu_and_mul_masked_post_quant_tmp.cuh, python/sglang/jit_kernel/deepseek_v4.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features: []
+  kernel_types:
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/deepseek_v4/rmsnorm.cuh
+  - python/sglang/jit_kernel/csrc/deepseek_v4/silu_and_mul_masked_post_quant_tmp.cuh
+  - python/sglang/jit_kernel/deepseek_v4.py
+  path_signals:
+  - python/sglang/jit_kernel/csrc/deepseek_v4/rmsnorm.cuh
+  - python/sglang/jit_kernel/csrc/deepseek_v4/silu_and_mul_masked_post_quant_tmp.cuh
+  - python/sglang/jit_kernel/deepseek_v4.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - cuda kernel
+  additions: 0
+  deletions: 527
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/sglang/gh-25764
+- number: 25756
+  pr: 25756
+  title: '[Fix] Fix extra uninstall of cutlass packages'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25756
+  date: '2026-05-19'
+  merged_at: '2026-05-19T17:01:38Z'
+  author: Fridge003
+  decision: defer
+  status: merged
+  reason: 'borderline benchmark/runtime/docs signal: scripts/ci/cuda/ci_install_dependency.sh'
+  inclusion_reason: Search-matched CUDA/kernel PR with benchmark, test, runtime, CI, or docs-adjacent paths; keep as contextual PR evidence.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - benchmark kernel
+  - cutlass
+  - gemm
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - scripts/ci/cuda/ci_install_dependency.sh
+  path_signals: []
+  borderline_path_signals:
+  - scripts/ci/cuda/ci_install_dependency.sh
+  selection_text_signals:
+  - attention kernel
+  - benchmark kernel
+  - cutlass
+  - gemm
+  additions: 0
+  deletions: 17
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25756
+- number: 25748
+  pr: 25748
+  title: 'loader: yield filtered MTP weights lazily to avoid OOM hang on multi-layer EAGLE'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25748
+  date: '2026-05-20'
+  merged_at: '2026-05-20T04:33:55Z'
+  author: JustinTong0323
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - fp8
+  - moe
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types:
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/model_loader/loader.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 7
+  deletions: 6
+  changed_file_count: 1
+- number: 25740
+  pr: 25740
+  title: '[AMD] Bump amd/Kimi-K2.5-MXFP4 revision to align with shared-experts fusion'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25740
+  date: '2026-05-19'
+  merged_at: '2026-05-19T05:47:06Z'
+  author: yctseng0211
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: test/registered/amd/test_kimi_k25_mxfp4.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - moe
+  - mxfp4
+  - triton
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - mxfp4
+  kernel_types:
+  - moe
+  languages:
+  - triton
+  changed_paths:
+  - test/registered/amd/test_kimi_k25_mxfp4.py
+  path_signals:
+  - test/registered/amd/test_kimi_k25_mxfp4.py
+  borderline_path_signals:
+  - test/registered/amd/test_kimi_k25_mxfp4.py
+  selection_text_signals:
+  - fp4
+  - mxfp4
+  additions: 7
+  deletions: 1
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25740
+- number: 25735
+  pr: 25735
+  title: '[NPU] [DOCS] Improved the usability of Ascend NPU documents'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25735
+  date: '2026-05-19'
+  merged_at: '2026-05-19T08:22:22Z'
+  author: amote-i
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_accuracy_evaluation.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_deepseek_example.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_faq.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_glm5_examples.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_quick_start.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_qwen3_5_examples.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_qwen3_examples.mdx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 468
+  deletions: 49
+  changed_file_count: 8
+- number: 25733
+  pr: 25733
+  title: '[Bug] Fix V4-Pro NaN on Blackwell by converting fp8_einsum input scale to ue8m0'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25733
+  date: '2026-05-19'
+  merged_at: '2026-05-19T06:48:35Z'
+  author: yhyang201
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - blackwell
+  - cuda
+  - cuda kernel
+  - fp4
+  - fp8
+  - gemm
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - blackwell
+  - cuda kernel
+  - fp4
+  - fp8
+  - gemm
+  additions: 1
+  deletions: 0
+  changed_file_count: 1
+- number: 25729
+  pr: 25729
+  title: 'fix(dsv4): upgrade forward metadata on main stream for large PP size'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25729
+  date: '2026-05-19'
+  merged_at: '2026-05-19T20:52:01Z'
+  author: whybeyoung
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - cuda kernel
+  additions: 4
+  deletions: 0
+  changed_file_count: 1
+- number: 25721
+  pr: 25721
+  title: Publish elastic-EP active ranks from a dedicated step
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25721
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:21:04Z'
+  author: fzyzcjy
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages: []
+  changed_paths:
+  - python/sglang/srt/managers/scheduler.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 15
+  deletions: 11
+  changed_file_count: 1
+- number: 25717
+  pr: 25717
+  title: Move the retract-decode ratio estimation onto the new-token-ratio tracker
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25717
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:19:42Z'
+  author: fzyzcjy
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - decode
+  - sampling
+  languages: []
+  changed_paths:
+  - python/sglang/srt/managers/schedule_batch.py
+  - python/sglang/srt/managers/scheduler_components/new_token_ratio_tracker.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 24
+  deletions: 9
+  changed_file_count: 2
+- number: 25711
+  pr: 25711
+  title: Expose can-run-cuda-graph as a regular property on the embedding result
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25711
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:18:00Z'
+  author: fzyzcjy
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/disaggregation/prefill.py
+  - python/sglang/srt/dllm/mixin/scheduler.py
+  - python/sglang/srt/managers/scheduler_components/batch_result_processor.py
+  - python/sglang/srt/managers/utils.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 7
+  deletions: 3
+  changed_file_count: 4
+- number: 25697
+  pr: 25697
+  title: '[diffusion] Fix GLM-Image /v1/images/edits support'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25697
+  date: '2026-05-20'
+  merged_at: '2026-05-20T09:11:52Z'
+  author: qimcis
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/diffusion/triton/scale_shift.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features: []
+  kernel_types:
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/triton/scale_shift.py
+  - python/sglang/multimodal_gen/configs/pipeline_configs/glm_image.py
+  - python/sglang/multimodal_gen/runtime/layers/layernorm.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/model_specific_stages/glm_image.py
+  path_signals:
+  - python/sglang/jit_kernel/diffusion/triton/scale_shift.py
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 101
+  deletions: 28
+  changed_file_count: 4
+  artifact_dir: evidence/pull-bundles/sglang/gh-25697
+- number: 25695
+  pr: 25695
+  title: 'fix (jit kernel): elementwise activation C++ error'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25695
+  date: '2026-05-19'
+  merged_at: '2026-05-19T07:23:53Z'
+  author: bluecoffee8
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/csrc/elementwise/activation.cuh'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/elementwise/activation.cuh
+  path_signals:
+  - python/sglang/jit_kernel/csrc/elementwise/activation.cuh
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 4
+  deletions: 4
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25695
+- number: 25690
+  pr: 25690
+  title: '[Fix] Try to fix error caused by latest cutedsl packages '
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25690
+  date: '2026-05-18'
+  merged_at: '2026-05-18T23:51:32Z'
+  author: Fridge003
+  decision: defer
+  status: merged
+  reason: 'borderline benchmark/runtime/docs signal: scripts/ci/cuda/ci_install_dependency.sh'
+  inclusion_reason: Search-matched CUDA/kernel PR with benchmark, test, runtime, CI, or docs-adjacent paths; keep as contextual PR evidence.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/pyproject.toml
+  - scripts/ci/cuda/ci_install_dependency.sh
+  path_signals: []
+  borderline_path_signals:
+  - scripts/ci/cuda/ci_install_dependency.sh
+  selection_text_signals:
+  - benchmark kernel
+  - cute
+  additions: 21
+  deletions: 4
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25690
+- number: 25689
+  pr: 25689
+  title: Add spec_verify_calls_total metric for speculative decoding
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25689
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:35:12Z'
+  author: merrymercy
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - speculative-decoding
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - python/sglang/srt/managers/tokenizer_manager.py
+  - python/sglang/srt/observability/metrics_collector.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 17
+  deletions: 0
+  changed_file_count: 2
+- number: 25688
+  pr: 25688
+  title: Add no_combine support to cutlass_moe_fp4
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25688
+  date: '2026-05-18'
+  merged_at: '2026-05-18T22:59:55Z'
+  author: merrymercy
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/cutlass_moe.py, python/sglang/srt/layers/quantization/modelopt_quant.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cutlass
+  - fp4
+  - moe
+  - triton
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  kernel_types:
+  - moe
+  languages:
+  - cute-dsl
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/cutlass_moe.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  path_signals:
+  - python/sglang/srt/layers/moe/cutlass_moe.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - cutlass
+  - fp4
+  additions: 4
+  deletions: 0
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25688
+- number: 25685
+  pr: 25685
+  title: '[SP] Fix runtime_max_tokens_per_rank for sequence parallelism'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25685
+  date: '2026-05-18'
+  merged_at: '2026-05-18T22:59:33Z'
+  author: merrymercy
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py
+  path_signals:
+  - python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - flashinfer
+  additions: 10
+  deletions: 5
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25685
+- number: 25621
+  pr: 25621
+  title: Move pool-stats sampling to SchedulerPoolStatsObserver
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25621
+  date: '2026-05-18'
+  merged_at: '2026-05-18T10:37:51Z'
+  author: fzyzcjy
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - sampling
+  languages: []
+  changed_paths:
+  - python/sglang/srt/managers/scheduler.py
+  - python/sglang/srt/managers/scheduler_components/pool_stats_observer.py
+  - python/sglang/srt/managers/scheduler_runtime_checker_mixin.py
+  - python/sglang/srt/observability/scheduler_metrics_mixin.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 176
+  deletions: 227
+  changed_file_count: 4
+- number: 25612
+  pr: 25612
+  title: Move DP-attention adapter methods to SchedulerDPAttnAdapter
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25612
+  date: '2026-05-18'
+  merged_at: '2026-05-18T10:32:16Z'
+  author: fzyzcjy
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/disaggregation/decode.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - attention
+  - decode
+  languages: []
+  changed_paths:
+  - python/sglang/bench_one_batch.py
+  - python/sglang/srt/disaggregation/decode.py
+  - python/sglang/srt/disaggregation/prefill.py
+  - python/sglang/srt/managers/scheduler.py
+  - python/sglang/srt/managers/scheduler_components/dp_attn.py
+  - python/sglang/srt/managers/scheduler_dp_attn_mixin.py
+  - python/sglang/srt/managers/scheduler_pp_mixin.py
+  - test/registered/unit/managers/test_scheduler_chunked_req_gate.py
+  path_signals:
+  - python/sglang/srt/disaggregation/decode.py
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 272
+  deletions: 289
+  changed_file_count: 8
+  artifact_dir: evidence/pull-bundles/sglang/gh-25612
+- number: 25611
+  pr: 25611
+  title: Introduce SchedulerDPAttnAdapter to own DP-attention state
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25611
+  date: '2026-05-18'
+  merged_at: '2026-05-18T10:31:46Z'
+  author: fzyzcjy
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/disaggregation/decode.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - attention
+  - decode
+  languages: []
+  changed_paths:
+  - python/sglang/srt/disaggregation/decode.py
+  - python/sglang/srt/disaggregation/prefill.py
+  - python/sglang/srt/managers/scheduler.py
+  - python/sglang/srt/managers/scheduler_components/dp_attn.py
+  - python/sglang/srt/managers/scheduler_dp_attn_mixin.py
+  - python/sglang/srt/managers/scheduler_pp_mixin.py
+  path_signals:
+  - python/sglang/srt/disaggregation/decode.py
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 69
+  deletions: 13
+  changed_file_count: 6
+  artifact_dir: evidence/pull-bundles/sglang/gh-25611
+- number: 25599
+  pr: 25599
+  title: '[PD] Add conclude_state to fake KV backend'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25599
+  date: '2026-05-18'
+  merged_at: '2026-05-18T11:56:42Z'
+  author: ShangmingCai
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/disaggregation/fake/conn.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 19
+  deletions: 5
+  changed_file_count: 1
+- number: 25596
+  pr: 25596
+  title: '[diffusion] fix LTX2 resident defaults and stage profiling'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25596
+  date: '2026-05-19'
+  merged_at: '2026-05-19T02:41:29Z'
+  author: mickqian
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/multimodal_gen/runtime/pipelines/diffusers_pipeline.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/composed_pipeline_base.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/base.py
+  - python/sglang/multimodal_gen/runtime/server_args.py
+  - python/sglang/multimodal_gen/runtime/server_args_auto_tune.py
+  - python/sglang/multimodal_gen/test/unit/test_pipeline_stage_profiling.py
+  - python/sglang/multimodal_gen/test/unit/test_server_args.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 170
+  deletions: 6
+  changed_file_count: 7
+- number: 25592
+  pr: 25592
+  title: '[Diffusion] [NPU] Fix HunyuanVideo crash on NPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25592
+  date: '2026-05-19'
+  merged_at: '2026-05-19T09:40:44Z'
+  author: LLThomas
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - attention
+  - sampling
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/multimodal_gen/runtime/models/dits/hunyuanvideo.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  additions: 1
+  deletions: 1
+  changed_file_count: 1
+- number: 25588
+  pr: 25588
+  title: 'perf(mimo-v2-epd): enable GPU image preprocess and parallel video decode'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25588
+  date: '2026-05-19'
+  merged_at: '2026-05-19T03:47:21Z'
+  author: Abatom
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/utils/video_decoder.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - decode
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/managers/tokenizer_manager.py
+  - python/sglang/srt/multimodal/processors/mimo_v2.py
+  - python/sglang/srt/utils/video_decoder.py
+  path_signals:
+  - python/sglang/srt/utils/video_decoder.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 75
+  deletions: 8
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/sglang/gh-25588
+- number: 25585
+  pr: 25585
+  title: '[Bugfix] Fix missing group arg in get dp buffer'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25585
+  date: '2026-05-18'
+  merged_at: '2026-05-18T18:08:11Z'
+  author: ShangmingCai
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - moe
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/communicator.py
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 18
+  deletions: 4
+  changed_file_count: 2
+- number: 25571
+  pr: 25571
+  title: '[Benchmark] Add SGLANG_SIMULATE_UNIFORM_EXPERTS for balanced expert routing with dummy weights'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25571
+  date: '2026-05-18'
+  merged_at: '2026-05-18T16:16:13Z'
+  author: ByronHsu
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/topk.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp8
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types:
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/moe/topk.py
+  path_signals:
+  - python/sglang/srt/layers/moe/topk.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 13
+  deletions: 0
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25571
+- number: 25570
+  pr: 25570
+  title: Use triton_attn as default vision attention on B300 (SM103)
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25570
+  date: '2026-05-19'
+  merged_at: '2026-05-19T03:00:08Z'
+  author: yhyang201
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/vision.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - sm100
+  - triton
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/vision.py
+  path_signals:
+  - python/sglang/srt/layers/attention/vision.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - sm100
+  additions: 1
+  deletions: 1
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25570
+- number: 25569
+  pr: 25569
+  title: Add DeepSeekV4 fused MoE Triton autotune support
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25569
+  date: '2026-05-18'
+  merged_at: '2026-05-18T13:35:33Z'
+  author: xieminghe1
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: benchmark/kernels/fused_moe_triton/common_utils.py, benchmark/kernels/fused_moe_triton/tuning_fused_moe_triton.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - moe
+  - moe kernel
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - benchmark/kernels/fused_moe_triton/common_utils.py
+  - benchmark/kernels/fused_moe_triton/tuning_fused_moe_triton.py
+  path_signals:
+  - benchmark/kernels/fused_moe_triton/common_utils.py
+  - benchmark/kernels/fused_moe_triton/tuning_fused_moe_triton.py
+  borderline_path_signals:
+  - benchmark/kernels/fused_moe_triton/common_utils.py
+  - benchmark/kernels/fused_moe_triton/tuning_fused_moe_triton.py
+  selection_text_signals:
+  - benchmark kernel
+  - moe kernel
+  - triton kernel
+  additions: 6
+  deletions: 0
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25569
+- number: 25566
+  pr: 25566
+  title: '[Spec] fold can_run_cuda_graph into EagleVerifyOutput; drop dead extend-after-decode check'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25566
+  date: '2026-05-18'
+  merged_at: '2026-05-18T21:24:54Z'
+  author: hnyls2002
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - decode
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/speculative/eagle_info.py
+  - python/sglang/srt/speculative/eagle_worker.py
+  - python/sglang/srt/speculative/eagle_worker_v2.py
+  - python/sglang/srt/speculative/frozen_kv_mtp_worker.py
+  - python/sglang/srt/speculative/multi_layer_eagle_worker.py
+  - python/sglang/srt/speculative/multi_layer_eagle_worker_v2.py
+  - python/sglang/srt/speculative/spec_info.py
+  - python/sglang/srt/speculative/standalone_worker.py
+  - python/sglang/srt/speculative/standalone_worker_v2.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 42
+  deletions: 65
+  changed_file_count: 9
+- number: 25554
+  pr: 25554
+  title: amd/deepseek_v4 27/N [fix] Reduce Triton autotune configs for faster first-time server launch
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25554
+  date: '2026-05-18'
+  merged_at: '2026-05-18T05:57:18Z'
+  author: amd-danli103
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_common.py, python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_dsv4.py,
+    python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_fused.py, python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_splitk.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - fp8
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  hardware_features:
+  - fp8
+  kernel_types:
+  - attention
+  - decode
+  - mla
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_common.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_dsv4.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_fused.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_splitk.py
+  path_signals:
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_common.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_dsv4.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_fused.py
+  - python/sglang/srt/layers/attention/nsa/triton_decode/triton_mla_kernels_decode_splitk.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - fp8
+  - triton kernel
+  additions: 91
+  deletions: 245
+  changed_file_count: 4
+  artifact_dir: evidence/pull-bundles/sglang/gh-25554
+- number: 25547
+  pr: 25547
+  title: Respect user override for Gemma4 attention backend
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25547
+  date: '2026-05-18'
+  merged_at: '2026-05-18T17:46:25Z'
+  author: kpham-sgl
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - moe
+  - sm100
+  - triton
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/server_args.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - gemm
+  - sm100
+  additions: 22
+  deletions: 5
+  changed_file_count: 1
+- number: 25540
+  pr: 25540
+  title: Use DeepGEMM BF16 for unquantized DeepEP LL MoE
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25540
+  date: '2026-05-18'
+  merged_at: '2026-05-18T06:33:24Z'
+  author: YAMY1234
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/ep_moe/layer.py, python/sglang/srt/layers/quantization/unquant.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp8
+  - gemm
+  - moe
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - fp8
+  - nvfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/quantization/unquant.py
+  path_signals:
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/quantization/unquant.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - deepgemm
+  - fp4
+  - fp8
+  - gemm
+  - nvfp4
+  additions: 26
+  deletions: 45
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25540
+- number: 25532
+  pr: 25532
+  title: '[fp8] SM90 swap-AB scaled_mm dispatch (~1.16x kernel geomean, +5.8-18.5% end-to-end)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25532
+  date: '2026-05-20'
+  merged_at: '2026-05-20T05:20:37Z'
+  author: yuan-luo
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: sgl-kernel/benchmark/bench_fp8_gemm_swap_ab.py, sgl-kernel/csrc/cutlass_extensions/epilogue/broadcast_load_epilogue_c3x.hpp, sgl-kernel/csrc/cutlass_extensions/epilogue/scaled_mm_epilogues_c3x.hpp,
+    sgl-kernel/csrc/cutlass_extensions/gemm/fp8_gemm_sm90_dispatch.cuh'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - cutlass
+  - fp8
+  - gemm
+  - sm90
+  - triton kernel
+  architectures:
+  - sm90
+  techniques:
+  - epilogue-fusion
+  hardware_features:
+  - fp8
+  - hopper
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  - triton
+  changed_paths:
+  - sgl-kernel/benchmark/bench_fp8_gemm_swap_ab.py
+  - sgl-kernel/csrc/cutlass_extensions/epilogue/broadcast_load_epilogue_c3x.hpp
+  - sgl-kernel/csrc/cutlass_extensions/epilogue/scaled_mm_epilogues_c3x.hpp
+  - sgl-kernel/csrc/cutlass_extensions/gemm/fp8_gemm_sm90_dispatch.cuh
+  - sgl-kernel/csrc/gemm/fp8_gemm_kernel.cu
+  - sgl-kernel/tests/test_fp8_gemm.py
+  path_signals:
+  - sgl-kernel/benchmark/bench_fp8_gemm_swap_ab.py
+  - sgl-kernel/csrc/cutlass_extensions/epilogue/broadcast_load_epilogue_c3x.hpp
+  - sgl-kernel/csrc/cutlass_extensions/epilogue/scaled_mm_epilogues_c3x.hpp
+  - sgl-kernel/csrc/cutlass_extensions/gemm/fp8_gemm_sm90_dispatch.cuh
+  - sgl-kernel/csrc/gemm/fp8_gemm_kernel.cu
+  - sgl-kernel/tests/test_fp8_gemm.py
+  borderline_path_signals:
+  - sgl-kernel/benchmark/bench_fp8_gemm_swap_ab.py
+  - sgl-kernel/tests/test_fp8_gemm.py
+  selection_text_signals:
+  - benchmark kernel
+  - cutlass
+  - fp8
+  - gemm
+  - sm90
+  - triton kernel
+  additions: 1546
+  deletions: 361
+  changed_file_count: 6
+  artifact_dir: evidence/pull-bundles/sglang/gh-25532
+- number: 25525
+  pr: 25525
+  title: '[MoE Refactor] Migrate flashinfer_cutedsl + DeepEP to MoeRunner'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25525
+  date: '2026-05-17'
+  merged_at: '2026-05-17T21:48:18Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/ep_moe/layer.py, python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py, python/sglang/srt/layers/moe/moe_runner/runner.py, python/sglang/srt/layers/quantization/modelopt_quant.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - cuda kernel
+  - fp4
+  - gemm
+  - moe
+  - moe kernel
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py
+  - python/sglang/srt/layers/moe/moe_runner/runner.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - test/registered/moe/test_cutedsl_moe.py
+  path_signals:
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py
+  - python/sglang/srt/layers/moe/moe_runner/runner.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - test/registered/moe/test_cutedsl_moe.py
+  borderline_path_signals:
+  - test/registered/moe/test_cutedsl_moe.py
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - cute
+  - flashinfer
+  - fp4
+  - gemm
+  - moe kernel
+  - nvfp4
+  additions: 156
+  deletions: 146
+  changed_file_count: 5
+  artifact_dir: evidence/pull-bundles/sglang/gh-25525
+- number: 25524
+  pr: 25524
+  title: '[Bug Fix] Align glm4_moe_nextn NPU MTP loading with qwen3 MTP'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25524
+  date: '2026-05-19'
+  merged_at: '2026-05-19T13:47:02Z'
+  author: zRzRzRzRzRzRzR
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/models/glm4_moe_nextn.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp8
+  - moe
+  - speculative-decoding
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types:
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/models/glm4_moe_nextn.py
+  path_signals:
+  - python/sglang/srt/models/glm4_moe_nextn.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 11
+  deletions: 25
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25524
+- number: 25522
+  pr: 25522
+  title: Fix logging for inplace setting in the flashInfer-trtllm backend
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25522
+  date: '2026-05-17'
+  merged_at: '2026-05-17T09:20:14Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/fused_moe_triton/layer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp4
+  - moe
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  kernel_types:
+  - moe
+  languages:
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/fused_moe_triton/layer.py
+  path_signals:
+  - python/sglang/srt/layers/moe/fused_moe_triton/layer.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - flashinfer
+  - fp4
+  additions: 2
+  deletions: 1
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25522
+- number: 25509
+  pr: 25509
+  title: '[misc] Throw error when single batch overlap is enabled on Hopper '
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25509
+  date: '2026-05-18'
+  merged_at: '2026-05-18T21:51:33Z'
+  author: Fridge003
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/utils.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - hopper
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - hopper
+  kernel_types:
+  - moe
+  languages: []
+  changed_paths:
+  - python/sglang/srt/layers/moe/utils.py
+  path_signals:
+  - python/sglang/srt/layers/moe/utils.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - hopper
+  additions: 5
+  deletions: 0
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25509
+- number: 25506
+  pr: 25506
+  title: '[Doc] Fix several places for dpsk v4 cookbook'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25506
+  date: '2026-05-17'
+  merged_at: '2026-05-17T04:54:16Z'
+  author: Fridge003
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - blackwell
+  - fp4
+  - hopper
+  - moe
+  - moe kernel
+  - mxfp4
+  architectures:
+  - sm100
+  - sm90
+  techniques: []
+  hardware_features:
+  - blackwell
+  - fp4
+  - hopper
+  - mxfp4
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - docs_new/cookbook/autoregressive/DeepSeek/DeepSeek-V4.mdx
+  - docs_new/src/snippets/autoregressive/deepseek-v4-deployment.jsx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - blackwell
+  - fp4
+  - hopper
+  - moe kernel
+  - mxfp4
+  additions: 47
+  deletions: 1
+  changed_file_count: 2
+- number: 25499
+  pr: 25499
+  title: Update logging for inplace setting in MoE layer
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25499
+  date: '2026-05-17'
+  merged_at: '2026-05-17T00:12:11Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/fused_moe_triton/layer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - moe
+  - moe kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/fused_moe_triton/layer.py
+  path_signals:
+  - python/sglang/srt/layers/moe/fused_moe_triton/layer.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - moe kernel
+  additions: 4
+  deletions: 3
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25499
+- number: 25489
+  pr: 25489
+  title: Support draft extend cuda graph for tokenspeed_mla attention backend
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25489
+  date: '2026-05-18'
+  merged_at: '2026-05-18T18:26:16Z'
+  author: Qiaolin-Yu
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/tokenspeed_mla_backend.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - cuda
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/attention/tokenspeed_mla_backend.py
+  - python/sglang/srt/speculative/eagle_worker_v2.py
+  path_signals:
+  - python/sglang/srt/layers/attention/tokenspeed_mla_backend.py
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 10
+  deletions: 14
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25489
+- number: 25483
+  pr: 25483
+  title: '[codex] Update Wan2.2 ModelOpt CI checkpoints'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25483
+  date: '2026-05-20'
+  merged_at: '2026-05-20T01:05:39Z'
+  author: BBuf
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/multimodal_gen/runtime/layers/quantization/modelopt_quant.py, python/sglang/multimodal_gen/tools/build_modelopt_nvfp4_transformer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - blackwell
+  - cuda
+  - cuda kernel
+  - fp4
+  - fp8
+  - gemm
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - docs_new/docs/sglang-diffusion/quantization.mdx
+  - python/sglang/multimodal_gen/registry.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelopt_quant.py
+  - python/sglang/multimodal_gen/runtime/loader/transformer_load_utils.py
+  - python/sglang/multimodal_gen/test/server/consistency_threshold.json
+  - python/sglang/multimodal_gen/test/server/gpu_cases.py
+  - python/sglang/multimodal_gen/test/server/testcase_configs.py
+  - python/sglang/multimodal_gen/test/test_utils.py
+  - python/sglang/multimodal_gen/tools/build_modelopt_nvfp4_transformer.py
+  path_signals:
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelopt_quant.py
+  - python/sglang/multimodal_gen/tools/build_modelopt_nvfp4_transformer.py
+  borderline_path_signals:
+  - docs_new/docs/sglang-diffusion/quantization.mdx
+  selection_text_signals:
+  - attention kernel
+  - blackwell
+  - cuda kernel
+  - fp4
+  - fp8
+  - gemm
+  - nvfp4
+  additions: 87
+  deletions: 60
+  changed_file_count: 9
+  artifact_dir: evidence/pull-bundles/sglang/gh-25483
+- number: 25465
+  pr: 25465
+  title: 'verify_done: wait not synchronize'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25465
+  date: '2026-05-19'
+  merged_at: '2026-05-19T21:57:46Z'
+  author: hnyls2002
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cutlass
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cute-dsl
+  changed_paths:
+  - .github/workflows/pr-gate.yml
+  - .github/workflows/pr-test-extra.yml
+  - python/sglang/srt/managers/schedule_batch.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - cutlass
+  additions: 75
+  deletions: 37
+  changed_file_count: 3
+- number: 25454
+  pr: 25454
+  title: 'fix(eagle3): drop +1 offset on aux layer ids when first id != 1'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25454
+  date: '2026-05-18'
+  merged_at: '2026-05-18T18:25:52Z'
+  author: Qiaolin-Yu
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - fp4
+  - nvfp4
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v2.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp4
+  - nvfp4
+  additions: 6
+  deletions: 3
+  changed_file_count: 1
+- number: 25401
+  pr: 25401
+  title: Add output_gate_type to Qwen3NextConfig and update models to utilize it
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25401
+  date: '2026-05-18'
+  merged_at: '2026-05-18T16:18:09Z'
+  author: attack204
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/configs/qwen3_next.py
+  - python/sglang/srt/models/qwen3_5.py
+  - python/sglang/srt/models/qwen3_next.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  additions: 21
+  deletions: 1
+  changed_file_count: 3
+- number: 25396
+  pr: 25396
+  title: 'fix: fix deepseek v4 CP  error'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25396
+  date: '2026-05-19'
+  merged_at: '2026-05-19T09:04:22Z'
+  author: shiyu7
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - fp4
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp4
+  additions: 1
+  deletions: 0
+  changed_file_count: 1
+- number: 25390
+  pr: 25390
+  title: '[AMD] Enable shared-experts fusion with new KIMI-K2.5-MXFP4 model.'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25390
+  date: '2026-05-18'
+  merged_at: '2026-05-18T08:30:58Z'
+  author: sogalin
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/quantization/quark/quark.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - gemm
+  - moe kernel
+  - mxfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/quantization/quark/quark.py
+  - python/sglang/srt/models/deepseek_v2.py
+  path_signals:
+  - python/sglang/srt/layers/quantization/quark/quark.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  - fp4
+  - gemm
+  - moe kernel
+  - mxfp4
+  additions: 18
+  deletions: 2
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25390
+- number: 25383
+  pr: 25383
+  title: '[NPU] Fix TypeError in get_state_buf_infos when index_head_dim is None on MLA'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25383
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:09:11Z'
+  author: litmei
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - moe kernel
+  - sampling
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - mla
+  - moe
+  - sampling
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/hardware_backend/npu/memory_pool_npu.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - moe kernel
+  additions: 2
+  deletions: 0
+  changed_file_count: 1
+- number: 25375
+  pr: 25375
+  title: amd/deepseek_v4 integration 26/N rmsnorm_quant fusion for wqb input
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25375
+  date: '2026-05-18'
+  merged_at: '2026-05-18T03:42:36Z'
+  author: 1am9trash
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - fp8
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp8
+  kernel_types:
+  - norm
+  languages: []
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 20
+  deletions: 8
+  changed_file_count: 1
+- number: 25359
+  pr: 25359
+  title: '[Docs] MiMo-V2.5 cookbook: B200 benchmarks + multi-layer EAGLE acceptance profile + long-context reference'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25359
+  date: '2026-05-20'
+  merged_at: '2026-05-20T06:15:22Z'
+  author: JustinTong0323
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - blackwell
+  - hopper
+  architectures:
+  - sm100
+  - sm90
+  techniques: []
+  hardware_features:
+  - blackwell
+  - hopper
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - docs_new/cookbook/autoregressive/Xiaomi/MiMo-V2.5.mdx
+  - docs_new/src/snippets/autoregressive/mimo-v25-deployment.jsx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - blackwell
+  - hopper
+  additions: 194
+  deletions: 12
+  changed_file_count: 2
+- number: 25356
+  pr: 25356
+  title: '[AMD] test(sgl-kernel): seed RNG on ROCm in test_moe_topk_sigmoid to fix tie-break flake'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25356
+  date: '2026-05-20'
+  merged_at: '2026-05-20T06:01:14Z'
+  author: michaelzhang-ai
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: sgl-kernel/tests/test_moe_topk_sigmoid.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  - moe
+  - moe kernel
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - sgl-kernel/tests/test_moe_topk_sigmoid.py
+  path_signals:
+  - sgl-kernel/tests/test_moe_topk_sigmoid.py
+  borderline_path_signals:
+  - sgl-kernel/tests/test_moe_topk_sigmoid.py
+  selection_text_signals:
+  - cuda kernel
+  - moe kernel
+  - triton kernel
+  additions: 13
+  deletions: 0
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25356
+- number: 25336
+  pr: 25336
+  title: '[Intel GPU] Enable DeepSeek V4 Inference on XPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25336
+  date: '2026-05-18'
+  merged_at: '2026-05-18T01:33:00Z'
+  author: polisettyvarma
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/deepseek_v4.py, python/sglang/jit_kernel/utils.py, python/sglang/srt/layers/attention/deepseek_v4_backend.py, python/sglang/srt/layers/attention/dsv4/indexer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp8
+  - triton
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - mxfp4
+  kernel_types:
+  - attention
+  - gemm
+  - mla
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/bench_offline_throughput.py
+  - python/sglang/jit_kernel/deepseek_v4.py
+  - python/sglang/jit_kernel/utils.py
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/attention/deepseek_v4_backend.py
+  - python/sglang/srt/layers/attention/dsv4/indexer.py
+  - python/sglang/srt/layers/attention/dsv4/metadata.py
+  - python/sglang/srt/layers/attention/dsv4/triton_fp8_paged_mqa_logits.py
+  - python/sglang/srt/layers/attention/flash_mla_sm120_fallback.py
+  - python/sglang/srt/layers/attention/flash_mla_sm120_triton.py
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  - python/sglang/srt/layers/attention/nsa/sm120_mqa_fallback.py
+  - python/sglang/srt/layers/attention/nsa/sm120_mqa_triton.py
+  - python/sglang/srt/layers/attention/nsa_backend.py
+  - python/sglang/srt/layers/deep_gemm_wrapper/configurer.py
+  - python/sglang/srt/layers/deepseek_v4_rope.py
+  - python/sglang/srt/layers/moe/fused_moe_triton/mxfp4_moe_fallback.py
+  - python/sglang/srt/layers/moe/fused_moe_triton/mxfp4_moe_sm120_triton.py
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/fused_moe.py
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/fused_moe_triton_config.py
+  - python/sglang/srt/layers/moe/topk.py
+  - python/sglang/srt/layers/quantization/mxfp4_marlin_moe.py
+  - python/sglang/srt/models/deepseek_v4.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/test/test_sm120_mqa_fallback.py
+  path_signals:
+  - python/sglang/jit_kernel/deepseek_v4.py
+  - python/sglang/jit_kernel/utils.py
+  - python/sglang/srt/layers/attention/deepseek_v4_backend.py
+  - python/sglang/srt/layers/attention/dsv4/indexer.py
+  - python/sglang/srt/layers/attention/dsv4/metadata.py
+  - python/sglang/srt/layers/attention/dsv4/triton_fp8_paged_mqa_logits.py
+  - python/sglang/srt/layers/attention/flash_mla_sm120_fallback.py
+  - python/sglang/srt/layers/attention/flash_mla_sm120_triton.py
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  - python/sglang/srt/layers/attention/nsa/sm120_mqa_fallback.py
+  - python/sglang/srt/layers/attention/nsa/sm120_mqa_triton.py
+  - python/sglang/srt/layers/attention/nsa_backend.py
+  borderline_path_signals:
+  - python/sglang/test/test_sm120_mqa_fallback.py
+  selection_text_signals:
+  - fp4
+  - fp8
+  - gemm
+  - mxfp4
+  - throughput
+  additions: 3711
+  deletions: 166
+  changed_file_count: 25
+  artifact_dir: evidence/pull-bundles/sglang/gh-25336
+- number: 25303
+  pr: 25303
+  title: '[Spec]: Make Triton standalone spec test deterministic'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25303
+  date: '2026-05-19'
+  merged_at: '2026-05-19T00:36:11Z'
+  author: Ratish1
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - speculative-decoding
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/test/server_fixtures/standalone_fixture.py
+  - test/registered/spec/test_spec_standalone_extra.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - triton kernel
+  additions: 8
+  deletions: 2
+  changed_file_count: 2
+- number: 25299
+  pr: 25299
+  title: '[NSA] Avoid repeated NSA MQA logits memory queries'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25299
+  date: '2026-05-19'
+  merged_at: '2026-05-19T23:04:14Z'
+  author: YAMY1234
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/nsa/nsa_indexer.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp4
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  kernel_types:
+  - attention
+  languages: []
+  changed_paths:
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  path_signals:
+  - python/sglang/srt/layers/attention/nsa/nsa_indexer.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp4
+  additions: 61
+  deletions: 19
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-25299
+- number: 25286
+  pr: 25286
+  title: '[Gemma4]: Fix FP8 Triton scale layout'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25286
+  date: '2026-05-19'
+  merged_at: '2026-05-19T21:00:24Z'
+  author: Ratish1
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/quantization/fp8_kernel.py, test/registered/quant/test_triton_scaled_mm.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  - fp8
+  - gemm
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp8
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/quantization/fp8_kernel.py
+  - test/registered/quant/test_triton_scaled_mm.py
+  path_signals:
+  - python/sglang/srt/layers/quantization/fp8_kernel.py
+  - test/registered/quant/test_triton_scaled_mm.py
+  borderline_path_signals:
+  - test/registered/quant/test_triton_scaled_mm.py
+  selection_text_signals:
+  - cuda kernel
+  - fp8
+  - gemm
+  - triton kernel
+  additions: 24
+  deletions: 2
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25286
+- number: 25285
+  pr: 25285
+  title: Fix EPLB mapping for TopK paths
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25285
+  date: '2026-05-18'
+  merged_at: '2026-05-18T06:26:05Z'
+  author: xutizhou
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/topk.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - moe kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/moe/topk.py
+  - test/registered/cpu/test_topk.py
+  path_signals:
+  - python/sglang/srt/layers/moe/topk.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - moe kernel
+  additions: 34
+  deletions: 4
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25285
+- number: 25284
+  pr: 25284
+  title: Support Gemma4 Pipeline Parallelism
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25284
+  date: '2026-05-19'
+  merged_at: '2026-05-19T14:40:12Z'
+  author: yuan-luo
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/models/gemma4_causal.py, python/sglang/srt/models/gemma4_mm.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - speculative-decoding
+  - triton
+  architectures:
+  - sm100
+  techniques:
+  - pipeline-stages
+  hardware_features: []
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/models/gemma4_causal.py
+  - python/sglang/srt/models/gemma4_mm.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/test/test_utils.py
+  - test/registered/distributed/test_pp_single_node.py
+  path_signals:
+  - python/sglang/srt/models/gemma4_causal.py
+  - python/sglang/srt/models/gemma4_mm.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - gemm
+  additions: 487
+  deletions: 68
+  changed_file_count: 5
+  artifact_dir: evidence/pull-bundles/sglang/gh-25284
+- number: 25282
+  pr: 25282
+  title: '[UnifiedTree] Support deepseek v4 host pool layout'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25282
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:36:01Z'
+  author: huangtingwei9988
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - fp8
+  architectures:
+  - sm100
+  techniques:
+  - cache-policy
+  hardware_features:
+  - fp8
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/mem_cache/hybrid_cache/hybrid_pool_assembler.py
+  - python/sglang/srt/mem_cache/memory_pool_host.py
+  - python/sglang/test/kl_multiturn_utils.py
+  - test/registered/radix_cache/test_unified_radix_cache_kl.py
+  - test/registered/radix_cache/test_unified_radix_cache_kl_hicache.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  - fp8
+  additions: 401
+  deletions: 114
+  changed_file_count: 5
+- number: 25269
+  pr: 25269
+  title: '[NPU][Docs] Add Kimi-K2.5-W4A8 instance doc on NPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25269
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:08:29Z'
+  author: litmei
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_kimi_k2.5_examples.mdx
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 314
+  deletions: 0
+  changed_file_count: 1
+- number: 25260
+  pr: 25260
+  title: '[AMD][CI] Register Eagle constrained decoding test'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25260
+  date: '2026-05-17'
+  merged_at: '2026-05-17T06:02:36Z'
+  author: yuychang
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - speculative-decoding
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - test/registered/spec/eagle/test_eagle_constrained_decoding.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 2
+  deletions: 1
+  changed_file_count: 1
+- number: 25256
+  pr: 25256
+  title: '[MUSA][Diffusion] Improve  wan model inference speed using torch.compile'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25256
+  date: '2026-05-17'
+  merged_at: '2026-05-17T14:10:25Z'
+  author: wenqf11
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/diffusion/triton/scale_shift.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/diffusion/triton/scale_shift.py
+  - python/sglang/multimodal_gen/runtime/layers/elementwise.py
+  - python/sglang/multimodal_gen/runtime/layers/layernorm.py
+  - python/sglang/multimodal_gen/runtime/models/dits/wanvideo.py
+  path_signals:
+  - python/sglang/jit_kernel/diffusion/triton/scale_shift.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - cuda kernel
+  additions: 15
+  deletions: 1
+  changed_file_count: 4
+  artifact_dir: evidence/pull-bundles/sglang/gh-25256
+- number: 25251
+  pr: 25251
+  title: '[AMD] amd/deepseek_v4 integration 28/N use aiter greedy_sample for all-greedy sampling on ROCm'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25251
+  date: '2026-05-19'
+  merged_at: '2026-05-19T22:38:09Z'
+  author: yichiche
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/sampler.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - sampling
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - sampling
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/sampler.py
+  - test/registered/ops/test_aiter_greedy_sample_amd.py
+  path_signals:
+  - python/sglang/srt/layers/sampler.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 313
+  deletions: 2
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25251
+- number: 25249
+  pr: 25249
+  title: '[NPU]fix:NPUMLATokenToKVPool object has no attribute "kv_buffer"'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25249
+  date: '2026-05-18'
+  merged_at: '2026-05-18T01:09:28Z'
+  author: chenxu214
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/hardware_backend/npu/memory_pool_npu.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - benchmark kernel
+  additions: 119
+  deletions: 0
+  changed_file_count: 1
+- number: 25208
+  pr: 25208
+  title: '[AMD] ci: register 5 framework tests to run on AMD CI'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25208
+  date: '2026-05-17'
+  merged_at: '2026-05-17T05:56:57Z'
+  author: michaelzhang-ai
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  - cutlass
+  - moe kernel
+  - mxfp4
+  - nvfp4
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  - mxfp4
+  - nvfp4
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - test/registered/core/test_engine_child_pids.py
+  - test/registered/observability/test_tracing.py
+  - test/registered/prefill_only/test_pooled_hidden_states.py
+  - test/registered/sessions/test_session_control.py
+  - test/registered/sessions/test_streaming_session.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - cuda kernel
+  - cutlass
+  - fp4
+  - moe kernel
+  - mxfp4
+  - nvfp4
+  additions: 26
+  deletions: 7
+  changed_file_count: 5
+- number: 25180
+  pr: 25180
+  title: Fix AMX GQA extend attention
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25180
+  date: '2026-05-18'
+  merged_at: '2026-05-18T01:30:03Z'
+  author: miamia0
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: sgl-kernel/csrc/cpu/flash_attn.h'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - gemm
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - sgl-kernel/csrc/cpu/flash_attn.h
+  - test/srt/cpu/test_extend.py
+  path_signals:
+  - sgl-kernel/csrc/cpu/flash_attn.h
+  borderline_path_signals: []
+  selection_text_signals:
+  - gemm
+  additions: 15
+  deletions: 2
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-25180
+- number: 25006
+  pr: 25006
+  title: Enable trtllm_mha as gemma4 default attn backend.
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/25006
+  date: '2026-05-17'
+  merged_at: '2026-05-17T21:58:13Z'
+  author: wenscarl
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - blackwell
+  - nvfp4
+  - sm100
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - blackwell
+  - fp4
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/server_args.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - blackwell
+  - fp4
+  - gemm
+  - nvfp4
+  - sm100
+  - triton kernel
+  additions: 6
+  deletions: 2
+  changed_file_count: 1
+- number: 24934
+  pr: 24934
+  title: DeepSeek V4 MTP Support CP
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24934
+  date: '2026-05-19'
+  merged_at: '2026-05-19T23:51:32Z'
+  author: Paiiiiiiiiiiiiii
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: test/registered/dsv4/test_deepseek_v4_flash_fp4_b200.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - cuda kernel
+  - fp4
+  - hopper
+  - moe kernel
+  architectures:
+  - sm100
+  - sm90
+  techniques: []
+  hardware_features:
+  - fp4
+  - hopper
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/models/deepseek_v4_nextn.py
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_b200.py
+  path_signals:
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_b200.py
+  borderline_path_signals:
+  - test/registered/dsv4/test_deepseek_v4_flash_fp4_b200.py
+  selection_text_signals:
+  - cuda kernel
+  - fp4
+  - hopper
+  - moe kernel
+  additions: 105
+  deletions: 0
+  changed_file_count: 2
+  artifact_dir: evidence/pull-bundles/sglang/gh-24934
+- number: 24933
+  pr: 24933
+  title: Amd/deepseek v4 rebase main 0509
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24933
+  date: '2026-05-18'
+  merged_at: '2026-05-18T16:15:08Z'
+  author: kkHuang-amd
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/deepseek_v4.py, python/sglang/srt/layers/attention/attention_registry.py, python/sglang/srt/layers/attention/deepseek_v4_backend_hip_radix.py,
+    python/sglang/srt/layers/attention/dsv4/compress_hip.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - fp8
+  - moe kernel
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - cache-policy
+  - fine-grained-quantization
+  hardware_features:
+  - fp8
+  kernel_types:
+  - attention
+  - mla
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/jit_kernel/deepseek_v4.py
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/attention/attention_registry.py
+  - python/sglang/srt/layers/attention/deepseek_v4_backend_hip_radix.py
+  - python/sglang/srt/layers/attention/dsv4/compress_hip.py
+  - python/sglang/srt/layers/attention/dsv4/compressor.py
+  - python/sglang/srt/layers/attention/dsv4/indexer.py
+  - python/sglang/srt/layers/attention/hip_flash_mla.py
+  - python/sglang/srt/layers/attention/nsa/index_buf_accessor.py
+  - python/sglang/srt/layers/attention/nsa/tilelang_kernel.py
+  - python/sglang/srt/layers/deepseek_v4_rope.py
+  - python/sglang/srt/layers/moe/topk.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/mem_cache/deepseek_v4_compress_state.py
+  - python/sglang/srt/mem_cache/deepseek_v4_memory_pool.py
+  - python/sglang/srt/models/deepseek_v2.py
+  - python/sglang/srt/models/deepseek_v4.py
+  path_signals:
+  - python/sglang/jit_kernel/deepseek_v4.py
+  - python/sglang/srt/layers/attention/attention_registry.py
+  - python/sglang/srt/layers/attention/deepseek_v4_backend_hip_radix.py
+  - python/sglang/srt/layers/attention/dsv4/compress_hip.py
+  - python/sglang/srt/layers/attention/dsv4/compressor.py
+  - python/sglang/srt/layers/attention/dsv4/indexer.py
+  - python/sglang/srt/layers/attention/hip_flash_mla.py
+  - python/sglang/srt/layers/attention/nsa/index_buf_accessor.py
+  - python/sglang/srt/layers/attention/nsa/tilelang_kernel.py
+  - python/sglang/srt/layers/moe/topk.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - fp8
+  - moe kernel
+  - triton kernel
+  additions: 3678
+  deletions: 70
+  changed_file_count: 17
+  artifact_dir: evidence/pull-bundles/sglang/gh-24933
+- number: 24931
+  pr: 24931
+  title: 'feat(mimo-v2): add EPD disaggregation support'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24931
+  date: '2026-05-18'
+  merged_at: '2026-05-18T02:33:17Z'
+  author: Abatom
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - sampling
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - sampling
+  languages: []
+  changed_paths:
+  - python/sglang/srt/disaggregation/encode_receiver.py
+  - python/sglang/srt/disaggregation/encode_server.py
+  - python/sglang/srt/managers/mm_utils.py
+  - python/sglang/srt/managers/tokenizer_manager.py
+  - python/sglang/srt/models/mimo_v2.py
+  - python/sglang/srt/multimodal/processors/mimo_v2.py
+  - python/sglang/srt/server_args.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 961
+  deletions: 289
+  changed_file_count: 7
+- number: 24710
+  pr: 24710
+  title: '[codex] Optimize hidden-size 512 RMSNorm dispatch'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24710
+  date: '2026-05-19'
+  merged_at: '2026-05-19T01:26:11Z'
+  author: BBuf
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/jit_kernel/csrc/elementwise/rmsnorm.cuh, python/sglang/jit_kernel/norm.py, python/sglang/jit_kernel/tests/test_rmsnorm.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - cuda
+  - cuda kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/jit_kernel/csrc/elementwise/rmsnorm.cuh
+  - python/sglang/jit_kernel/norm.py
+  - python/sglang/jit_kernel/tests/test_rmsnorm.py
+  path_signals:
+  - python/sglang/jit_kernel/csrc/elementwise/rmsnorm.cuh
+  - python/sglang/jit_kernel/norm.py
+  - python/sglang/jit_kernel/tests/test_rmsnorm.py
+  borderline_path_signals:
+  - python/sglang/jit_kernel/tests/test_rmsnorm.py
+  selection_text_signals:
+  - benchmark kernel
+  - cuda kernel
+  - optimize
+  additions: 33
+  deletions: 21
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/sglang/gh-24710
+- number: 24640
+  pr: 24640
+  title: Support spec v2 for FlashMLA speculative decoding
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24640
+  date: '2026-05-19'
+  merged_at: '2026-05-19T22:23:18Z'
+  author: nagisa-kunhah
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/flashmla_backend.py, test/registered/mla/test_flashmla.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - cuda kernel
+  - speculative-decoding
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/srt/layers/attention/flashmla_backend.py
+  - python/sglang/srt/models/deepseek_v2.py
+  - test/registered/mla/test_flashmla.py
+  path_signals:
+  - python/sglang/srt/layers/attention/flashmla_backend.py
+  - test/registered/mla/test_flashmla.py
+  borderline_path_signals:
+  - test/registered/mla/test_flashmla.py
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  additions: 11
+  deletions: 12
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/sglang/gh-24640
+- number: 24611
+  pr: 24611
+  title: '[Codex] Opt Mistral Large performace '
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/24611
+  date: '2026-05-19'
+  merged_at: '2026-05-19T02:59:52Z'
+  author: BBuf
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8.json, python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8_down.json'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda
+  - fp8
+  - moe
+  - triton
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8.json
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8_down.json
+  - python/sglang/srt/server_args.py
+  path_signals:
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8.json
+  - python/sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=128,N=1024,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8_down.json
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp8
+  additions: 294
+  deletions: 1
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/sglang/gh-24611
+- number: 23961
+  pr: 23961
+  title: '[feat] Init true on policy with qwen_dense'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23961
+  date: '2026-05-18'
+  merged_at: '2026-05-18T06:20:42Z'
+  author: maocheng23
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/vision.py, python/sglang/srt/layers/sampler.py, python/sglang/srt/model_executor/cuda_graph_runner.py, python/sglang/srt/models/qwen2_moe.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - cuda kernel
+  - moe
+  - moe kernel
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/debug_utils/dumper.py
+  - python/sglang/srt/distributed/communication_op.py
+  - python/sglang/srt/layers/activation.py
+  - python/sglang/srt/layers/attention/vision.py
+  - python/sglang/srt/layers/communicator.py
+  - python/sglang/srt/layers/layernorm.py
+  - python/sglang/srt/layers/linear.py
+  - python/sglang/srt/layers/logits_processor.py
+  - python/sglang/srt/layers/on_policy_utils.py
+  - python/sglang/srt/layers/rotary_embedding/base.py
+  - python/sglang/srt/layers/rotary_embedding/mrope.py
+  - python/sglang/srt/layers/sampler.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  - python/sglang/srt/model_executor/forward_batch_info.py
+  - python/sglang/srt/model_executor/model_runner.py
+  - python/sglang/srt/models/qwen2.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/models/qwen3.py
+  - python/sglang/srt/models/qwen3_moe.py
+  - python/sglang/srt/models/sdar.py
+  - python/sglang/srt/models/sdar_moe.py
+  - python/sglang/srt/models/step3p5.py
+  - python/sglang/srt/models/utils.py
+  - python/sglang/srt/multimodal/processors/base_processor.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/srt/tp_invariant_ops/__init__.py
+  - python/sglang/srt/tp_invariant_ops/tp_invariant_ops.py
+  - python/sglang/srt/true_on_policy/__init__.py
+  - python/sglang/srt/true_on_policy/config.py
+  - python/sglang/srt/true_on_policy/contracts.py
+  - python/sglang/srt/true_on_policy/schema.py
+  - python/sglang/test/test_layernorm.py
+  - test/registered/core/test_dense_deterministic_math.py
+  - test/registered/core/test_on_policy_wiring.py
+  - test/registered/core/test_tp_invariant_ops.py
+  path_signals:
+  - python/sglang/srt/layers/attention/vision.py
+  - python/sglang/srt/layers/sampler.py
+  - python/sglang/srt/model_executor/cuda_graph_runner.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/models/qwen3_moe.py
+  - python/sglang/srt/models/sdar_moe.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - moe kernel
+  - triton kernel
+  additions: 4420
+  deletions: 166
+  changed_file_count: 35
+  artifact_dir: evidence/pull-bundles/sglang/gh-23961
+- number: 23925
+  pr: 23925
+  title: '[NPU]use triton split_qkvgate_gemma_rmsnorm_rope for Qwen3.5 and Qwen3_next'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23925
+  date: '2026-05-20'
+  merged_at: '2026-05-20T12:22:11Z'
+  author: Liwansi
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - benchmark kernel
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - gemm
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/rotary_embedding/mrope.py
+  - python/sglang/srt/models/qwen3_5.py
+  - python/sglang/srt/models/qwen3_next.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - benchmark kernel
+  - gemm
+  - triton kernel
+  additions: 194
+  deletions: 19
+  changed_file_count: 3
+- number: 23760
+  pr: 23760
+  title: '[MoE] Unify DeepEPMoE+MoriEPMoE through AITER MoeRunner pre/post-permute'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23760
+  date: '2026-05-17'
+  merged_at: '2026-05-17T09:25:53Z'
+  author: ch-wan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/ep_moe/layer.py, python/sglang/srt/layers/moe/moe_runner/aiter.py, python/sglang/srt/layers/moe/moe_runner/runner.py, python/sglang/srt/layers/moe/token_dispatcher/deepep.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp4
+  - fp8
+  - gemm
+  - moe
+  - moe kernel
+  - mxfp4
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - fp8
+  - mxfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/batch_overlap/two_batch_overlap.py
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/moe_runner/aiter.py
+  - python/sglang/srt/layers/moe/moe_runner/runner.py
+  - python/sglang/srt/layers/moe/token_dispatcher/deepep.py
+  - python/sglang/srt/layers/moe/token_dispatcher/moriep.py
+  - python/sglang/srt/layers/moe/utils.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_fp8_moe.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/mxfp4.py
+  - python/sglang/srt/layers/quantization/quark/schemes/quark_w4a4_mxfp4_moe.py
+  - python/sglang/srt/layers/quantization/quark_int4fp8_moe.py
+  - python/sglang/srt/layers/quantization/unquant.py
+  path_signals:
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/moe_runner/aiter.py
+  - python/sglang/srt/layers/moe/moe_runner/runner.py
+  - python/sglang/srt/layers/moe/token_dispatcher/deepep.py
+  - python/sglang/srt/layers/moe/token_dispatcher/moriep.py
+  - python/sglang/srt/layers/moe/utils.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_fp8_moe.py
+  - python/sglang/srt/layers/quantization/fp8.py
+  - python/sglang/srt/layers/quantization/mxfp4.py
+  - python/sglang/srt/layers/quantization/quark/schemes/quark_w4a4_mxfp4_moe.py
+  - python/sglang/srt/layers/quantization/quark_int4fp8_moe.py
+  - python/sglang/srt/layers/quantization/unquant.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp4
+  - fp8
+  - gemm
+  - moe kernel
+  - mxfp4
+  - triton kernel
+  additions: 398
+  deletions: 330
+  changed_file_count: 13
+  artifact_dir: evidence/pull-bundles/sglang/gh-23760
+- number: 23482
+  pr: 23482
+  title: '[Diffusion][NPU]Add attention backends for diffusion models for Ascend NPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23482
+  date: '2026-05-19'
+  merged_at: '2026-05-19T09:46:56Z'
+  author: Napkin-AI
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/multimodal_gen/runtime/layers/attention/backends/block_sparse_attn.py, python/sglang/multimodal_gen/runtime/layers/attention/backends/laser_attn.py, python/sglang/multimodal_gen/runtime/layers/attention/backends/rain_fusion_attn.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - docs/diffusion/compatibility_matrix.md
+  - docs/diffusion/performance/attention_backends.md
+  - docs_new/docs/sglang-diffusion/attention_backends.mdx
+  - docs_new/docs/sglang-diffusion/compatibility_matrix.mdx
+  - python/sglang/multimodal_gen/configs/models/adapter/base.py
+  - python/sglang/multimodal_gen/configs/models/dits/base.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/block_sparse_attn.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/laser_attn.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/rain_fusion_attn.py
+  - python/sglang/multimodal_gen/runtime/pipelines_core/stages/denoising.py
+  - python/sglang/multimodal_gen/runtime/platforms/interface.py
+  - python/sglang/multimodal_gen/runtime/platforms/npu.py
+  path_signals:
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/block_sparse_attn.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/laser_attn.py
+  - python/sglang/multimodal_gen/runtime/layers/attention/backends/rain_fusion_attn.py
+  borderline_path_signals:
+  - docs/diffusion/performance/attention_backends.md
+  - docs_new/docs/sglang-diffusion/attention_backends.mdx
+  selection_text_signals:
+  - attention kernel
+  - performance
+  - triton kernel
+  additions: 1157
+  deletions: 19
+  changed_file_count: 12
+  artifact_dir: evidence/pull-bundles/sglang/gh-23482
+- number: 23331
+  pr: 23331
+  title: '[BugFix] Resolve adaptive speculative decoding conflicts for Qwen3.5 (hybrid GDN)'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23331
+  date: '2026-05-19'
+  merged_at: '2026-05-19T22:09:50Z'
+  author: EanWang211123
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/attention/fla/fused_sigmoid_gating_recurrent.py, python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py, python/sglang/srt/model_executor/model_runner_kv_cache_mixin.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - cuda kernel
+  - speculative-decoding
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - cache-policy
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/attention/fla/fused_sigmoid_gating_recurrent.py
+  - python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
+  - python/sglang/srt/model_executor/model_runner_kv_cache_mixin.py
+  - python/sglang/srt/models/qwen3_5_mtp.py
+  - python/sglang/srt/models/qwen3_next_mtp.py
+  - python/sglang/srt/server_args.py
+  - python/sglang/srt/speculative/adaptive_runtime_state.py
+  - python/sglang/srt/speculative/adaptive_spec_params.py
+  - test/registered/unit/spec/test_adaptive_spec_params.py
+  path_signals:
+  - python/sglang/srt/layers/attention/fla/fused_sigmoid_gating_recurrent.py
+  - python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
+  - python/sglang/srt/model_executor/model_runner_kv_cache_mixin.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - triton kernel
+  additions: 156
+  deletions: 68
+  changed_file_count: 9
+  artifact_dir: evidence/pull-bundles/sglang/gh-23331
+- number: 23294
+  pr: 23294
+  title: '[BugFix] UniPC device placement + FlowUniPC sigma_min crash fix'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/23294
+  date: '2026-05-18'
+  merged_at: '2026-05-18T01:01:08Z'
+  author: jy-song-hub
+  decision: exclude
+  status: merged
+  reason: no changed-file or title signal matching the existing CUDA/kernel corpus
+  inclusion_reason: Excluded during refresh selection audit.
+  seed_source: github-search
+  tags:
+  - cuda
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - tile-scheduling
+  hardware_features: []
+  kernel_types:
+  - sampling
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/multimodal_gen/runtime/models/schedulers/scheduling_flow_unipc_multistep.py
+  - python/sglang/multimodal_gen/runtime/models/schedulers/scheduling_unipc_multistep.py
+  path_signals: []
+  borderline_path_signals: []
+  selection_text_signals: []
+  additions: 8
+  deletions: 2
+  changed_file_count: 2
+- number: 22918
+  pr: 22918
+  title: '[FlashInfer v0.6.11] [RL] Support FlashInfer per-token NVFP4 MoE'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22918
+  date: '2026-05-19'
+  merged_at: '2026-05-19T08:04:49Z'
+  author: zianglih
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/moe_runner/flashinfer_trtllm.py, python/sglang/srt/layers/quantization/modelopt_quant.py, test/registered/backends/test_flashinfer_trtllm_gen_moe_backend.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - blackwell
+  - cuda kernel
+  - cute
+  - cutlass
+  - fp4
+  - gemm
+  - moe
+  - moe kernel
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - blackwell
+  - fp4
+  - nvfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - docs/references/environment_variables.md
+  - docs_new/docs/references/environment_variables.mdx
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_trtllm.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - test/registered/backends/test_flashinfer_trtllm_gen_moe_backend.py
+  path_signals:
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_trtllm.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - test/registered/backends/test_flashinfer_trtllm_gen_moe_backend.py
+  borderline_path_signals:
+  - test/registered/backends/test_flashinfer_trtllm_gen_moe_backend.py
+  selection_text_signals:
+  - blackwell
+  - cuda kernel
+  - cute
+  - cutlass
+  - flashinfer
+  - fp4
+  - gemm
+  - moe kernel
+  - nvfp4
+  additions: 42
+  deletions: 23
+  changed_file_count: 6
+  artifact_dir: evidence/pull-bundles/sglang/gh-22918
+- number: 22822
+  pr: 22822
+  title: '[Refactor] Refactor DeepEP dispatcher'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22822
+  date: '2026-05-18'
+  merged_at: '2026-05-18T01:36:43Z'
+  author: OrangeRedeng
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/hardware_backend/npu/quantization/awq_kernels.py, python/sglang/srt/hardware_backend/npu/quantization/fused_moe_method_npu.py, python/sglang/srt/layers/moe/ep_moe/layer.py,
+    python/sglang/srt/layers/moe/token_dispatcher/deepep.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - fp8
+  - moe
+  - moe kernel
+  - nvfp4
+  - speculative-decoding
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - nvfp4
+  kernel_types:
+  - attention
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - docs/advanced_features/server_arguments.md
+  - docs/platforms/ascend/ascend_npu_best_practice.md
+  - docs/platforms/ascend/ascend_npu_deepseek_example.md
+  - docs/platforms/ascend/ascend_npu_environment_variables.md
+  - docs/platforms/ascend/ascend_npu_qwen3_examples.md
+  - docs/references/environment_variables.md
+  - docs_new/docs/advanced_features/server_arguments.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_best_practice.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_deepseek_example.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_environment_variables.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_glm5_examples.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_qwen3_5_examples.mdx
+  - docs_new/docs/hardware-platforms/ascend-npus/ascend_npu_qwen3_examples.mdx
+  - docs_new/docs/references/environment_variables.mdx
+  - python/sglang/srt/environ.py
+  - python/sglang/srt/hardware_backend/npu/quantization/awq_kernels.py
+  - python/sglang/srt/hardware_backend/npu/quantization/fused_moe_method_npu.py
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/token_dispatcher/deepep.py
+  - python/sglang/srt/layers/moe/utils.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16_moe.py
+  - python/sglang/srt/layers/quantization/modelslim/schemes/modelslim_w4a4_int4_moe.py
+  - python/sglang/srt/models/deepseek_nextn.py
+  - python/sglang/srt/models/glm4_moe_nextn.py
+  - python/sglang/srt/models/qwen3_5_mtp.py
+  - python/sglang/srt/models/qwen3_next_mtp.py
+  - python/sglang/srt/server_args.py
+  - test/manual/layers/moe/test_moe_runners_4gpu.py
+  - test/manual/test_w4a8_deepseek_v3.py
+  - test/registered/4-gpu-models/test_deepseek_v3_cutedsl_4gpu.py
+  path_signals:
+  - python/sglang/srt/hardware_backend/npu/quantization/awq_kernels.py
+  - python/sglang/srt/hardware_backend/npu/quantization/fused_moe_method_npu.py
+  - python/sglang/srt/layers/moe/ep_moe/layer.py
+  - python/sglang/srt/layers/moe/token_dispatcher/deepep.py
+  - python/sglang/srt/layers/moe/utils.py
+  - python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16_moe.py
+  - python/sglang/srt/layers/quantization/modelslim/schemes/modelslim_w4a4_int4_moe.py
+  - python/sglang/srt/models/glm4_moe_nextn.py
+  - test/manual/layers/moe/test_moe_runners_4gpu.py
+  - test/registered/4-gpu-models/test_deepseek_v3_cutedsl_4gpu.py
+  borderline_path_signals:
+  - test/manual/layers/moe/test_moe_runners_4gpu.py
+  - test/registered/4-gpu-models/test_deepseek_v3_cutedsl_4gpu.py
+  selection_text_signals:
+  - attention kernel
+  - cute
+  - fp4
+  - fp8
+  - moe kernel
+  - nvfp4
+  additions: 302
+  deletions: 182
+  changed_file_count: 30
+  artifact_dir: evidence/pull-bundles/sglang/gh-22822
+- number: 22669
+  pr: 22669
+  title: 'feat: Support flashinfer_cutedsl MoE runner with flashinfer alltoall backend'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22669
+  date: '2026-05-20'
+  merged_at: '2026-05-20T07:36:27Z'
+  author: samuellees
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py, python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py, python/sglang/srt/layers/quantization/modelopt_quant.py,
+    python/sglang/srt/models/qwen2_moe.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - cuda kernel
+  - cutlass
+  - fp4
+  - gemm
+  - moe
+  - moe kernel
+  - nvfp4
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  - triton
+  changed_paths:
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py
+  - python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - python/sglang/srt/server_args.py
+  - test/registered/moe/test_flashinfer_a2a_cutedsl_v2.py
+  path_signals:
+  - python/sglang/srt/layers/moe/moe_runner/flashinfer_cutedsl.py
+  - python/sglang/srt/layers/moe/token_dispatcher/flashinfer.py
+  - python/sglang/srt/layers/quantization/modelopt_quant.py
+  - python/sglang/srt/models/qwen2_moe.py
+  - test/registered/moe/test_flashinfer_a2a_cutedsl_v2.py
+  borderline_path_signals:
+  - test/registered/moe/test_flashinfer_a2a_cutedsl_v2.py
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - cute
+  - cutlass
+  - flashinfer
+  - fp4
+  - gemm
+  - moe kernel
+  - nvfp4
+  - triton kernel
+  additions: 262
+  deletions: 52
+  changed_file_count: 6
+  artifact_dir: evidence/pull-bundles/sglang/gh-22669
+- number: 22371
+  pr: 22371
+  title: Fix image (random multimodal) dataset token statistics
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22371
+  date: '2026-05-17'
+  merged_at: '2026-05-17T06:12:04Z'
+  author: amd-bishwoadhikari
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/benchmark/datasets/image.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp8
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  kernel_types: []
+  languages: []
+  changed_paths:
+  - python/sglang/benchmark/datasets/image.py
+  path_signals:
+  - python/sglang/benchmark/datasets/image.py
+  borderline_path_signals:
+  - python/sglang/benchmark/datasets/image.py
+  selection_text_signals:
+  - fp8
+  additions: 14
+  deletions: 0
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/sglang/gh-22371
+- number: 22338
+  pr: 22338
+  title: ':sparkles: [diffusion][npu][quant] Add MXFP4 quantization support for Wan2.2 Diffusion on Ascend NPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/22338
+  date: '2026-05-19'
+  merged_at: '2026-05-19T04:46:52Z'
+  author: TallMessiWu
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/multimodal_gen/runtime/layers/quantization/__init__.py, python/sglang/multimodal_gen/runtime/layers/quantization/modelslim.py, python/sglang/multimodal_gen/runtime/layers/quantization/modelslim_mxfp4_scheme.py,
+    python/sglang/multimodal_gen/runtime/layers/quantization/mxfp4_npu.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - fp4
+  - fp8
+  - moe kernel
+  - mxfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  - mxfp4
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - python/sglang/multimodal_gen/runtime/layers/quantization/__init__.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelslim.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelslim_mxfp4_scheme.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/mxfp4_npu.py
+  - python/sglang/multimodal_gen/runtime/loader/transformer_load_utils.py
+  - python/sglang/multimodal_gen/runtime/server_args.py
+  - python/sglang/multimodal_gen/tools/wan_repack.py
+  path_signals:
+  - python/sglang/multimodal_gen/runtime/layers/quantization/__init__.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelslim.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/modelslim_mxfp4_scheme.py
+  - python/sglang/multimodal_gen/runtime/layers/quantization/mxfp4_npu.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - fp4
+  - fp8
+  - moe kernel
+  - mxfp4
+  additions: 444
+  deletions: 10
+  changed_file_count: 7
+  artifact_dir: evidence/pull-bundles/sglang/gh-22338
+- number: 21668
+  pr: 21668
+  title: '[XPU] Enable qwen3.5 on XPU'
+  repo: sgl-project/sglang
+  url: https://github.com/sgl-project/sglang/pull/21668
+  date: '2026-05-18'
+  merged_at: '2026-05-18T06:59:20Z'
+  author: Xia-Weiwen
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_delta_h.py, python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_fwd.py, python/sglang/srt/hardware_backend/xpu/kernels/fla/fused_sigmoid_gating_recurrent.py,
+    python/sglang/srt/layers/attention/fla/chunk.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention kernel
+  - cuda
+  - cuda kernel
+  - triton
+  - triton kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - attention
+  - norm
+  languages:
+  - cuda-cpp
+  - triton
+  changed_paths:
+  - docker/xpu.Dockerfile
+  - docs_new/docs/hardware-platforms/xpu.mdx
+  - python/sglang/bench_one_batch.py
+  - python/sglang/srt/hardware_backend/xpu/__init__.py
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_delta_h.py
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_fwd.py
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/fused_sigmoid_gating_recurrent.py
+  - python/sglang/srt/layers/attention/fla/chunk.py
+  - python/sglang/srt/layers/attention/fla/kda.py
+  - python/sglang/srt/layers/attention/fla/layernorm_gated.py
+  - python/sglang/srt/layers/attention/linear/kernels/gdn_triton.py
+  - python/sglang/srt/layers/rotary_embedding/mrope.py
+  - python/sglang/test/ci/ci_register.py
+  - test/registered/attention/test_chunk_gated_delta_rule.py
+  path_signals:
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_delta_h.py
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/chunk_fwd.py
+  - python/sglang/srt/hardware_backend/xpu/kernels/fla/fused_sigmoid_gating_recurrent.py
+  - python/sglang/srt/layers/attention/fla/chunk.py
+  - python/sglang/srt/layers/attention/fla/kda.py
+  - python/sglang/srt/layers/attention/fla/layernorm_gated.py
+  - python/sglang/srt/layers/attention/linear/kernels/gdn_triton.py
+  - test/registered/attention/test_chunk_gated_delta_rule.py
+  borderline_path_signals:
+  - test/registered/attention/test_chunk_gated_delta_rule.py
+  selection_text_signals:
+  - attention kernel
+  - cuda kernel
+  - triton kernel
+  additions: 757
+  deletions: 13
+  changed_file_count: 14
+  artifact_dir: evidence/pull-bundles/sglang/gh-21668

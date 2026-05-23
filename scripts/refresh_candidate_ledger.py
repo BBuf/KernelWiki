@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Refresh candidate ledgers and emit deterministic search-result artifacts.
 
-For each tracked repo (cutlass / sglang / vllm / flashinfer / pytorch /
-deepgemm), runs `gh search prs` with the keywords already documented in
+For each tracked repo, runs `gh search prs` with the keywords already documented in
 each ledger's `keywords_used` field, then:
 
   - Updates `candidates/<repo>.yaml::searched_at` to today's date
@@ -49,6 +48,14 @@ REPO_SLUG_TO_FULL = {
     "flashinfer": "flashinfer-ai/flashinfer",
     "pytorch": "pytorch/pytorch",
     "deepgemm": "deepseek-ai/DeepGEMM",
+    "flash-attention": "Dao-AILab/flash-attention",
+    "tensorrt-llm": "NVIDIA/TensorRT-LLM",
+    "cccl-cub": "NVIDIA/cccl",
+    "triton": "triton-lang/triton",
+    "tilelang": "tile-ai/tilelang",
+    "thunderkittens": "HazyResearch/ThunderKittens",
+    "tilekernels": "deepseek-ai/TileKernels",
+    "quack": "Dao-AILab/quack",
 }
 
 

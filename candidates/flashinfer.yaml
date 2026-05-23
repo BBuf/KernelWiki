@@ -1,5 +1,5 @@
 repo: flashinfer-ai/flashinfer
-searched_at: '2026-04-27'
+searched_at: '2026-05-20'
 keywords_used:
 - blackwell
 - sm100
@@ -14,8 +14,8 @@ keywords_used:
 - fmha
 - sdpa
 - tcgen05
-total_candidates: 1042
-included: 642
+total_candidates: 1083
+included: 683
 excluded: 188
 deferred: 212
 prs:
@@ -6271,3 +6271,2401 @@ prs:
   decision: defer
   reason: from refresh search; needs-triage
   files_changed: []
+- number: 2914
+  pr: 2914
+  title: 'feat: Add cuBLASLt backend for `mm_bf16` and enable multi-tactic autotuning for FP8/MXFP8 runners'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2914
+  date: '2026-05-01'
+  merged_at: '2026-05-01T16:19:25Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - benchmark_test
+  - scheduler_autotune
+  - memory_primitives
+  tags:
+  - benchmark_test
+  - fp4
+  - fp8
+  - gemm_quant
+  - memory_primitives
+  - mxfp4
+  - scheduler_autotune
+  - sm100
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  - mxfp4
+  kernel_types:
+  - gemm
+  - memory
+  - scheduler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/routines/gemm.py
+  - csrc/bmm_fp8.cu
+  - csrc/flashinfer_gemm_binding.cu
+  - csrc/mm_bf16_cublaslt.cu
+  - flashinfer/aot.py
+  - flashinfer/autotuner.py
+  - flashinfer/gemm/gemm_base.py
+  - flashinfer/jit/gemm/__init__.py
+  - flashinfer/jit/gemm/core.py
+  - include/flashinfer/gemm/bmm_fp8.cuh
+  - include/flashinfer/gemm/mm_bf16_cublaslt.cuh
+  - tests/autotuner/test_autotuner_bmm_fp8.py
+  - tests/gemm/test_bmm_bf16.py
+  - tests/gemm/test_mm_bf16.py
+  score: 67
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2914
+- number: 3271
+  pr: 3271
+  title: 'feat(moe): add SM120 W4A16 b12x kernels'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3271
+  date: '2026-05-11'
+  merged_at: '2026-05-11T06:55:08Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - arch_pipeline
+  - attention_kv
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - blackwell
+  - cuda kernel
+  - cute dsl
+  - cutlass
+  - fp4
+  - fp8
+  - fused moe
+  - gemm_quant
+  - moe_routing
+  - sm120
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - flashinfer/cute_dsl/fp4_common.py
+  - flashinfer/cute_dsl/utils.py
+  - flashinfer/fused_moe/cute_dsl/b12x_moe.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_direct_micro_kernel.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_dispatch.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_dynamic_kernel.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_w4a16_dynamic_kernel.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_w4a16_micro_kernel.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_w4a16_static_kernel.py
+  - flashinfer/trace/templates/moe.py
+  - tests/moe/test_b12x_fused_moe.py
+  - tests/trace/test_b12x_moe_trace.py
+  score: 61
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3271
+- number: 3059
+  pr: 3059
+  title: Support Allreduce + Norm + Per-token Group Fp8 Quant Fusion
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3059
+  date: '2026-05-06'
+  merged_at: '2026-05-06T09:58:50Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - memory_primitives
+  - norm_elementwise
+  tags:
+  - TMA
+  - fp8
+  - gemm_quant
+  - memory_primitives
+  - moe_routing
+  - norm_elementwise
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp8
+  - tma
+  kernel_types:
+  - gemm
+  - memory
+  - moe
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/trtllm_allreduce_fusion.cu
+  - flashinfer/comm/allreduce.py
+  - flashinfer/comm/trtllm_ar.py
+  - include/flashinfer/comm/trtllm_allreduce_fusion.cuh
+  - tests/comm/test_trtllm_allreduce_fusion_group_fp8_quant.py
+  score: 54
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3059
+- number: 3027
+  pr: 3027
+  title: '[feat] Trtllm-gen Per-token Nvfp4 MoE'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3027
+  date: '2026-05-01'
+  merged_at: '2026-05-01T05:58:34Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  tags:
+  - cuda kernel
+  - fp4
+  - fused moe
+  - gemm_quant
+  - moe_routing
+  - nvfp4
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  - vectorized-loads
+  - warp-specialization
+  hardware_features:
+  - blackwell
+  - fp4
+  - nvfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - csrc/fused_moe/cutlass_backend/cutlass_fused_moe_kernels.cuh
+  - csrc/nv_internal/cpp/kernels/quantization.cu
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization.cuh
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization.h
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization_utils.cuh
+  - csrc/nv_internal/tensorrt_llm/thop/fp4Quantize.cpp
+  - csrc/nv_internal/tensorrt_llm/thop/fp4Quantize.h
+  - csrc/trtllm_batched_gemm_runner.cu
+  - csrc/trtllm_fused_moe_kernel_launcher.cu
+  - csrc/trtllm_fused_moe_runner.cu
+  - flashinfer/artifacts.py
+  - flashinfer/fused_moe/core.py
+  - flashinfer/jit/fused_moe.py
+  - flashinfer/quantization/fp4_quantization.py
+  - flashinfer/tllm_enums.py
+  - include/flashinfer/trtllm/batched_gemm/KernelRunner.h
+  - include/flashinfer/trtllm/fused_moe/runner.h
+  - tests/moe/test_trtllm_gen_per_token_moe.py
+  - tests/test_helpers/utils_fp4.py
+  - tests/utils/test_fp4_quantize.py
+  score: 51
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3027
+- number: 3152
+  pr: 3152
+  title: Integrate CUTLASS Small Tile N Blockscaled GEMMs/Grouped GEMMs for SM120 and SM121
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3152
+  date: '2026-05-05'
+  merged_at: '2026-05-05T17:19:10Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - arch_pipeline
+  tags:
+  - TMA
+  - arch_pipeline
+  - cutlass
+  - fp4
+  - gemm_quant
+  - mxfp4
+  - nvfp4
+  - sm120
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - pipeline-stages
+  hardware_features:
+  - fp4
+  - fp8
+  - mxfp4
+  - nvfp4
+  - tma
+  kernel_types:
+  - gemm
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - 3rdparty/cutlass
+  - csrc/fp4_gemm_cutlass_sm120.cu
+  - csrc/fp4_gemm_cutlass_sm120.jinja
+  - csrc/group_gemm_mxfp4_groupwise_sm120.cu
+  - csrc/group_gemm_mxfp4_groupwise_sm120_kernel_inst.jinja
+  - csrc/group_gemm_nvfp4_groupwise_sm120.cu
+  - csrc/group_gemm_nvfp4_groupwise_sm120_kernel_inst.jinja
+  - csrc/group_gemm_sm120_binding.cu
+  - csrc/mxfp8_gemm_cutlass_sm120.jinja
+  - csrc/nv_internal/tensorrt_llm/cutlass_extensions/include/cutlass_extensions/gemm_configs.h
+  - csrc/nv_internal/tensorrt_llm/kernels/cutlass_kernels/cutlass_heuristic.cpp
+  - csrc/nv_internal/tensorrt_llm/kernels/cutlass_kernels/moe_gemm/moe_gemm_template_dispatch_tma_ws.h
+  - flashinfer/gemm/gemm_base.py
+  - flashinfer/jit/gemm/core.py
+  - flashinfer/jit/gemm/cutlass/generate_kernels.py
+  - include/flashinfer/gemm/cutlass_gemm_configs.h
+  - include/flashinfer/gemm/fp4_gemm_cutlass_template_sm120.h
+  - include/flashinfer/gemm/fp4_gemm_template_sm120.h
+  - include/flashinfer/gemm/group_gemm_mxfp4_groupwise_sm120.cuh
+  - include/flashinfer/gemm/group_gemm_nvfp4_groupwise_sm120.cuh
+  - include/flashinfer/gemm/mxfp8_gemm_cutlass_template_sm120.h
+  - include/flashinfer/gemm/mxfp8_gemm_template_sm120.h
+  - tests/gemm/test_group_gemm_fp4.py
+  - tests/gemm/test_groupwise_scaled_gemm_mxfp4.py
+  - tests/gemm/test_mm_mxfp8_sm120.py
+  score: 47
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3152
+- number: 3239
+  pr: 3239
+  title: Update moe gemm
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3239
+  date: '2026-05-08'
+  merged_at: '2026-05-08T00:51:51Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - moe_routing
+  - benchmark_test
+  - attention_kv
+  tags:
+  - attention_kv
+  - benchmark_test
+  - fp8
+  - gemm_quant
+  - moe_routing
+  - mxfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - fp8
+  - mxfp4
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/trtllm_batched_gemm_runner.cu
+  - csrc/trtllm_gemm_runner.cu
+  - csrc/trtllm_low_latency_gemm_runner.cu
+  - flashinfer/artifacts.py
+  score: 44
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3239
+- number: 3185
+  pr: 3185
+  title: 'feat: enable glm5 router gemm'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3185
+  date: '2026-05-14'
+  merged_at: '2026-05-14T22:49:44Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - benchmark_test
+  - attention_kv
+  tags:
+  - TMA
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - cuda kernel
+  - cute dsl
+  - fused moe
+  - gemm_quant
+  - nvfp4
+  - sm120
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - nvfp4
+  - tma
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - csrc/dsv3_router_gemm.cu
+  - flashinfer/gemm/__init__.py
+  - flashinfer/gemm/routergemm.py
+  - flashinfer/trace/templates/gemm.py
+  - include/flashinfer/gemm/dsv3_router_gemm.cuh
+  - tests/model_optimizations/test_router_gemms.py
+  score: 42
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3185
+- number: 3237
+  pr: 3237
+  title: 'perf: optimize per-token nvfp4 quantization kernel.'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3237
+  date: '2026-05-08'
+  merged_at: '2026-05-08T03:58:39Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Inspect scale layout, accumulator type, tile/schedule choice, epilogue fusion, and partial-tile guards before deriving a candidate.
+  seed_source: legacy-pr-index
+  primary_category: gemm_quant
+  categories:
+  - gemm_quant
+  - benchmark_test
+  tags:
+  - benchmark_test
+  - cuda kernel
+  - fp4
+  - gemm_quant
+  - nvfp4
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/nv_internal/cpp/common/envUtils.cpp
+  - csrc/nv_internal/cpp/kernels/quantization.cu
+  - csrc/nv_internal/tensorrt_llm/common/envUtils.h
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization.cuh
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization.h
+  - csrc/nv_internal/tensorrt_llm/kernels/quantization_utils.cuh
+  - tests/utils/test_fp4_quantize.py
+  score: 39
+  ncu_hint: Tensor pipe %, DRAM/L2 bytes, active cycles, register pressure, and scale-load traffic.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3237
+- number: 2841
+  pr: 2841
+  title: '[Perf] Add FMHAv2 to flashinfer_benchmark.py and eliminate unnecessary H2D'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2841
+  date: '2026-05-06'
+  merged_at: '2026-05-06T05:46:40Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - benchmark_test
+  - arch_pipeline
+  tags:
+  - TMA
+  - arch_pipeline
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - cuda kernel
+  - fp8
+  - hopper
+  - nvfp4
+  - paged attention
+  - sm90
+  - warpspec
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - async-copy
+  - cache-policy
+  - epilogue-fusion
+  - pipeline-stages
+  - warp-specialization
+  hardware_features:
+  - fp4
+  - fp8
+  - hopper
+  - nvfp4
+  - tma
+  kernel_types:
+  - attention
+  - runtime
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/routines/attention.py
+  - benchmarks/routines/flashinfer_benchmark_utils.py
+  - csrc/fmha_v2/fmha/gmem_tile_qkv_packed.h
+  - csrc/fmha_v2/fmha/paged_kv_cache.h
+  - csrc/fmha_v2/fmha/warpspec/dma.h
+  - csrc/fmha_v2/fmha/warpspec/epilogue.h
+  - csrc/fmha_v2_jit_binding.cu
+  - csrc/fmha_v2_run.cu
+  - flashinfer/prefill.py
+  - tests/attention/test_fmha_v2_prefill.py
+  score: 55
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2841
+- number: 3097
+  pr: 3097
+  title: Support NVFP4 KV for prefill and batch attention kernels
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3097
+  date: '2026-04-28'
+  merged_at: '2026-04-28T07:39:53Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - gemm_quant
+  tags:
+  - attention_kv
+  - cuda kernel
+  - fp4
+  - gemm_quant
+  - nvfp4
+  - paged attention
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  - persistent-kernels
+  - swizzling
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - attention
+  - decode
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/xqa/utils.cuh
+  - flashinfer/attention/_core.py
+  - flashinfer/decode.py
+  - flashinfer/jit/attention/modules.py
+  - flashinfer/jit/utils.py
+  - flashinfer/prefill.py
+  - flashinfer/quantization/fp4_quantization.py
+  - flashinfer/utils.py
+  - include/flashinfer/attention/persistent.cuh
+  - include/flashinfer/attention/prefill.cuh
+  - include/flashinfer/cp_async.cuh
+  - include/flashinfer/frag_layout_swizzle.cuh
+  - include/flashinfer/permuted_smem.cuh
+  - include/flashinfer/vec_dtypes.cuh
+  - tests/attention/test_batch_attention.py
+  - tests/attention/test_batch_decode_kernels.py
+  - tests/attention/test_batch_prefill_kernels.py
+  - tests/attention/test_single_prefill.py
+  - tests/test_helpers/utils_fp4.py
+  score: 51
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3097
+- number: 3181
+  pr: 3181
+  title: 'cute-dsl fmha prefill (cubin integration): remove front-padding, add attention_sink, and pdl support'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3181
+  date: '2026-05-06'
+  merged_at: '2026-05-06T16:44:06Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - compiler_runtime
+  - cute dsl
+  - fp8
+  - mla
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp8
+  - pdl
+  kernel_types:
+  - attention
+  - compiler
+  - mla
+  languages:
+  - cute-dsl
+  changed_paths:
+  - benchmarks/routines/attention.py
+  - flashinfer/artifacts.py
+  - flashinfer/attention/cute_dsl/fmha.py
+  - flashinfer/prefill.py
+  - tests/attention/test_trtllm_gen_attention.py
+  score: 50
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3181
+- number: 3235
+  pr: 3235
+  title: Support Kimi K2.5 H64 CuTe DSL MLA decode
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3235
+  date: '2026-05-11'
+  merged_at: '2026-05-11T17:00:25Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - scheduler_autotune
+  - compiler_runtime
+  tags:
+  - attention_kv
+  - benchmark
+  - compiler_runtime
+  - cute dsl
+  - fp8
+  - mla
+  - scheduler_autotune
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - persistent-kernels
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  - fp8
+  kernel_types:
+  - attention
+  - compiler
+  - decode
+  - mla
+  - scheduler
+  languages:
+  - cute-dsl
+  changed_paths:
+  - flashinfer/cute_dsl/attention/mla_config.py
+  - flashinfer/cute_dsl/attention/mla_decode.py
+  - flashinfer/cute_dsl/attention/mla_decode_fp8.py
+  - flashinfer/cute_dsl/attention/scheduler/mla_persistent.py
+  - flashinfer/cute_dsl/attention/wrappers/batch_mla.py
+  - tests/attention/test_cute_dsl_mla_decode.py
+  - tests/attention/test_trtllm_gen_mla.py
+  score: 48
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3235
+- number: 3129
+  pr: 3129
+  title: 'feat: Enable FP8 (E4M3/E5M2) in concat_mla_k for optimize long-context prefill performance and refactor type dispatch for BF16/FP16'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3129
+  date: '2026-05-07'
+  merged_at: '2026-05-07T04:49:53Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - benchmark_test
+  - gemm_quant
+  tags:
+  - attention_kv
+  - benchmark_test
+  - fp8
+  - gemm_quant
+  - mla
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - fp8
+  kernel_types:
+  - attention
+  - gemm
+  - mla
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/concat_mla.cu
+  - csrc/tvm_ffi_utils.h
+  - flashinfer/concat_ops.py
+  - include/flashinfer/concat_mla.cuh
+  - include/flashinfer/utils.cuh
+  - tests/utils/test_concat_mla.py
+  score: 46
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3129
+- number: 3259
+  pr: 3259
+  title: Add dynamic tokens-per-page TRTLLM-GEN GQA kernels
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3259
+  date: '2026-05-11'
+  merged_at: '2026-05-11T07:05:53Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - arch_pipeline
+  - benchmark_test
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  - blackwell
+  - mla
+  - paged attention
+  architectures:
+  - sm100
+  techniques:
+  - pipeline-stages
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  - decode
+  - mla
+  - runtime
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - flashinfer/artifacts.py
+  - include/flashinfer/trtllm/fmha/fmhaKernels.cuh
+  - include/flashinfer/trtllm/fmha/fmhaRunnerParams.h
+  - include/flashinfer/trtllm/fmha/kernelParams.h
+  - tests/attention/test_attention_sink_blackwell.py
+  - tests/attention/test_trtllm_gen_attention.py
+  score: 43
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3259
+- number: 2779
+  pr: 2779
+  title: 'feat: FP8 output support for CUTLASS MLA paged attention'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2779
+  date: '2026-05-11'
+  merged_at: '2026-05-11T17:03:18Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - gemm_quant
+  tags:
+  - GDN
+  - attention_kv
+  - blackwell
+  - cutlass
+  - fp8
+  - gemm_quant
+  - mla
+  - paged attention
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features:
+  - blackwell
+  - fp8
+  kernel_types:
+  - attention
+  - gemm
+  - mla
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - csrc/cutlass_mla.cu
+  - csrc/flashinfer_mla_binding.cu
+  - flashinfer/mla/_core.py
+  - include/flashinfer/attention/cutlass_mla.cuh
+  - tests/attention/test_cutlass_mla_fp8_output.py
+  score: 38
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2779
+- number: 2711
+  pr: 2711
+  title: 'feat: Add DiT-oriented kernels where Qk (Bmm1) type can be reinterpreted into Int8 or BFloat16'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2711
+  date: '2026-05-01'
+  merged_at: '2026-05-01T02:57:35Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  - gemm_quant
+  tags:
+  - TMA
+  - attention_kv
+  - gemm_quant
+  - paged attention
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - fine-grained-quantization
+  hardware_features:
+  - tma
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/trtllm_fmha_kernel_launcher.cu
+  - flashinfer/artifacts.py
+  - flashinfer/prefill.py
+  - include/flashinfer/trtllm/fmha/fmhaKernels.cuh
+  - include/flashinfer/trtllm/fmha/fmhaRunner.cuh
+  - include/flashinfer/trtllm/fmha/fmhaRunnerParams.h
+  - include/flashinfer/trtllm/fmha/kernelParams.h
+  - tests/attention/test_trtllm_ragged_dit.py
+  score: 37
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2711
+- number: 2799
+  pr: 2799
+  title: '[fmha-v2] Support HND and NHD paged KV cache layouts with conditional stride handling'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2799
+  date: '2026-05-01'
+  merged_at: '2026-05-01T05:51:51Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Preserve page/KV/layout and plan-run contracts; profile memory traffic separately from math utilization.
+  seed_source: legacy-pr-index
+  primary_category: attention_kv
+  categories:
+  - attention_kv
+  tags:
+  - TMA
+  - attention_kv
+  - hopper
+  - paged attention
+  - warpspec
+  architectures:
+  - sm90
+  techniques:
+  - async-copy
+  - cache-policy
+  - kernel-fusion
+  - warp-specialization
+  hardware_features:
+  - hopper
+  - tma
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/fmha_v2/fmha/gmem_tile_qkv_packed.h
+  - csrc/fmha_v2/fmha/warpspec/dma.h
+  - csrc/fmha_v2/fused_multihead_attention.h
+  - csrc/fmha_v2/fused_multihead_attention_demo_bert_params.h
+  - csrc/fmha_v2_run.cu
+  - flashinfer/prefill.py
+  score: 28
+  ncu_hint: Long scoreboard, L2/DRAM traffic, global-load sectors, tensor pipe %, and shared-memory bank conflicts.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2799
+- number: 3227
+  pr: 3227
+  title: '[Bugfix] Fix fused MoE autotuning correctness issues by filtering clusterDimZ'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3227
+  date: '2026-05-06'
+  merged_at: '2026-05-06T10:11:01Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  - scheduler_autotune
+  - gemm_quant
+  - arch_pipeline
+  - attention_kv
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - fp4
+  - fp8
+  - fused moe
+  - gemm_quant
+  - moe_routing
+  - sampling
+  - scheduler_autotune
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - kernel-fusion
+  - pipeline-stages
+  - tile-scheduling
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - attention
+  - gemm
+  - moe
+  - runtime
+  - sampling
+  - scheduler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/trtllm_batched_gemm_runner.cu
+  - flashinfer/fused_moe/core.py
+  - tests/moe/test_trtllm_gen_moe_autotune_tactics.py
+  score: 60
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3227
+- number: 3191
+  pr: 3191
+  title: 'fix(sm12x): fix micro-kernel workspace sizing when routed_rows > num_local_experts'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3191
+  date: '2026-05-07'
+  merged_at: '2026-05-07T07:38:48Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  - compiler_runtime
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  - blackwell
+  - compiler_runtime
+  - cute dsl
+  - fused moe
+  - moe_routing
+  - sm120
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  - compiler
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  - triton
+  changed_paths:
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_dispatch.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/triton_compact.py
+  - tests/moe/test_b12x_fused_moe.py
+  score: 58
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3191
+- number: 3193
+  pr: 3193
+  title: 'perf(moe): optimize SM120 b12x MoE short decode'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3193
+  date: '2026-05-07'
+  merged_at: '2026-05-07T03:22:06Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - arch_pipeline
+  - attention_kv
+  - benchmark_test
+  - blackwell
+  - compiler_runtime
+  - cuda kernel
+  - cute dsl
+  - cutlass
+  - fused moe
+  - moe_routing
+  - sm120
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  - pipeline-stages
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  - compiler
+  - decode
+  - moe
+  - runtime
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_dispatch.py
+  - flashinfer/fused_moe/cute_dsl/blackwell_sm12x/moe_micro_kernel.py
+  score: 56
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3193
+- number: 2557
+  pr: 2557
+  title: '[Bugfix][comm] Fix FP4 one-shot launch config instability in trtllm_allreduce_fusion'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2557
+  date: '2026-02-17'
+  merged_at: '2026-02-17T16:36:44Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Separate routing, permutation, top-k, and expert GEMM costs; keep tail-token and expert-layout tests attached to the idea.
+  seed_source: legacy-pr-index
+  primary_category: moe_routing
+  categories:
+  - moe_routing
+  - memory_primitives
+  - gemm_quant
+  - scheduler_autotune
+  - attention_kv
+  tags:
+  - attention_kv
+  - gemm_quant
+  - memory_primitives
+  - moe_routing
+  - sampling
+  - scheduler_autotune
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  - fp4
+  kernel_types:
+  - attention
+  - gemm
+  - memory
+  - moe
+  - sampling
+  - scheduler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - include/flashinfer/comm/trtllm_allreduce_fusion.cuh
+  score: 55
+  ncu_hint: Tensor pipe %, SM imbalance, branch divergence, L2 traffic, permutation traffic, and synchronization stalls.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2557
+- number: 3157
+  pr: 3157
+  title: 'feat: DiT layer norm fusions for WAN: flashinfer.diffusion_ops'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3157
+  date: '2026-05-01'
+  merged_at: '2026-05-01T18:28:07Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Look for fusion, vectorization, dtype conversion, and store-traffic reductions before changing math.
+  seed_source: legacy-pr-index
+  primary_category: norm_elementwise
+  categories:
+  - norm_elementwise
+  - benchmark_test
+  - attention_kv
+  - gemm_quant
+  tags:
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - blackwell
+  - cuda kernel
+  - gemm_quant
+  - hopper
+  - mxfp4
+  - norm_elementwise
+  - nvfp4
+  - sm100
+  - sm90
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - blackwell
+  - fp4
+  - hopper
+  - mxfp4
+  - nvfp4
+  kernel_types:
+  - attention
+  - gemm
+  - norm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/bench_fused_dit_layernorm.py
+  - benchmarks/routines/flashinfer_benchmark_utils.py
+  - benchmarks/routines/norm.py
+  - csrc/flashinfer_norm_binding.cu
+  - csrc/norm.cu
+  - flashinfer/diffusion_ops/__init__.py
+  - flashinfer/norm/__init__.py
+  - include/flashinfer/norm/fused_dit_layernorm.cuh
+  - tests/norm/test_fused_dit_layernorm.py
+  score: 62
+  ncu_hint: DRAM %, L2 bytes, global load/store sectors, eligible warps, and long scoreboard.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3157
+- number: 2563
+  pr: 2563
+  title: Add support for the combinations of allreduce, allgather, and reducescatter
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2563
+  date: '2026-04-23'
+  merged_at: '2026-04-23T16:50:07Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Transfer primitive policy carefully: coalescing, shared-memory staging, partial tiles, and determinism are part of the contract.'
+  seed_source: legacy-pr-index
+  primary_category: memory_primitives
+  categories:
+  - memory_primitives
+  - benchmark_test
+  - moe_routing
+  tags:
+  - benchmark
+  - benchmark_test
+  - memory_primitives
+  - moe_routing
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features: []
+  kernel_types:
+  - attention
+  - memory
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/flashinfer_benchmark.py
+  - benchmarks/routines/flashinfer_benchmark_utils.py
+  - benchmarks/routines/mixed_comm.py
+  - csrc/mixed_comm.cu
+  - csrc/mixed_comm_kernel_inst.jinja
+  - flashinfer/comm/mixed_comm.py
+  - flashinfer/jit/comm.py
+  - flashinfer/testing/utils.py
+  - include/flashinfer/comm/mixed_comm.cuh
+  - include/flashinfer/comm/mixed_comm_decl.cuh
+  - tests/comm/conftest.py
+  - tests/comm/test_mixed_comm.py
+  score: 57
+  ncu_hint: DRAM throughput, L2 hit rate, memory sectors, shared-memory conflicts, and synchronization overhead.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2563
+- number: 3216
+  pr: 3216
+  title: 'fix(cute_dsl/moe): make autotuner bucket configuration adapt to runtime input'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3216
+  date: '2026-05-06'
+  merged_at: '2026-05-06T22:09:48Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Treat scheduler/autotune configs as shape-specific evidence; replay benchmark shapes before generalizing.
+  seed_source: legacy-pr-index
+  primary_category: scheduler_autotune
+  categories:
+  - scheduler_autotune
+  - moe_routing
+  - compiler_runtime
+  - attention_kv
+  - benchmark_test
+  tags:
+  - attention_kv
+  - benchmark_test
+  - compiler_runtime
+  - cute dsl
+  - fp8
+  - fused moe
+  - moe_routing
+  - scheduler_autotune
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  - fp8
+  kernel_types:
+  - attention
+  - compiler
+  - moe
+  - scheduler
+  languages:
+  - cute-dsl
+  changed_paths:
+  - flashinfer/fused_moe/cute_dsl/tuner.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  score: 59
+  ncu_hint: SM occupancy, waves/SM, active cycles, tail effects, and load imbalance.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3216
+- number: 3276
+  pr: 3276
+  title: 'fix(fmha_v2): fix FP8 V-scratch pipeline and varlen scheduler on SM90'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3276
+  date: '2026-05-14'
+  merged_at: '2026-05-14T23:41:21Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Extract the architecture assumption first: SM target, TMA/WGMMA/tcgen path, cluster use, and pipeline stages.'
+  seed_source: legacy-pr-index
+  primary_category: arch_pipeline
+  categories:
+  - arch_pipeline
+  - attention_kv
+  - scheduler_autotune
+  - gemm_quant
+  tags:
+  - TMA
+  - arch_pipeline
+  - attention_kv
+  - fp8
+  - gemm_quant
+  - hopper
+  - scheduler_autotune
+  - sm120
+  - sm90
+  - varlen scheduler
+  - warpspec
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - async-copy
+  - autotuning
+  - fine-grained-quantization
+  - pipeline-stages
+  - tile-scheduling
+  - warp-specialization
+  hardware_features:
+  - fp8
+  - hopper
+  - tma
+  kernel_types:
+  - attention
+  - gemm
+  - runtime
+  - scheduler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - csrc/fmha_v2/fmha/warpspec/circular_buffer.h
+  - csrc/fmha_v2/fmha/warpspec/dma.h
+  - csrc/fmha_v2/fmha/warpspec/kernel_traits.h
+  - flashinfer/jit/attention/fmha_v2/fmha_library.py
+  - flashinfer/prefill.py
+  - tests/attention/test_fmha_v2_prefill.py
+  score: 55
+  ncu_hint: Tensor pipe %, memory pipe utilization, barrier stalls, wait groups, and occupancy.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3276
+- number: 3252
+  pr: 3252
+  title: 'fix(cute_dsl/moe): unbias autotuner profiling for tile_size enumeration'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3252
+  date: '2026-05-11'
+  merged_at: '2026-05-11T16:32:57Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - moe_routing
+  - scheduler_autotune
+  - benchmark_test
+  - attention_kv
+  tags:
+  - attention_kv
+  - benchmark_test
+  - compiler_runtime
+  - cuda kernel
+  - cute dsl
+  - fused moe
+  - moe_routing
+  - scheduler_autotune
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  kernel_types:
+  - attention
+  - compiler
+  - gemm
+  - moe
+  - scheduler
+  - sort
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - flashinfer/autotuner.py
+  - flashinfer/fused_moe/cute_dsl/fused_moe.py
+  - flashinfer/fused_moe/cute_dsl/tuner.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  score: 61
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3252
+- number: 2944
+  pr: 2944
+  title: 'feat: Add CuTe DSL grouped-gemm + combine fusion support'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2944
+  date: '2026-05-14'
+  merged_at: '2026-05-14T19:32:29Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - gemm_quant
+  - moe_routing
+  - benchmark_test
+  - attention_kv
+  tags:
+  - TMA
+  - attention_kv
+  - benchmark_test
+  - blackwell
+  - compiler_runtime
+  - cuda kernel
+  - cute dsl
+  - cutlass
+  - gemm_quant
+  - moe_routing
+  - sm100
+  - topk
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - epilogue-fusion
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - blackwell
+  - tma
+  kernel_types:
+  - attention
+  - compiler
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  - ptx
+  changed_paths:
+  - flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py
+  - scripts/task_test_multi_gpu_comm_kernels.sh
+  - tests/gemm/test_multi_gpu_cute_dsl_blockscaled_gemm_fusion.py
+  score: 59
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2944
+- number: 2870
+  pr: 2870
+  title: 'fix: fix cute dsl swap_ab tactic failure'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2870
+  date: '2026-03-24'
+  merged_at: '2026-03-24T23:23:11Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: 'Treat compiler/runtime integration as part of the kernel: launch wrapper, cache/JIT behavior, generated code, and build flags need tests.'
+  seed_source: legacy-pr-index
+  primary_category: compiler_runtime
+  categories:
+  - compiler_runtime
+  - gemm_quant
+  - attention_kv
+  tags:
+  - attention_kv
+  - compiler_runtime
+  - cute dsl
+  - gemm_quant
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features: []
+  kernel_types:
+  - attention
+  - compiler
+  - gemm
+  languages:
+  - cute-dsl
+  changed_paths:
+  - flashinfer/gemm/gemm_base.py
+  score: 35
+  ncu_hint: Generated kernel shape, launch overhead, occupancy, register pressure, and compile-time-selected schedule.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2870
+- number: 3203
+  pr: 3203
+  title: Include TinyGEMM into BF16 autotuner
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3203
+  date: '2026-05-05'
+  merged_at: '2026-05-05T04:43:13Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - gemm_quant
+  - scheduler_autotune
+  - attention_kv
+  tags:
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - cutlass
+  - gemm_quant
+  - scheduler_autotune
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - fine-grained-quantization
+  - tile-scheduling
+  hardware_features:
+  - blackwell
+  - pdl
+  kernel_types:
+  - attention
+  - gemm
+  - scheduler
+  languages:
+  - cute-dsl
+  changed_paths:
+  - benchmarks/routines/gemm.py
+  - flashinfer/gemm/gemm_base.py
+  - tests/gemm/test_mm_bf16.py
+  score: 50
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3203
+- number: 2962
+  pr: 2962
+  title: 'Improved `simple` mamba SSU kernel '
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/2962
+  date: '2026-05-13'
+  merged_at: '2026-05-13T00:09:14Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - compiler_runtime
+  tags:
+  - TMA
+  - benchmark
+  - benchmark_test
+  - compiler_runtime
+  - cuda kernel
+  - mxfp4
+  - sm100
+  architectures:
+  - sm100
+  techniques:
+  - async-copy
+  - vectorized-loads
+  hardware_features:
+  - blackwell
+  - fp4
+  - mxfp4
+  - tma
+  kernel_types:
+  - compiler
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/bench_ssu_sweep_mtp.py
+  - benchmarks/bench_ssu_sweep_sol.py
+  - flashinfer/aot.py
+  - flashinfer/jit/mamba/selective_state_update.py
+  - flashinfer/mamba/selective_state_update.py
+  - include/flashinfer/mamba/common.cuh
+  - include/flashinfer/mamba/invoke_selective_state_update_mtp.cuh
+  - include/flashinfer/mamba/kernel_selective_state_update_mtp_horizontal.cuh
+  - include/flashinfer/mamba/kernel_selective_state_update_mtp_simple.cuh
+  - include/flashinfer/mamba/kernel_selective_state_update_mtp_vertical.cuh
+  - include/flashinfer/mamba/ssu_mtp_common.cuh
+  - tests/mamba/test_selective_state_update_mtp.py
+  - tests/mamba/test_selective_state_update_varlen.py
+  score: 42
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-2962
+- number: 3151
+  pr: 3151
+  title: 'perf: Add no-bias path for tinygemm_bf16'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3151
+  date: '2026-04-24'
+  merged_at: '2026-04-24T08:53:24Z'
+  decision: include
+  status: merged
+  reason: legacy PR seed promoted into PR-diff corpus
+  inclusion_reason: Mine shape sets, tolerance rules, warmup logic, and profile commands before mutating code.
+  seed_source: legacy-pr-index
+  primary_category: benchmark_test
+  categories:
+  - benchmark_test
+  - gemm_quant
+  - attention_kv
+  tags:
+  - attention_kv
+  - benchmark
+  - benchmark_test
+  - gemm_quant
+  - sm120
+  architectures:
+  - sm100
+  techniques:
+  - fine-grained-quantization
+  hardware_features: []
+  kernel_types:
+  - attention
+  - gemm
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - benchmarks/routines/flashinfer_benchmark_utils.py
+  - benchmarks/routines/gemm.py
+  - csrc/tinygemm2.cu
+  - flashinfer/gemm/routergemm.py
+  score: 41
+  ncu_hint: Use the PR's benchmark/profile command as the first replay target.
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3151
+- number: 3328
+  pr: 3328
+  title: 'feat(cute_dsl/moe): add `moe_output_memset_inplace` dense memset wrapper'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3328
+  date: '2026-05-18'
+  merged_at: '2026-05-18T21:17:39Z'
+  author: leejnau
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: csrc/moe_utils_binding.cu, flashinfer/fused_moe/cute_dsl/fused_moe.py, flashinfer/fused_moe/cute_dsl/moe_utils.py, flashinfer/jit/moe_utils.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda kernel
+  - cute
+  - fp4
+  - fp8
+  - gemm
+  - moe kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - csrc/moe_utils_binding.cu
+  - flashinfer/fused_moe/cute_dsl/fused_moe.py
+  - flashinfer/fused_moe/cute_dsl/moe_utils.py
+  - flashinfer/jit/moe_utils.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  path_signals:
+  - csrc/moe_utils_binding.cu
+  - flashinfer/fused_moe/cute_dsl/fused_moe.py
+  - flashinfer/fused_moe/cute_dsl/moe_utils.py
+  - flashinfer/jit/moe_utils.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  borderline_path_signals:
+  - tests/moe/test_cute_dsl_fused_moe.py
+  selection_text_signals:
+  - cuda kernel
+  - cute
+  - flashinfer
+  - fp4
+  - fp8
+  - gemm
+  - moe kernel
+  additions: 314
+  deletions: 9
+  changed_file_count: 5
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3328
+- number: 3324
+  pr: 3324
+  title: 'checkpointing_ssu kernel: fused replay + conditional state-write for Mamba2'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3324
+  date: '2026-05-19'
+  merged_at: '2026-05-19T16:47:02Z'
+  author: ishovkun
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: benchmarks/bench_checkpointing_ssu.py, benchmarks/bench_ssu_sweep_sol.py, csrc/checkpointing_ssu.cu, csrc/checkpointing_ssu_customize_config.jinja'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - blackwell
+  - cuda kernel
+  - cute
+  - fp8
+  - gemm
+  - hopper
+  - moe kernel
+  - nvfp4
+  - sm100
+  - speculative
+  - triton kernel
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - kernel-fusion
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  - hopper
+  - nvfp4
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  - triton
+  changed_paths:
+  - .github/CODEOWNERS
+  - benchmarks/bench_checkpointing_ssu.py
+  - benchmarks/bench_ssu_sweep_sol.py
+  - csrc/checkpointing_ssu.cu
+  - csrc/checkpointing_ssu_customize_config.jinja
+  - csrc/checkpointing_ssu_jit_binding.cu
+  - csrc/checkpointing_ssu_kernel_inst.cu
+  - flashinfer/jit/mamba/checkpointing_ssu.py
+  - flashinfer/mamba/__init__.py
+  - flashinfer/mamba/checkpointing_ssu.py
+  - include/flashinfer/mamba/checkpointing_ssu.cuh
+  - include/flashinfer/mamba/conversion.cuh
+  - include/flashinfer/mamba/kernel_checkpointing_ssu.cuh
+  - include/flashinfer/mamba/kernel_checkpointing_ssu_8bit.cuh
+  - include/flashinfer/mamba/kernel_checkpointing_ssu_common.cuh
+  - include/flashinfer/mamba/launch_checkpointing_ssu.cuh
+  - tests/mamba/test_checkpointing_ssu.py
+  - tests/mamba/test_philox_rounding.py
+  - tests/mamba/triton_reference/checkpointing_state_update.py
+  path_signals:
+  - benchmarks/bench_checkpointing_ssu.py
+  - benchmarks/bench_ssu_sweep_sol.py
+  - csrc/checkpointing_ssu.cu
+  - csrc/checkpointing_ssu_customize_config.jinja
+  - csrc/checkpointing_ssu_jit_binding.cu
+  - csrc/checkpointing_ssu_kernel_inst.cu
+  - flashinfer/jit/mamba/checkpointing_ssu.py
+  - flashinfer/mamba/__init__.py
+  - flashinfer/mamba/checkpointing_ssu.py
+  - include/flashinfer/mamba/checkpointing_ssu.cuh
+  - include/flashinfer/mamba/conversion.cuh
+  - include/flashinfer/mamba/kernel_checkpointing_ssu.cuh
+  borderline_path_signals:
+  - benchmarks/bench_checkpointing_ssu.py
+  - benchmarks/bench_ssu_sweep_sol.py
+  - tests/mamba/triton_reference/checkpointing_state_update.py
+  selection_text_signals:
+  - benchmark kernel
+  - blackwell
+  - cuda kernel
+  - cute
+  - flashinfer
+  - fp4
+  - fp8
+  - gemm
+  - hopper
+  - moe kernel
+  - nvfp4
+  - sm100
+  - triton kernel
+  additions: 14368
+  deletions: 36
+  changed_file_count: 19
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3324
+- number: 3322
+  pr: 3322
+  title: '[feat] Add gemma RMS AR fusion'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3322
+  date: '2026-05-19'
+  merged_at: '2026-05-19T16:13:19Z'
+  author: jiahanc
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: benchmarks/bench_gemma_ar_fusion.py, csrc/trtllm_allreduce_fusion.cu, csrc/trtllm_mnnvl_allreduce.cu, csrc/trtllm_moe_allreduce_fusion.cu'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - cuda kernel
+  - cute
+  - moe kernel
+  architectures:
+  - sm100
+  techniques:
+  - kernel-fusion
+  hardware_features: []
+  kernel_types:
+  - gemm
+  - moe
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - benchmarks/bench_gemma_ar_fusion.py
+  - csrc/trtllm_allreduce_fusion.cu
+  - csrc/trtllm_mnnvl_allreduce.cu
+  - csrc/trtllm_moe_allreduce_fusion.cu
+  - docs/api/comm.rst
+  - flashinfer/comm/allreduce.py
+  - flashinfer/comm/trtllm_ar.py
+  - flashinfer/comm/trtllm_mnnvl_ar.py
+  - flashinfer/trace/templates/comm.py
+  - include/flashinfer/comm/trtllm_allreduce_fusion.cuh
+  - include/flashinfer/comm/trtllm_mnnvl_allreduce.cuh
+  - include/flashinfer/comm/trtllm_moe_allreduce_fusion.cuh
+  - tests/comm/test_allreduce_fusion_moe_unified_api.py
+  - tests/comm/test_gemma_ar_fusion.py
+  - tests/comm/test_trtllm_allreduce_fusion.py
+  path_signals:
+  - benchmarks/bench_gemma_ar_fusion.py
+  - csrc/trtllm_allreduce_fusion.cu
+  - csrc/trtllm_mnnvl_allreduce.cu
+  - csrc/trtllm_moe_allreduce_fusion.cu
+  - flashinfer/comm/allreduce.py
+  - flashinfer/comm/trtllm_ar.py
+  - flashinfer/comm/trtllm_mnnvl_ar.py
+  - flashinfer/trace/templates/comm.py
+  - include/flashinfer/comm/trtllm_allreduce_fusion.cuh
+  - include/flashinfer/comm/trtllm_mnnvl_allreduce.cuh
+  - include/flashinfer/comm/trtllm_moe_allreduce_fusion.cuh
+  - tests/comm/test_allreduce_fusion_moe_unified_api.py
+  borderline_path_signals:
+  - benchmarks/bench_gemma_ar_fusion.py
+  - tests/comm/test_allreduce_fusion_moe_unified_api.py
+  - tests/comm/test_gemma_ar_fusion.py
+  selection_text_signals:
+  - benchmark kernel
+  - cuda kernel
+  - cute
+  - flashinfer
+  - gemm
+  - moe kernel
+  additions: 563
+  deletions: 46
+  changed_file_count: 15
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3322
+- number: 3317
+  pr: 3317
+  title: Update trtllm FMHA cubins
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3317
+  date: '2026-05-19'
+  merged_at: '2026-05-19T21:54:09Z'
+  author: djmmoss
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: csrc/trtllm_fmha_kernel_launcher.cu, flashinfer/artifacts.py, include/flashinfer/trtllm/fmha/kernelParams.h'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - cute
+  - fmha
+  - fp4
+  - fp8
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - attention
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - csrc/trtllm_fmha_kernel_launcher.cu
+  - flashinfer/artifacts.py
+  - include/flashinfer/trtllm/fmha/kernelParams.h
+  path_signals:
+  - csrc/trtllm_fmha_kernel_launcher.cu
+  - flashinfer/artifacts.py
+  - include/flashinfer/trtllm/fmha/kernelParams.h
+  borderline_path_signals: []
+  selection_text_signals:
+  - attention kernel
+  - cute
+  - flashinfer
+  - fp4
+  - fp8
+  additions: 32
+  deletions: 16
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3317
+- number: 3315
+  pr: 3315
+  title: Ep api design - Build Infra dependencies
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3315
+  date: '2026-05-18'
+  merged_at: '2026-05-18T23:47:29Z'
+  author: Anerudhan
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: flashinfer/moe_ep/__init__.py, flashinfer/moe_ep/nccl_ep/__init__.py, flashinfer/moe_ep/nixl_ep/__init__.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - benchmark kernel
+  - blackwell
+  - cuda kernel
+  - hopper
+  - moe kernel
+  architectures:
+  - sm100
+  - sm90
+  techniques: []
+  hardware_features:
+  - blackwell
+  - hopper
+  kernel_types:
+  - moe
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - .dockerignore
+  - .gitignore
+  - .gitmodules
+  - 3rdparty/nccl
+  - 3rdparty/nixl
+  - 3rdparty_patches/nixl/0001-meson-add-blackwell-arches.patch
+  - 3rdparty_patches/nixl/0002-ep-only-build.patch
+  - build_backend.py
+  - docker/Dockerfile.flashinfer-nvep
+  - flashinfer/moe_ep/__init__.py
+  - flashinfer/moe_ep/nccl_ep/__init__.py
+  - flashinfer/moe_ep/nixl_ep/__init__.py
+  - pyproject.toml
+  path_signals:
+  - flashinfer/moe_ep/__init__.py
+  - flashinfer/moe_ep/nccl_ep/__init__.py
+  - flashinfer/moe_ep/nixl_ep/__init__.py
+  borderline_path_signals:
+  - docker/Dockerfile.flashinfer-nvep
+  selection_text_signals:
+  - benchmark kernel
+  - blackwell
+  - cuda kernel
+  - flashinfer
+  - hopper
+  - moe kernel
+  additions: 1561
+  deletions: 0
+  changed_file_count: 13
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3315
+- number: 3286
+  pr: 3286
+  title: 'feat(cute_dsl/moe): deterministic balanced autotune profile inputs'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3286
+  date: '2026-05-17'
+  merged_at: '2026-05-17T04:17:35Z'
+  author: leejnau
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: flashinfer/autotuner.py, flashinfer/fused_moe/cute_dsl/_inputs_helper.py, flashinfer/fused_moe/cute_dsl/tuner.py, tests/moe/test_cute_dsl_fused_moe.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cute
+  - nvfp4
+  - sampling
+  architectures:
+  - sm100
+  techniques:
+  - autotuning
+  - kernel-fusion
+  hardware_features:
+  - fp4
+  - nvfp4
+  kernel_types:
+  - moe
+  - sampling
+  languages:
+  - cute-dsl
+  changed_paths:
+  - flashinfer/autotuner.py
+  - flashinfer/fused_moe/cute_dsl/_inputs_helper.py
+  - flashinfer/fused_moe/cute_dsl/tuner.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  path_signals:
+  - flashinfer/autotuner.py
+  - flashinfer/fused_moe/cute_dsl/_inputs_helper.py
+  - flashinfer/fused_moe/cute_dsl/tuner.py
+  - tests/moe/test_cute_dsl_fused_moe.py
+  borderline_path_signals:
+  - tests/moe/test_cute_dsl_fused_moe.py
+  selection_text_signals:
+  - cute
+  - flashinfer
+  - fp4
+  - nvfp4
+  additions: 388
+  deletions: 7
+  changed_file_count: 4
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3286
+- number: 3268
+  pr: 3268
+  title: Ameyn/gdn bf16 dispatcher and 4d pool
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3268
+  date: '2026-05-19'
+  merged_at: '2026-05-19T21:33:55Z'
+  author: ameynaik-hub
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: flashinfer/gdn_decode.py, flashinfer/gdn_kernels/gdn_decode_bf16_state.py, tests/gdn/test_decode_pretranspose_bf16_padded_pool.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda kernel
+  - sm90
+  architectures:
+  - sm90
+  techniques: []
+  hardware_features:
+  - hopper
+  kernel_types:
+  - decode
+  languages:
+  - cuda-cpp
+  changed_paths:
+  - flashinfer/gdn_decode.py
+  - flashinfer/gdn_kernels/gdn_decode_bf16_state.py
+  - tests/gdn/test_decode_pretranspose_bf16_padded_pool.py
+  path_signals:
+  - flashinfer/gdn_decode.py
+  - flashinfer/gdn_kernels/gdn_decode_bf16_state.py
+  - tests/gdn/test_decode_pretranspose_bf16_padded_pool.py
+  borderline_path_signals:
+  - tests/gdn/test_decode_pretranspose_bf16_padded_pool.py
+  selection_text_signals:
+  - cuda kernel
+  - flashinfer
+  - sm90
+  additions: 263
+  deletions: 85
+  changed_file_count: 3
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3268
+- number: 3221
+  pr: 3221
+  title: 'feat(trace): embed runnable init() in every TraceTemplate'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3221
+  date: '2026-05-17'
+  merged_at: '2026-05-17T04:14:20Z'
+  author: yyihuang
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: flashinfer/api_logging.py, flashinfer/trace/template.py, flashinfer/trace/templates/_init_helpers.py, flashinfer/trace/templates/activation.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - attention
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - fp4
+  - fp8
+  - gemm
+  - kv-cache
+  - moe kernel
+  - mxfp4
+  - nvfp4
+  - page-table
+  - sampling
+  - sm90
+  - speculative
+  architectures:
+  - sm100
+  - sm90
+  techniques:
+  - async-copy
+  - cache-policy
+  - fine-grained-quantization
+  - kernel-fusion
+  hardware_features:
+  - blackwell
+  - fp4
+  - fp8
+  - hopper
+  - mxfp4
+  - nvfp4
+  - tma
+  kernel_types:
+  - attention
+  - decode
+  - gemm
+  - mla
+  - moe
+  - norm
+  - sampling
+  - softmax
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - .github/workflows/pr-test.yml
+  - flashinfer/api_logging.py
+  - flashinfer/trace/template.py
+  - flashinfer/trace/templates/_init_helpers.py
+  - flashinfer/trace/templates/activation.py
+  - flashinfer/trace/templates/attention.py
+  - flashinfer/trace/templates/cascade.py
+  - flashinfer/trace/templates/comm.py
+  - flashinfer/trace/templates/gdn.py
+  - flashinfer/trace/templates/gemm.py
+  - flashinfer/trace/templates/mamba.py
+  - flashinfer/trace/templates/moe.py
+  - flashinfer/trace/templates/norm.py
+  - flashinfer/trace/templates/page.py
+  - flashinfer/trace/templates/quantize.py
+  - flashinfer/trace/templates/rope.py
+  - flashinfer/trace/templates/sampling.py
+  - tests/trace/__init__.py
+  - tests/trace/example.py
+  - tests/trace/fi_trace_out/append_paged_kv_cache_kv8_d128.json
+  - tests/trace/fi_trace_out/chain_speculative_sampling_v32000.json
+  - tests/trace/fi_trace_out/concat_mla_k_h128_nope128_rope64_d192.json
+  - tests/trace/fi_trace_out/fp4_quantize_k4096.json
+  - tests/trace/fi_trace_out/fp4_quantize_k7168.json
+  - tests/trace/fi_trace_out/fused_add_rmsnorm_h5120.json
+  - tests/trace/fi_trace_out/fused_add_rmsnorm_quant_h7168.json
+  - tests/trace/fi_trace_out/gdn_decode_qk4_v8_d128.json
+  - tests/trace/fi_trace_out/gdn_mtp_qk4_v8_d128.json
+  - tests/trace/fi_trace_out/gdn_prefill_qk4_v8_d128.json
+  - tests/trace/fi_trace_out/gelu_and_mul_h16384.json
+  - tests/trace/fi_trace_out/gelu_tanh_and_mul_h16384.json
+  - tests/trace/fi_trace_out/gemm_bf16_N256_K7168.json
+  - tests/trace/fi_trace_out/gemm_bf16_N4096_K4096.json
+  - tests/trace/fi_trace_out/gemm_fp4_N2048_K7168_block_size16.json
+  - tests/trace/fi_trace_out/gemm_fp8_N1536_K7168.json
+  - tests/trace/fi_trace_out/gemm_fp8_nt_groupwise_n1536_k7168.json
+  - tests/trace/fi_trace_out/gemm_mxfp8_N4096_K4096.json
+  - tests/trace/fi_trace_out/gemma_fused_add_rmsnorm_h4608.json
+  - tests/trace/fi_trace_out/gemma_rmsnorm_h4608.json
+  - tests/trace/fi_trace_out/gqa_paged_decode_h32_kv8_d128_ps16.json
+  - tests/trace/fi_trace_out/gqa_paged_decode_h32_kv8_d128_ps64.json
+  - tests/trace/fi_trace_out/gqa_paged_prefill_h32_kv8_d128_ps16.json
+  - tests/trace/fi_trace_out/gqa_ragged_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/layernorm_h768.json
+  - tests/trace/fi_trace_out/llama31_rope_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/llama31_rope_inplace_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/llama31_rope_pos_ids_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/llama31_rope_pos_ids_inplace_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/merge_state_h32_d128.json
+  - tests/trace/fi_trace_out/merge_state_in_place_h32_d128.json
+  - tests/trace/fi_trace_out/merge_states_h32_d128.json
+  - tests/trace/fi_trace_out/min_p_sampling_v32000.json
+  - tests/trace/fi_trace_out/mla_paged_decode_h16_ckv512_kpe64_ps1.json
+  - tests/trace/fi_trace_out/mla_paged_decode_h16_ckv512_kpe64_ps64.json
+  - tests/trace/fi_trace_out/mla_rope_quantize_fp8_h128_kv64_rope64.json
+  - tests/trace/fi_trace_out/mla_rope_quantize_fp8_h128_rope64.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_default_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_ds_routing_topk8_e32_h7168_i2048_ng8_kg4.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_llama4_routing_topk1_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_renormalize_naive_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_renormalize_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp4_block_scale_topk_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_default_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_ds_routing_topk8_ng8_kg4_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_llama4_routing_topk1_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_renormalize_naive_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_renormalize_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/moe_fp8_block_scale_topk_routing_topk8_e32_h7168_i2048.json
+  - tests/trace/fi_trace_out/mxfp4_quantize_k4096.json
+  - tests/trace/fi_trace_out/mxfp8_quantize_k4096.json
+  - tests/trace/fi_trace_out/nvfp4_quantize_k4096.json
+  - tests/trace/fi_trace_out/rmsnorm_h4096.json
+  - tests/trace/fi_trace_out/rmsnorm_h7168.json
+  - tests/trace/fi_trace_out/rmsnorm_quant_h7168.json
+  - tests/trace/fi_trace_out/rope_cos_sin_cache_d128.json
+  - tests/trace/fi_trace_out/rope_cos_sin_cache_inplace_d128.json
+  - tests/trace/fi_trace_out/rope_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/rope_inplace_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/rope_pos_ids_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/rope_pos_ids_inplace_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/rope_quantize_fp8_append_paged_kv_cache_h8_kv2_rope64.json
+  - tests/trace/fi_trace_out/rope_quantize_fp8_append_paged_kv_cache_h8_kv2_rope64_ps16.json
+  - tests/trace/fi_trace_out/rope_quantize_fp8_h128_kv64_rope64.json
+  - tests/trace/fi_trace_out/rope_quantize_fp8_h8_kv2_rope64.json
+  - tests/trace/fi_trace_out/sampling_from_logits_v32000.json
+  - tests/trace/fi_trace_out/sampling_from_probs_v32000.json
+  - tests/trace/fi_trace_out/segment_gemm_run_k128_n64.json
+  - tests/trace/fi_trace_out/silu_and_mul_h16384.json
+  - tests/trace/fi_trace_out/single_decode_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/single_prefill_h32_kv8_d128.json
+  - tests/trace/fi_trace_out/softmax_v32000.json
+  - tests/trace/fi_trace_out/top_k_mask_logits_v32000.json
+  - tests/trace/fi_trace_out/top_k_renorm_probs_v128256.json
+  - tests/trace/fi_trace_out/top_k_renorm_probs_v151936.json
+  - tests/trace/fi_trace_out/top_k_renorm_probs_v32000.json
+  - tests/trace/fi_trace_out/top_k_sampling_v128256.json
+  - tests/trace/fi_trace_out/top_k_top_p_sampling_from_logits_v32000.json
+  - tests/trace/fi_trace_out/top_k_top_p_sampling_v128256.json
+  - tests/trace/fi_trace_out/top_k_top_p_sampling_v151936.json
+  - tests/trace/fi_trace_out/top_p_renorm_probs_v32000.json
+  - tests/trace/fi_trace_out/top_p_sampling_v128256.json
+  - tests/trace/fi_trace_out/top_p_sampling_v151936.json
+  - tests/trace/fi_trace_out/top_p_sampling_v32000.json
+  - tests/trace/fi_trace_out/trtllm_batch_decode_mla_h128_d_qk576_ckv512_kpe64_nope512_ps64.json
+  - tests/trace/fi_trace_out/xqa_batch_decode_h8_kv16_d128_ps2.json
+  - tests/trace/fi_trace_out/xqa_batch_decode_mla_h128_d_qk576_ckv512_kpe64_nope512_ps64.json
+  - tests/trace/fi_trace_out/xqa_h1_kv16_d8_ps2.json
+  - tests/trace/fi_trace_out/xqa_mla_h1_ckv128_kpe1_ps64.json
+  - tests/trace/reference_correctness_standards.md
+  - tests/trace/reference_utils.py
+  - tests/trace/test_append_paged_kv_cache_reference_correctness.py
+  - tests/trace/test_append_paged_mla_kv_cache_reference_correctness.py
+  - tests/trace/test_apply_llama31_rope_inplace_reference_correctness.py
+  - tests/trace/test_apply_llama31_rope_pos_ids_inplace_reference_correctness.py
+  - tests/trace/test_apply_llama31_rope_pos_ids_reference_correctness.py
+  - tests/trace/test_apply_llama31_rope_reference_correctness.py
+  - tests/trace/test_apply_rope_inplace_reference_correctness.py
+  - tests/trace/test_apply_rope_pos_ids_inplace_reference_correctness.py
+  - tests/trace/test_apply_rope_pos_ids_reference_correctness.py
+  - tests/trace/test_apply_rope_reference_correctness.py
+  path_signals:
+  - flashinfer/api_logging.py
+  - flashinfer/trace/template.py
+  - flashinfer/trace/templates/_init_helpers.py
+  - flashinfer/trace/templates/activation.py
+  - flashinfer/trace/templates/attention.py
+  - flashinfer/trace/templates/cascade.py
+  - flashinfer/trace/templates/comm.py
+  - flashinfer/trace/templates/gdn.py
+  - flashinfer/trace/templates/gemm.py
+  - flashinfer/trace/templates/mamba.py
+  - flashinfer/trace/templates/moe.py
+  - flashinfer/trace/templates/norm.py
+  borderline_path_signals:
+  - tests/trace/fi_trace_out/append_paged_kv_cache_kv8_d128.json
+  - tests/trace/fi_trace_out/concat_mla_k_h128_nope128_rope64_d192.json
+  - tests/trace/fi_trace_out/fp4_quantize_k4096.json
+  - tests/trace/fi_trace_out/fp4_quantize_k7168.json
+  - tests/trace/fi_trace_out/fused_add_rmsnorm_quant_h7168.json
+  - tests/trace/fi_trace_out/gdn_decode_qk4_v8_d128.json
+  - tests/trace/fi_trace_out/gemm_bf16_N256_K7168.json
+  - tests/trace/fi_trace_out/gemm_bf16_N4096_K4096.json
+  - tests/trace/fi_trace_out/gemm_fp4_N2048_K7168_block_size16.json
+  - tests/trace/fi_trace_out/gemm_fp8_N1536_K7168.json
+  - tests/trace/fi_trace_out/gemm_fp8_nt_groupwise_n1536_k7168.json
+  - tests/trace/fi_trace_out/gemm_mxfp8_N4096_K4096.json
+  selection_text_signals:
+  - attention kernel
+  - benchmark kernel
+  - cuda kernel
+  - cutlass
+  - flashinfer
+  - fp4
+  - fp8
+  - gemm
+  - moe kernel
+  - mxfp4
+  - nvfp4
+  - sm100
+  - sm90
+  additions: 8493
+  deletions: 2380
+  changed_file_count: 182
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3221
+- number: 3183
+  pr: 3183
+  title: 'test: enable bmm_mxfp8 cutlass backend coverage on SM12x'
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3183
+  date: '2026-05-18'
+  merged_at: '2026-05-18T21:21:56Z'
+  author: leonardHONG
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: tests/gemm/test_bmm_mxfp8.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cutlass
+  - fp8
+  - gemm
+  - sm100
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - blackwell
+  - fp8
+  kernel_types:
+  - gemm
+  languages:
+  - cute-dsl
+  changed_paths:
+  - tests/gemm/test_bmm_mxfp8.py
+  path_signals:
+  - tests/gemm/test_bmm_mxfp8.py
+  borderline_path_signals:
+  - tests/gemm/test_bmm_mxfp8.py
+  selection_text_signals:
+  - cutlass
+  - fp8
+  - gemm
+  - sm100
+  additions: 7
+  deletions: 7
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3183
+- number: 3180
+  pr: 3180
+  title: Fix/3170 dense blockscaled sm12x
+  repo: flashinfer-ai/flashinfer
+  url: https://github.com/flashinfer-ai/flashinfer/pull/3180
+  date: '2026-05-18'
+  merged_at: '2026-05-18T21:21:05Z'
+  author: leonardHONG
+  decision: include
+  status: merged
+  reason: 'file-path kernel signal: flashinfer/gemm/kernels/dense_blockscaled_gemm_sm120_b12x.py'
+  inclusion_reason: Merged CUDA/kernel optimization PR with changed files matching existing corpus kernel paths or kernel source signals.
+  seed_source: github-search
+  tags:
+  - cuda kernel
+  - cutlass
+  - fp4
+  - fp8
+  - gemm
+  architectures:
+  - sm100
+  techniques: []
+  hardware_features:
+  - fp4
+  - fp8
+  kernel_types:
+  - gemm
+  languages:
+  - cuda-cpp
+  - cute-dsl
+  changed_paths:
+  - flashinfer/gemm/kernels/dense_blockscaled_gemm_sm120_b12x.py
+  path_signals:
+  - flashinfer/gemm/kernels/dense_blockscaled_gemm_sm120_b12x.py
+  borderline_path_signals: []
+  selection_text_signals:
+  - cuda kernel
+  - cutlass
+  - flashinfer
+  - fp4
+  - fp8
+  - gemm
+  additions: 2
+  deletions: 2
+  changed_file_count: 1
+  artifact_dir: evidence/pull-bundles/flashinfer/gh-3180
